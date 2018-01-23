@@ -19,6 +19,10 @@ public abstract class ArbreAbstrait {
             return noLigne ;
     }
 
+    public abstract void verifier();
+    
+    public abstract String toMIPS();
+    
     // public abstract void verifier() ;   à écrire pour yal0
     // public abstract String toMIPS() ;   à écrire pour yal0
 

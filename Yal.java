@@ -24,8 +24,8 @@ public class Yal {
             System.err.println("expression stockée dans l'arbre : " + arbre);
             
             // à écrire pour yal0
-            // arbre.verifier() ; 
-            // System.out.println(arbre.toMIPS());
+            arbre.verifier() ; 
+            System.out.println(arbre.toMIPS());
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + fichier + " inexistant") ;

@@ -17,4 +17,22 @@ public class Plus extends BinaireArithmetique {
         return " + " ;
     }
 
+	@Override
+	public void verifier() {
+		//TODO
+	}
+
+	@Override
+	public String toMIPS() {
+		StringBuilder sb=new StringBuilder();
+		sb.append(gauche.toMIPS());
+		sb.append("sw $v0,0($sp)");
+		sb.append("add $sp, $sp, -4");
+		sb.append(droite.toMIPS());
+		sb.append("add $sp, $sp, 4");
+		sb.append("lw $t8,($sp)");
+		sb.append("$v0, $t8, $v0");		
+		return sb.toString();
+	}
+
 }

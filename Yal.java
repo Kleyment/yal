@@ -10,9 +10,7 @@ import yal.arbre.ArbreAbstrait;
 import yal.exceptions.AnalyseException;
 
 /**
- * 24 mars 2015 
- * 
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
 
 public class Yal {

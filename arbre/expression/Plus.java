@@ -25,6 +25,7 @@ public class Plus extends BinaireArithmetique {
 	@Override
 	public String toMIPS() {
 		StringBuilder sb=new StringBuilder();
+		sb.append("# Addition");
 		sb.append(gauche.toMIPS());
 		sb.append("sw $v0,0($sp)");
 		sb.append("add $sp, $sp, -4");

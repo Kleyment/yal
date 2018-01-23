@@ -19,11 +19,22 @@ public class Yal {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-            System.err.println("expression stockée dans l'arbre : " + arbre);
+                     
+            arbre.verifier(); 
             
-            // à écrire pour yal0
-            arbre.verifier() ; 
-            System.out.println(arbre.toMIPS());
+            StringBuilder code = new StringBuilder();
+            
+            code.append(".text\n");
+            code.append("main :\n");
+            code.append("# initialiser s7 avec sp (initialisation de la base des variables)");
+            code.append("move $s7, $sp");
+            code.append(arbre.toMIPS());
+            code.append("end :\n");
+            code.append("# fin du programme");
+            code.append("li $v0, 10      # retour au système");
+            code.append("syscall");
+    
+            System.out.println(code.toString());
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + fichier + " inexistant") ;
@@ -42,6 +53,7 @@ public class Yal {
             System.err.println("\tjava -jar yal.jar <fichierSource.yal>") ;
             System.exit(1) ;
         }
+        
         new Yal(args[0]) ;
     }
     

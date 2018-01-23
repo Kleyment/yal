@@ -1,8 +1,6 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
  * @author brigitte wrobel-dautcourt
  */
 

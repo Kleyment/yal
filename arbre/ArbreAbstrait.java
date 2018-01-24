@@ -6,8 +6,8 @@ package yal.arbre;
 public abstract class ArbreAbstrait {
 
     // type des expressions  
-	public static int ENTIER = 0;
-	public static int BOOLEEN = 1;
+	protected static int ENTIER = 0;
+	protected static int BOOLEEN = 1;
   
     // numéro de ligne du début de l'instruction
     protected int noLigne ;

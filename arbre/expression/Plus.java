@@ -17,7 +17,9 @@ public class Plus extends BinaireArithmetique {
 
 	@Override
 	public void verifier() {
-		//TODO
+	        if (gauche.getType() != ENTIER || droite.getType() != ENTIER){
+		  // throw
+		}
 	}
 
 	@Override
@@ -41,4 +43,7 @@ public class Plus extends BinaireArithmetique {
 		return sb.toString();
 	}
 
+        public int getType() {
+	        return ENTIER;
+        }
 }

@@ -1,16 +1,21 @@
 package yal.arbre;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
 
 public abstract class ArbreAbstrait {
-    
+
+    // type des expressions  
+    protected static enum TYPE {
+        ENTIER,
+        BOOLEEN
+    }
+  
     // numéro de ligne du début de l'instruction
     protected int noLigne ;
-    
+
+  
     protected ArbreAbstrait(int no) {
         noLigne = no ;
     }

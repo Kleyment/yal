@@ -3,9 +3,7 @@ package yal.arbre.expression;
 import yal.arbre.ArbreAbstrait;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
 
 public abstract class Expression extends ArbreAbstrait {
@@ -14,4 +12,6 @@ public abstract class Expression extends ArbreAbstrait {
         super(n) ;
     }
 
+    public abstract int getType();
+  
 }

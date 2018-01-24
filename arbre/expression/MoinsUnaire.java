@@ -36,7 +36,23 @@ public class MoinsUnaire extends Unaire {
 
 	@Override
 	public String toMIPS() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("# Moins Unaire\n");
+		sb.append("# On met 0 a gauche de l'expression\n");
+		sb.append("li $v0, 0\n");
+		sb.append("# Empilement de la partie gauche\n");
+		sb.append("sw $v0, 0($sp)\n");
+		sb.append("add $sp, $sp, -4\n");
+		sb.append("# Calcul de l'expression\n");
+		sb.append(expression.toMIPS());
+		sb.append("# Dépilement de la partie gauche\n");
+		sb.append("add $sp, $sp, 4\n");
+		sb.append("lw $t8,($sp)\n");
+		sb.append("# Difference entre 0 et l'expression\n");
+		sb.append("sub $v0, $t8, $v0\n");	
+		
+		return sb.toString();
 	}
 
 }

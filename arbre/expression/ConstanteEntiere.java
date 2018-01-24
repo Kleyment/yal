@@ -14,9 +14,4 @@ public class ConstanteEntiere extends Constante {
 		return ENTIER;
 	}
 
-	@Override
-	public String toMIPS() {
-		return null;
-	}
-
 }

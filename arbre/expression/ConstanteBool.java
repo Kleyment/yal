@@ -14,9 +14,4 @@ public class ConstanteBool extends Constante {
 		return BOOLEEN;
 	}
 
-	@Override
-	public String toMIPS() {
-		return null;
-	}
-
 }

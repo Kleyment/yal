@@ -1,7 +1,5 @@
 package yal.arbre.expression;
 
-import yal.exceptions.AnalyseSemantiqueException;
-
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */

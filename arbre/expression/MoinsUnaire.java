@@ -19,7 +19,7 @@ public class MoinsUnaire extends Unaire {
     @Override
     public void verifier() throws AnalyseSemantiqueException {
 	    if (expression.getType() != ENTIER) {
-	    	StringBuilder erreur = new StringBuilder();
+	    	StringBuilder erreur = new StringBuilder(25);
 	    	
 	    	erreur.append("erreur de type : ");
 	    	erreur.append(operateur());
@@ -36,7 +36,7 @@ public class MoinsUnaire extends Unaire {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(100);
 		
 		sb.append("# Moins Unaire\n");
 		sb.append("# On met 0 a gauche de l'expression\n");

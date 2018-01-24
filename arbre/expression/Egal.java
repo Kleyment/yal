@@ -19,7 +19,7 @@ public class Egal extends Comparaison {
 	@Override
 	public void verifier() throws AnalyseSemantiqueException {
 		if (gauche.getType() != droite.getType()) {
-            StringBuilder erreur = new StringBuilder();
+            StringBuilder erreur = new StringBuilder(30);
 	    	
 	    	erreur.append("erreur de type : ");
 	    	erreur.append(gauche.getType());
@@ -32,7 +32,7 @@ public class Egal extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(150);
 		
 		sb.append("# Egal\n");
 		
@@ -48,17 +48,17 @@ public class Egal extends Comparaison {
 		sb.append("lw $t8,($sp)\n");
 		
 		sb.append("# Comparaison entre $v0 et $t8\n");
-		sb.append("si_"+this.hashCode()+":\n");
-		sb.append("beq $v0,$t8, alors_"+this.hashCode()+"\n");
-		sb.append("j sinon_"+this.hashCode()+"\n");
-		sb.append("alors_"+this.hashCode()+":\n");
+		sb.append("si_" + this.hashCode() + ":\n");
+		sb.append("beq $v0,$t8, alors_" + this.hashCode() + "\n");
+		sb.append("j sinon_" + this.hashCode() + "\n");
+		sb.append("alors_" + this.hashCode() + ":\n");
 		sb.append("# Si c'est egal, on met 1 dans $v0\n");
 		sb.append("li $v0, 1\n");
-		sb.append("j fin_"+this.hashCode()+"\n");
-		sb.append("sinon_"+this.hashCode()+":\n");
+		sb.append("j fin_" + this.hashCode() + "\n");
+		sb.append("sinon_" + this.hashCode() + ":\n");
 		sb.append("# Si c'est different, on met 0 dans $v0\n");
 		sb.append("li $v0, 0\n");
-		sb.append("fin_"+this.hashCode()+":\n");
+		sb.append("fin_" + this.hashCode() + ":\n");
 		
 		return sb.toString();
 	}

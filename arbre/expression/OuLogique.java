@@ -1,9 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class OuLogique extends BinaireLogique {
 
     public OuLogique(Expression gauche, Expression droite) {
@@ -27,9 +26,9 @@ public class OuLogique extends BinaireLogique {
 
 	 @Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(100);
 		
-		sb.append("# Ou logique\n");
+		sb.append("# Ou Logique\n");
 		sb.append("# Calcul de la partie gauche\n");
 		sb.append(gauche.toMIPS());
 		sb.append("# Empilement de la partie gauche\n");

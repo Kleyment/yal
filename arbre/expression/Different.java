@@ -19,7 +19,7 @@ public class Different extends Comparaison {
     @Override
 	public void verifier() throws AnalyseSemantiqueException {
 		if (gauche.getType() != droite.getType()) {
-            StringBuilder erreur = new StringBuilder();
+            StringBuilder erreur = new StringBuilder(25);
 	    	
 	    	erreur.append("erreur de type : ");
 	    	erreur.append(gauche.getType());
@@ -32,7 +32,7 @@ public class Different extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(200);
 		
 		sb.append("# Different\n");
 		

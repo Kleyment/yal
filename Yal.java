@@ -27,10 +27,10 @@ public class Yal {
             System.out.println("COMPILATION OK");
             
             /* Concaténation du code */
-            StringBuilder code = new StringBuilder();
+            StringBuilder code = new StringBuilder(200);
             
             code.append(".data\n");
-            code.append("errDiv:\t.asciiz \"erreur division par zéro\"\n");
+            code.append("err_div:\t.asciiz \"ERREUR EXECUTION :\n\t division par zéro\"\n");
             code.append(".text\n");
             code.append("main :\n");
             code.append("# initialiser s7 avec sp (initialisation de la base des variables)\n");
@@ -43,7 +43,7 @@ public class Yal {
             code.append("syscall\n");
     
             /* Crée le nom du fichier de sortie */
-            StringBuilder sortie = new StringBuilder();
+            StringBuilder sortie = new StringBuilder(10);
             int suffixe = source.lastIndexOf('.');
             
             if (suffixe < 1) {
@@ -58,15 +58,15 @@ public class Yal {
             /* Ecriture du code MIPS */
             try {
             	FileWriter flot = new FileWriter(sortie.toString());
-            	BufferedWriter flotFiltre = new BufferedWriter(flot);
+            	BufferedWriter filtre = new BufferedWriter(flot);
             	
-            	flotFiltre.write(code.toString());
+                filtre.write(code.toString());
             	
-            	flotFiltre.close();
+                filtre.close();
     		    flot.close();          
             }
             catch (IOException e) { 
-            	System.err.println("Erreur lors de l'écriture du code MIPS dans un fichier");
+            	System.err.println("Erreur lors de l'écriture du code MIPS dans le fichier " + sortie);
             }
         } 
         catch (FileNotFoundException ex) {
@@ -82,9 +82,9 @@ public class Yal {
 
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.err.println("Nombre incorrect d'arguments") ;
-            System.err.println("\tjava -jar yal.jar <fichierSource.yal>") ;
-            System.exit(1) ;
+            System.err.println("Nombre incorrect d'arguments");
+            System.err.println("\tjava -jar yal.jar <fichierSource.yal>");
+            System.exit(1);
         }
         
         new Yal(args[0]);

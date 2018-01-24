@@ -16,7 +16,7 @@ public class Plus extends BinaireArithmetique {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(100);
 		
 		sb.append("# Addition\n");
 		sb.append("# Calcul de la partie gauche\n");
@@ -35,6 +35,7 @@ public class Plus extends BinaireArithmetique {
 		return sb.toString();
 	}
 
+    @Override
     public int getType() {
 	    return ENTIER;
     }

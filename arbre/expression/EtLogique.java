@@ -14,15 +14,16 @@ public class EtLogique extends BinaireLogique {
         return " et " ;
     }
 
+    @Override
     public int getType() {
         return BOOLEEN;
     }
     
     @Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(100);
 		
-		sb.append("# Et logique\n");
+		sb.append("# Et Logique\n");
 		sb.append("# Calcul de la partie gauche\n");
 		sb.append(gauche.toMIPS());
 		sb.append("# Empilement de la partie gauche\n");

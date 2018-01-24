@@ -14,7 +14,7 @@ public abstract class BinaireArithmetique extends Binaire {
     @Override
     public void verifier() throws AnalyseSemantiqueException {
 	    if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
-	    	StringBuilder erreur = new StringBuilder();
+	    	StringBuilder erreur = new StringBuilder(25);
 	    	
 	    	erreur.append("erreur de type : ");
 	    	erreur.append(gauche.getType());

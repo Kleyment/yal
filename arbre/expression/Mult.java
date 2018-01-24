@@ -16,7 +16,7 @@ public class Mult extends BinaireArithmetique {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(150);
 		
 		sb.append("# Multiplication\n");
 		sb.append("# Calcul de la partie gauche\n");
@@ -36,7 +36,8 @@ public class Mult extends BinaireArithmetique {
 		
 		return sb.toString();
 	}
-	
+
+        @Override
 	public int getType() {
 	    return ENTIER;
     }

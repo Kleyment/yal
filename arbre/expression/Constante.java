@@ -6,7 +6,8 @@ package yal.arbre.expression;
 public abstract class Constante extends Expression {
 
     protected String cste;
-    
+
+  
     protected Constante(String texte, int n) {
         super(n);
         cste = texte;
@@ -19,7 +20,7 @@ public abstract class Constante extends Expression {
     
     @Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(20);
 		
 		sb.append("# Constante\n");
 		sb.append("# On met la constante dans $v0\n");

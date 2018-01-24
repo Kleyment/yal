@@ -18,9 +18,12 @@ public class Inferieur extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(100);
+		
 		sb.append("# Inferieur\n");
+		
 		Moins gMoinsd = new Moins(gauche, droite);
+		
 		sb.append(gMoinsd.toMIPS());
 		sb.append("# Comparaison du resultat avec 0\n");
 		sb.append("bltz $v0, alors\n");
@@ -31,20 +34,21 @@ public class Inferieur extends Comparaison {
 		sb.append("alors\n");
 		sb.append("li $v0, 1\n");
 		sb.append("fin\n");
+		
 		return sb.toString();
 	}
 
 	@Override
 	public void verifier() {
 		if (gauche.getType() != ENTIER) {
-			StringBuilder erreur = new StringBuilder();
+			StringBuilder erreur = new StringBuilder(30);
 			erreur.append("L'opérande gauche doit être entier : ");
 	    	erreur.append(gauche.getType());
 	    	
 	    	throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 	    	
 		} else if (droite.getType() != ENTIER) {
-			StringBuilder erreur = new StringBuilder();
+			StringBuilder erreur = new StringBuilder(30);
 			erreur.append("L'opérande droite doit être entier : ");
 	    	erreur.append(droite.getType());
 	    	

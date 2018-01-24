@@ -1,5 +1,7 @@
 package yal.arbre.expression;
 
+import yal.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -15,19 +17,7 @@ public class Superieur extends Comparaison {
     @Override
     public String operateur() {
         return " > ";
-    }
-
-	@Override
-	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void verifier() {
-		// TODO Auto-generated method stub
-		
-	}
+    }    
 
 	@Override
 	public String toMIPS() {
@@ -45,6 +35,24 @@ public class Superieur extends Comparaison {
 		sb.append("li $v0, 1\n");
 		sb.append("fin\n");
 		return sb.toString();
+	}
+
+	@Override
+	public void verifier() {
+		if (gauche.getType() != ENTIER) {
+			StringBuilder erreur = new StringBuilder();
+			erreur.append("L'opérande gauche doit être entier : ");
+	    	erreur.append(gauche.getType());
+	    	
+	    	throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
+	    	
+		} else if (droite.getType() != ENTIER) {
+			StringBuilder erreur = new StringBuilder();
+			erreur.append("L'opérande droite doit être entier : ");
+	    	erreur.append(droite.getType());
+	    	
+	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
+		}
 	}
     
 }

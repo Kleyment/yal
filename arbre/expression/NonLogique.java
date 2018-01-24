@@ -36,7 +36,22 @@ public class NonLogique extends Unaire {
 
 	@Override
 	public String toMIPS() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("# Non Logique\n");
+		sb.append("# Calcul de l'expression\n");
+		sb.append(expression.toMIPS());
+		sb.append("# Comparaison de l'expression par rapport a 0\n");
+		sb.append("bgtz $v0, alors\n");
+		sb.append("# L'expression est inferieure a 0, on met 1 dans $v0\n");
+		sb.append("li $v0, 1\n");
+		sb.append("j fin\n");
+		sb.append("alors\n");
+		sb.append("# L'expression est superieure a 0, on met 0 dans $v0\n");
+		sb.append("li $v0, 0\n");
+		sb.append("fin\n");
+		
+		return sb.toString();
 	}
 	
 }

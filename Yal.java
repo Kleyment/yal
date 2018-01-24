@@ -15,17 +15,18 @@ import yal.exceptions.AnalyseException;
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class Yal {
     
     public Yal(String source) {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(source)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-                     
+                    
+            /* Vérification du code */
             arbre.verifier(); 
             System.out.println("COMPILATION OK");
             
+            /* Concaténation du code */
             StringBuilder code = new StringBuilder();
             
             code.append(".data\n");
@@ -37,9 +38,11 @@ public class Yal {
             code.append(arbre.toMIPS());
             code.append("end :\n");
             code.append("# fin du programme\n");
+            code.append("move $v1, $v0\t# copie de v0 dans v1 pour permettre les tests de yal0\n");
             code.append("li $v0, 10\t# retour au système\n");
             code.append("syscall\n");
     
+            /* Crée le nom du fichier de sortie */
             StringBuilder sortie = new StringBuilder();
             int suffixe = source.lastIndexOf('.');
             

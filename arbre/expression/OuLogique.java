@@ -1,8 +1,6 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
  * @author brigitte wrobel-dautcourt
  */
 
@@ -19,13 +17,11 @@ public class OuLogique extends BinaireLogique {
 
 	@Override
 	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
+		return BOOLEEN;
 	}
 
 	@Override
 	public void verifier() {
-		// TODO Auto-generated method stub
 		
 	}
 

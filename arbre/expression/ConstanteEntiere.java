@@ -1,15 +1,22 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class ConstanteEntiere extends Constante {
     
     public ConstanteEntiere(String texte, int n) {
         super(texte, n) ;
     }
+
+	@Override
+	public int getType() {
+		return ENTIER;
+	}
+
+	@Override
+	public String toMIPS() {
+		return null;
+	}
 
 }

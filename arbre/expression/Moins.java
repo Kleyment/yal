@@ -13,13 +13,6 @@ public class Moins extends BinaireArithmetique {
     public String operateur() {
         return " - ";
     }
-    
-    @Override
-	public void verifier() {
-    	        if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
-		  // throw
-		}
-	}
 
 	@Override
 	public String toMIPS() {
@@ -41,5 +34,9 @@ public class Moins extends BinaireArithmetique {
 		
 		return sb.toString();
 	}
+	
+	public int getType() {
+	    return ENTIER;
+    }
 	
 }

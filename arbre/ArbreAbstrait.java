@@ -3,14 +3,11 @@ package yal.arbre;
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public abstract class ArbreAbstrait {
 
     // type des expressions  
-    protected static enum TYPE {
-        ENTIER,
-        BOOLEEN
-    }
+	public static int ENTIER = 0;
+	public static int BOOLEEN = 1;
   
     // numéro de ligne du début de l'instruction
     protected int noLigne ;
@@ -21,7 +18,7 @@ public abstract class ArbreAbstrait {
     }
     
     public int getNoLigne() {
-            return noLigne ;
+        return noLigne ;
     }
 
     public abstract void verifier();

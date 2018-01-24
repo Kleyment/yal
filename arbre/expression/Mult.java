@@ -1,9 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class Mult extends BinaireArithmetique {
 
     public Mult(Expression gauche, Expression droite) {
@@ -16,14 +15,9 @@ public class Mult extends BinaireArithmetique {
     }
 
 	@Override
-	public void verifier() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toMIPS() {
-		StringBuilder sb= new StringBuilder();
+		StringBuilder sb = new StringBuilder();
+		
 		sb.append("# Multiplication\n");
 		sb.append("# Calcul de la partie gauche\n");
 		sb.append(gauche.toMIPS());
@@ -39,8 +33,12 @@ public class Mult extends BinaireArithmetique {
 		sb.append("mult $v0, $t8\n");
 		sb.append("# Resultat $lo -> $v0\n");
 		sb.append("mflo $v0\\n");
+		
 		return sb.toString();
 	}
+	
+	public int getType() {
+	    return ENTIER;
+    }
     
-
 }

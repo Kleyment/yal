@@ -15,13 +15,6 @@ public class Plus extends BinaireArithmetique {
     }
 
 	@Override
-	public void verifier() {
-	        if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
-		  // throw
-		}
-	}
-
-	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -42,7 +35,8 @@ public class Plus extends BinaireArithmetique {
 		return sb.toString();
 	}
 
-        public int getType() {
-	        return ENTIER;
-        }
+    public int getType() {
+	    return ENTIER;
+    }
+    
 }

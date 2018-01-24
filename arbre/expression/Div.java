@@ -1,11 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre génard, Valentin Thouvenin
  */
-
 public class Div extends BinaireArithmetique {
 
     public Div(Expression gauche, Expression droite) {
@@ -18,14 +15,9 @@ public class Div extends BinaireArithmetique {
     }
 
 	@Override
-	public void verifier() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toMIPS() {
-		StringBuilder sb=new StringBuilder();
+		StringBuilder sb = new StringBuilder();
+		
 		sb.append("# Division\n");
 		sb.append("# Calcul de la partie gauche\n");
 		sb.append(gauche.toMIPS());
@@ -38,8 +30,13 @@ public class Div extends BinaireArithmetique {
 		sb.append("add $sp, $sp, 4\n");
 		sb.append("lw $t8,($sp)\n");
 		sb.append("# Division entre $v0 et $t8 -> $v0\n");
-		sb.append("div $v0, $t8, $v0\n");		
+		sb.append("div $v0, $t8, $v0\n");
+		
 		return sb.toString();
 	}
     
+	public int getType() {
+	    return ENTIER;
+    }
+	
 }

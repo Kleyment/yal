@@ -1,15 +1,22 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class ConstanteBool extends Constante {
     
     public ConstanteBool(String texte, int n) {
         super(texte, n) ;
     }
+
+	@Override
+	public int getType() {
+		return BOOLEEN;
+	}
+
+	@Override
+	public String toMIPS() {
+		return null;
+	}
 
 }

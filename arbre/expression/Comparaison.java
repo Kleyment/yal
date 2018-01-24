@@ -1,15 +1,17 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public abstract class Comparaison extends Binaire {
      
     protected Comparaison(Expression gauche, Expression droite) {
         super(gauche, droite);
     }
 
+    @Override
+    public int getType() {
+    	return BOOLEEN;
+    }
+    
 }

@@ -3,11 +3,8 @@ package yal.arbre.expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class Inferieur extends Comparaison {
 
     public Inferieur(Expression gauche, Expression droite) {
@@ -54,4 +51,5 @@ public class Inferieur extends Comparaison {
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 		}
 	}
+	
 }

@@ -1,11 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author @author Clément Bellanger, Pierre génard, Valentin Thouvenin
  */
-
 public abstract class Constante extends Expression {
 
     protected String cste ;
@@ -20,4 +17,8 @@ public abstract class Constante extends Expression {
         return cste ;
     }
 
+    public void verifier() {
+    	
+    }
+    
 }

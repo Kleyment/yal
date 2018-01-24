@@ -1,11 +1,10 @@
 package yal.arbre.expression;
 
-/**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
- */
+import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
+ */
 public abstract class Unaire extends Expression {
     
     protected Expression expression ;
@@ -21,5 +20,5 @@ public abstract class Unaire extends Expression {
     public String toString() {
         return "(" + operateur() + expression + ")" ;
     }
-
+    
 }

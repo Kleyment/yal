@@ -1,8 +1,6 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
  * @author brigitte wrobel-dautcourt
  */
 
@@ -15,6 +13,11 @@ public class Different extends Comparaison {
     @Override
     public String operateur() {
         return " != ";
+    }
+    
+    @Override
+    public int getType() {
+    	return BOOLEEN;
     }
   
 }

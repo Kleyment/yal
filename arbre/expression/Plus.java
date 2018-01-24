@@ -1,9 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class Plus extends BinaireArithmetique {
 
     public Plus(Expression gauche, Expression droite) {
@@ -17,7 +16,7 @@ public class Plus extends BinaireArithmetique {
 
 	@Override
 	public void verifier() {
-	        if (gauche.getType() != ENTIER || droite.getType() != ENTIER){
+	        if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
 		  // throw
 		}
 	}

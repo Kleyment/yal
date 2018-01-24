@@ -1,11 +1,8 @@
 package yal.arbre.expression;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class EtLogique extends BinaireLogique {
 
     public EtLogique(Expression gauche, Expression droite) {
@@ -17,4 +14,8 @@ public class EtLogique extends BinaireLogique {
         return " et " ;
     }
 
+    public int getType() {
+        return BOOLEEN;
+    }
+  
 }

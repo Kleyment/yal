@@ -3,11 +3,8 @@ package yal.arbre.expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class Superieur extends Comparaison {
 
     public Superieur(Expression gauche, Expression droite) {

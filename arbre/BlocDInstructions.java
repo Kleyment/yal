@@ -1,14 +1,11 @@
 package yal.arbre;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public class BlocDInstructions extends ArbreAbstrait {
     
-    protected ArbreAbstrait expr ;
+    protected ArbreAbstrait expr;
     
     public BlocDInstructions(int n) {
         super(n) ;

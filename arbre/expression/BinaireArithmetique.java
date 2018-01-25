@@ -16,10 +16,11 @@ public abstract class BinaireArithmetique extends Binaire {
 	    if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	
-	    	erreur.append("erreur de type : ");
-	    	erreur.append(gauche.getType());
+	    	erreur.append("erreur de type :\t");
+	    	erreur.append(gauche);
 	    	erreur.append(operateur());
-	    	erreur.append(droite.getType());
+	    	erreur.append(droite);
+	    	erreur.append("\n\tles deux opérandes doivent être des entiers");
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
 	    }		

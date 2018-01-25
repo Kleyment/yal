@@ -26,12 +26,12 @@ public class Inferieur extends Comparaison {
 		
 		sb.append(gMoinsd.toMIPS());
 		sb.append("# Comparaison du resultat avec 0\n");
-		sb.append("bltz $v0, alors\n");
+		sb.append("bltz $v0, alors_"+this.hashCode()+"\n");
 		sb.append("# Si c'est inferieur a 0, on met 0 dans $v0");
 		sb.append("li $v0, 0\n");
 		sb.append("j fin\n");
 		sb.append("# Si c'est superieur a 0, on met 1 dans $v0");
-		sb.append("alors\n");
+		sb.append("alors_"+this.hashCode()+":\n");
 		sb.append("li $v0, 1\n");
 		sb.append("fin\n");
 		

@@ -58,11 +58,11 @@ public class Yal {
             /* Ecriture du code MIPS */
             try {
             	FileWriter flot = new FileWriter(sortie.toString());
-            	BufferedWriter filtre = new BufferedWriter(flot);
+            	BufferedWriter tampon = new BufferedWriter(flot);
             	
-                filtre.write(code.toString());
+                tampon.write(code.toString());
             	
-                filtre.close();
+                tampon.close();
     		    flot.close();          
             }
             catch (IOException e) { 

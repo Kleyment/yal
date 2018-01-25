@@ -14,6 +14,11 @@ public class Mult extends BinaireArithmetique {
         return " * ";
     }
 
+    @Override
+	public int getType() {
+	    return ENTIER;
+    }
+    
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(150);
@@ -31,15 +36,10 @@ public class Mult extends BinaireArithmetique {
 		sb.append("lw $t8,($sp)\n");
 		sb.append("# Multiplication entre $v0 et $t8 -> $lo\n");
 		sb.append("mult $v0, $t8\n");
-		sb.append("# Resultat $lo -> $v0\n");
+		sb.append("# Résultat $lo -> $v0\n");
 		sb.append("mflo $v0\n");
 		
 		return sb.toString();
 	}
-
-        @Override
-	public int getType() {
-	    return ENTIER;
-    }
     
 }

@@ -18,6 +18,8 @@ public class Egal extends Comparaison {
 
 	@Override
 	public void verifier() throws AnalyseSemantiqueException {
+		super.verifier();
+		
 		if (gauche.getType() != droite.getType()) {
             StringBuilder erreur = new StringBuilder(30);
 	    	

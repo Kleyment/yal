@@ -14,6 +14,11 @@ public class Plus extends BinaireArithmetique {
         return " + " ;
     }
 
+    @Override
+    public int getType() {
+	    return ENTIER;
+    }
+    
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(100);
@@ -34,10 +39,5 @@ public class Plus extends BinaireArithmetique {
 		
 		return sb.toString();
 	}
-
-    @Override
-    public int getType() {
-	    return ENTIER;
-    }
     
 }

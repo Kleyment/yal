@@ -40,6 +40,8 @@ public class Superieur extends Comparaison {
 
 	@Override
 	public void verifier() {
+		super.verifier();
+		
 		if (gauche.getType() != ENTIER) {
 			StringBuilder erreur = new StringBuilder(30);
 			erreur.append("L'opérande gauche doit être entier : ");

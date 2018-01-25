@@ -14,6 +14,10 @@ public class Moins extends BinaireArithmetique {
         return " - ";
     }
 
+    public int getType() {
+	    return ENTIER;
+    }
+    
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(100);
@@ -34,9 +38,5 @@ public class Moins extends BinaireArithmetique {
 		
 		return sb.toString();
 	}
-	
-	public int getType() {
-	    return ENTIER;
-    }
 	
 }

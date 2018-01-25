@@ -3,11 +3,8 @@ package yal.arbre.expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
- * 3 déc. 2015
- *
- * @author brigitte wrobel-dautcourt
+ * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-
 public abstract class BinaireLogique extends Binaire {
 
     protected BinaireLogique(Expression gauche, Expression droite) {
@@ -21,6 +18,8 @@ public abstract class BinaireLogique extends Binaire {
     
     @Override
 	public void verifier() {
+    	super.verifier();
+    	
 		if (gauche.getType() != BOOLEEN) {
 			StringBuilder erreur = new StringBuilder(40);
 			erreur.append("L'opérande gauche doit être booléenne : ");

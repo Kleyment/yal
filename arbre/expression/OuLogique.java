@@ -15,16 +15,6 @@ public class OuLogique extends BinaireLogique {
     }
 
 	@Override
-	public int getType() {
-		return BOOLEEN;
-	}
-
-	@Override
-	public void verifier() {
-		
-	}
-
-	 @Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(100);
 		

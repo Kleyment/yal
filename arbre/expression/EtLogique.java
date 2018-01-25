@@ -13,11 +13,6 @@ public class EtLogique extends BinaireLogique {
     public String operateur() {
         return " et " ;
     }
-
-    @Override
-    public int getType() {
-        return BOOLEEN;
-    }
     
     @Override
 	public String toMIPS() {

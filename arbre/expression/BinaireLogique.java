@@ -15,6 +15,11 @@ public abstract class BinaireLogique extends Binaire {
     }
     
     @Override
+	public int getType() {
+	    return BOOLEEN;
+    }
+    
+    @Override
 	public void verifier() {
 		if (gauche.getType() != BOOLEEN) {
 			StringBuilder erreur = new StringBuilder(40);

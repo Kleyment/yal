@@ -19,17 +19,6 @@ public abstract class Constante extends Expression {
     }
     
     @Override
-	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(20);
-		
-		sb.append("# Constante\n");
-		sb.append("# On met la constante dans $v0\n");
-		sb.append("li $v0, " + cste + "\n");
-		
-		return sb.toString();
-    }
-    
-    @Override
     public String toString() {
         return cste ;
     }

@@ -14,4 +14,15 @@ public class ConstanteEntiere extends Constante {
 		return ENTIER;
 	}
 
+	@Override
+	public String toMIPS() {
+        StringBuilder sb = new StringBuilder(20);
+		
+		sb.append("# Constante Entière\n");
+		sb.append("# On met la constante dans $v0\n");
+		sb.append("li $v0, " + cste + "\n");
+		
+		return sb.toString();
+	}
+	
 }

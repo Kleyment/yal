@@ -28,13 +28,11 @@ public class OuLogique extends BinaireLogique {
 		sb.append(droite.toMIPS());
 		sb.append("# Dépilement de la partie gauche\n");
 		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8,($sp)\n");
+		sb.append("lw $t8, ($sp)\n");
 		sb.append("# Ou logique entre $v0 et $t8\n");
 		sb.append("or $v0, $t8, $v0\n");
 		
 		return sb.toString();
 	}
-    
-   
 
 }

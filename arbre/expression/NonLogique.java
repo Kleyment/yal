@@ -43,11 +43,11 @@ public class NonLogique extends Unaire {
 		sb.append(expression.toMIPS());
 		sb.append("# Comparaison de l'expression par rapport a 0\n");
 		sb.append("bgtz $v0, alors_" + this.hashCode() + "\n");
-		sb.append("# L'expression est inferieure a 0, on met 1 dans $v0\n");
+		sb.append("# L'expression est inférieure à 0, on met 1 dans $v0\n");
 		sb.append("li $v0, 1\n");
 		sb.append("j fin_" + this.hashCode() + "\n");
 		sb.append("alors_" + this.hashCode() + ":\n");
-		sb.append("# L'expression est superieure a 0, on met 0 dans $v0\n");
+		sb.append("# L'expression est supérieure à 0, on met 0 dans $v0\n");
 		sb.append("li $v0, 0\n");
 		sb.append("fin_" + this.hashCode() + ":\n");
 		

@@ -14,4 +14,9 @@ public abstract class Comparaison extends Binaire {
     	return BOOLEEN;
     }
     
+    @Override
+    public void verifier() {
+        super.verifier();	
+    }
+    
 }

@@ -20,6 +20,12 @@ public abstract class Binaire extends Expression {
     public abstract String operateur() ;
 
     @Override
+    public void verifier() {
+    	gauche.verifier();
+    	droite.verifier();
+    }
+    
+    @Override
     public String toString() {
         return "(" + gauche + operateur() + droite + ")" ;
     }

@@ -43,6 +43,7 @@ public class Div extends BinaireArithmetique {
 		sb.append("li $v0, 4\n");
 		sb.append("la $a0, err_div\n");
 		sb.append("syscall\n");
+		sb.append("j end\n");
 		sb.append("fin\n");
 				
 		return sb.toString();

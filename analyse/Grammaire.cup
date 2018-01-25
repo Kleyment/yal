@@ -75,12 +75,12 @@ terminal String    CONSTANTEINT, CONSTANTEBOOL ;
 non terminal ArbreAbstrait PROG ;
 non terminal Expression EXPR, CSTE ;
 
-precedence left INF, SUP ;
-precedence left EGALEGAL, DIFF;
-precedence left PLUS, MOINS;
-precedence left MULT, DIV ;
 precedence left OU ;
 precedence left ET ;
+precedence left EGALEGAL, DIFF;
+precedence left INF, SUP;
+precedence left PLUS, MOINS;
+precedence left MULT, DIV ;
 precedence left NON ;
 
 /* ----------------------------Grammar Section-------------------- */

@@ -30,7 +30,7 @@ public class Yal {
             StringBuilder code = new StringBuilder(200);
             
             code.append(".data\n");
-            code.append("err_div:\t.asciiz \"ERREUR EXECUTION :\n\t division par zéro\"\n");
+            code.append("err_div:\t.asciiz \"ERREUR EXECUTION :\\n\\t division par zéro\"\n");
             code.append(".text\n");
             code.append("main :\n");
             code.append("# initialiser s7 avec sp (initialisation de la base des variables)\n");

@@ -42,14 +42,14 @@ public class Div extends BinaireArithmetique {
 		
 		sb.append("# Division entre $v0 et $t8 -> $v0\n");
 		sb.append("div $v0, $t8, $v0\n");
-		sb.append("j fin\n");
+		sb.append("j fin_"+this.hashCode()+"\n");
 		sb.append("alors_" + this.hashCode() + ":\n");
 		sb.append("# Message d'erreur car l'expression droite est egale a 0\n");
 		sb.append("li $v0, 4\n");
 		sb.append("la $a0, err_div\n");
 		sb.append("syscall\n");
 		sb.append("j end\n");
-		sb.append("fin\n");
+		sb.append("fin_"+this.hashCode()+":\n");
 				
 		return sb.toString();
 	}

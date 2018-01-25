@@ -16,18 +16,21 @@ public class MoinsUnaire extends Unaire {
         return "- " ;
     }
 
-    @Override
-    public void verifier() throws AnalyseSemantiqueException {
-	    if (expression.getType() != ENTIER) {
-	    	StringBuilder erreur = new StringBuilder(25);
+	    @Override
+	    public void verifier() throws AnalyseSemantiqueException {
 	    	
-	    	erreur.append("erreur de type : ");
-	    	erreur.append(operateur());
-	    	erreur.append(expression.getType());
+	    	super.verifier();
 	    	
-	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
-	    }		
-    }
+		    if (expression.getType() != ENTIER) {
+		    	StringBuilder erreur = new StringBuilder(25);
+		    	
+		    	erreur.append("erreur de type : ");
+		    	erreur.append(operateur());
+		    	erreur.append(expression.getType());
+		    	
+		        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
+		    }		
+	    }
     
 	@Override
 	public int getType() {

@@ -28,7 +28,7 @@ public class Plus extends BinaireArithmetique {
 		sb.append(droite.toMIPS());
 		sb.append("# Dépilement de la partie gauche\n");
 		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8,($sp\n)");
+		sb.append("lw $t8,($sp)\n");
 		sb.append("# Addition entre $v0 et $t8\n");
 		sb.append("add $v0, $t8, $v0\n");	
 		

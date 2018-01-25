@@ -18,6 +18,7 @@ public class NonLogique extends Unaire {
 
     @Override
     public void verifier() throws AnalyseSemantiqueException {
+    	super.verifier();
 	    if (expression.getType() != BOOLEEN) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	

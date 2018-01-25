@@ -14,6 +14,11 @@ public class Div extends BinaireArithmetique {
         return " / ";
     }
 
+    @Override
+	public int getType() {
+	    return ENTIER;
+    }
+    
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(200);
@@ -48,10 +53,5 @@ public class Div extends BinaireArithmetique {
 				
 		return sb.toString();
 	}
-
-        @Override
-	public int getType() {
-	    return ENTIER;
-    }
 	
 }

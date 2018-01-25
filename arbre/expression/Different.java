@@ -51,11 +51,11 @@ public class Different extends Comparaison {
 		sb.append("bne $v0,$t8, alors_"+this.hashCode()+"\n");
 		sb.append("# Si c'est egal, on met 0 dans $v0\n");
 		sb.append("li $v0, 0\n");
-		sb.append("j fin\n");
+		sb.append("j fin_"+this.hashCode()+"\n");
 		sb.append("# Si c'est different, on met 1 dans $v0\n");
 		sb.append("alors_"+this.hashCode()+":\n");
 		sb.append("li $v0, 1\n");
-		sb.append("fin\n");
+		sb.append("fin_"+this.hashCode()+":\n");
 		
 		return sb.toString();
 	}

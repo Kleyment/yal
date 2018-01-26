@@ -16,6 +16,11 @@ public class Egal extends Comparaison {
         return " == ";
     }
 
+    @Override
+	public String operation() {
+		return " Egal ";
+	}
+    
 	@Override
 	public void verifier() throws AnalyseSemantiqueException {
 		super.verifier();
@@ -35,32 +40,13 @@ public class Egal extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(150);
+		StringBuilder egal = new StringBuilder(40);
 		
-		sb.append("# Egal\n");
+		egal.append(super.toMIPS());	
+		egal.append("# En cas d'égalité, on met 1 dans $v0, sinon 0\n");
+		egal.append("seq $v0, $v0, $t8\n");
 		
-		sb.append("# Calcul de la partie gauche\n");
-		sb.append(gauche.toMIPS());
-		sb.append("# Empilement de la partie gauche\n");
-		sb.append("sw $v0, 0($sp)\n");
-		sb.append("add $sp, $sp, -4\n");
-		sb.append("# Calcul de la partie droite\n");
-		sb.append(droite.toMIPS());
-		sb.append("# Dépilement de la partie gauche\n");
-		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8,($sp)\n");
-		
-		sb.append("# Comparaison entre $v0 et $t8\n");
-		sb.append("beq $v0,$t8, alors_"+this.hashCode()+"\n");
-		sb.append("# Si c'est different, on met 0 dans $v0\n");
-		sb.append("li $v0, 0\n");
-		sb.append("j fin_"+this.hashCode()+"\n");
-		sb.append("# Si c'est egal, on met 1 dans $v0\n");
-		sb.append("alors_"+this.hashCode()+":\n");
-		sb.append("li $v0, 1\n");
-		sb.append("fin_"+this.hashCode()+":\n");
-		
-		return sb.toString();
+		return egal.toString();
 	}
     
 }

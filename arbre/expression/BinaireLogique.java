@@ -35,4 +35,9 @@ public abstract class BinaireLogique extends Binaire {
 		}
 	}
     
+    @Override
+    public String toMIPS() {
+    	return super.toMIPS();
+    }
+    
 }

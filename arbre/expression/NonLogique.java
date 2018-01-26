@@ -17,8 +17,19 @@ public class NonLogique extends Unaire {
     }
 
     @Override
+	public int getType() {
+		return BOOLEEN;
+	}
+    
+    @Override
+	public String operation() {
+		return " Non Logique ";
+	}
+    
+    @Override
     public void verifier() throws AnalyseSemantiqueException {
     	super.verifier();
+    	
 	    if (expression.getType() != BOOLEEN) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	
@@ -29,30 +40,15 @@ public class NonLogique extends Unaire {
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
 	    }		
     }
-    
-    @Override
-	public int getType() {
-		return BOOLEEN;
-	}
 
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(100);
+		StringBuilder non = new StringBuilder(100);
 		
-		sb.append("# Non Logique\n");
-		sb.append("# Calcul de l'expression\n");
-		sb.append(expression.toMIPS());
-		sb.append("# Comparaison de l'expression par rapport a 0\n");
-		sb.append("bgtz $v0, alors_" + this.hashCode() + "\n");
-		sb.append("# L'expression est inférieure à 0, on met 1 dans $v0\n");
-		sb.append("li $v0, 1\n");
-		sb.append("j fin_" + this.hashCode() + "\n");
-		sb.append("alors_" + this.hashCode() + ":\n");
-		sb.append("# L'expression est supérieure à 0, on met 0 dans $v0\n");
-		sb.append("li $v0, 0\n");
-		sb.append("fin_" + this.hashCode() + ":\n");
+		non.append(super.toMIPS());
+		non.append("not $v0, $v0\n");
 		
-		return sb.toString();
+		return non.toString();
 	}
 	
 }

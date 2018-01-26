@@ -19,27 +19,22 @@ public class Mult extends BinaireArithmetique {
 	    return ENTIER;
     }
     
+    @Override
+	public String operation() {
+		return " Multiplication ";
+	}
+    
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(150);
+		StringBuilder mult = new StringBuilder(30);
 		
-		sb.append("# Multiplication\n");
-		sb.append("# Calcul de la partie gauche\n");
-		sb.append(gauche.toMIPS());
-		sb.append("# Empilement de la partie gauche\n");
-		sb.append("sw $v0, 0($sp)\n");
-		sb.append("add $sp, $sp, -4\n");
-		sb.append("# Calcul de la partie droite\n");
-		sb.append(droite.toMIPS());
-		sb.append("# Dépilement de la partie gauche\n");
-		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8,($sp)\n");
-		sb.append("# Multiplication entre $v0 et $t8 -> $lo\n");
-		sb.append("mult $v0, $t8\n");
-		sb.append("# Résultat $lo -> $v0\n");
-		sb.append("mflo $v0\n");
+		mult.append(super.toMIPS());
+		mult.append("mult $v0, $t8\n");
 		
-		return sb.toString();
+		mult.append("# Résultat $lo -> $v0\n");
+		mult.append("mflo $v0\n");
+		
+		return mult.toString();
 	}
     
 }

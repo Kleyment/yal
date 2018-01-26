@@ -15,24 +15,18 @@ public class EtLogique extends BinaireLogique {
     }
     
     @Override
+	public String operation() {
+		return " Et Logique ";
+	}
+    
+    @Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(100);
+		StringBuilder et = new StringBuilder(20);
 		
-		sb.append("# Et Logique\n");
-		sb.append("# Calcul de la partie gauche\n");
-		sb.append(gauche.toMIPS());
-		sb.append("# Empilement de la partie gauche\n");
-		sb.append("sw $v0, 0($sp)\n");
-		sb.append("add $sp, $sp, -4\n");
-		sb.append("# Calcul de la partie droite\n");
-		sb.append(droite.toMIPS());
-		sb.append("# Dépilement de la partie gauche\n");
-		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8,($sp)\n");
-		sb.append("# Et logique entre $v0 et $t8\n");
-		sb.append("and $v0, $t8, $v0\n");
+		et.append(super.toMIPS());
+		et.append("and $v0, $t8, $v0\n");
 		
-		return sb.toString();
+		return et.toString();
 	}
   
 }

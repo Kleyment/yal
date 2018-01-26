@@ -15,20 +15,23 @@ public class ConstanteBool extends Constante {
 	}
 	
 	@Override
-	public String toMIPS() {
-        StringBuilder sb = new StringBuilder(20);
-		
-		sb.append("# Constante Booléenne\n");
-		sb.append("# On met la constante dans $v0\n");
-		
+	public String operation() {
+		return " Constante Booléenne ";
+	}
+	
+	@Override
+	public String constante() {
 		if (cste.equals("vrai")) {
-			sb.append("li $v0, 1\n");
+			return "1";
 		}
 		else {
-		    sb.append("li $v0, 0\n");
+			return "0";
 		}
-		
-		return sb.toString();
+	}
+	
+	@Override
+	public String toMIPS() {
+        return super.toMIPS();
 	}
 
 }

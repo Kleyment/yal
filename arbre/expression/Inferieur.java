@@ -16,26 +16,20 @@ public class Inferieur extends Comparaison {
         return " < ";
     }
 
+    @Override
+	public String operation() {
+		return " Inférieur ";
+	}
+    
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(100);
+		StringBuilder inf = new StringBuilder(40);
 		
-		sb.append("# Inferieur\n");
+		inf.append(super.toMIPS());
+		inf.append("# Si la partie gauche est inférieure à la droite, on met 1 dans $v0, sinon 0\n");
+		inf.append("slt $v0, $t8, $v0\n");
 		
-		Moins gMoinsd = new Moins(gauche, droite);
-		
-		sb.append(gMoinsd.toMIPS());
-		sb.append("# Comparaison du resultat avec 0\n");
-		sb.append("bltz $v0, alors_" + this.hashCode() + "\n");
-		sb.append("# Si c'est inferieur a 0, on met 0 dans $v0\n");
-		sb.append("li $v0, 0\n");
-		sb.append("j fin_" + this.hashCode() + "\n");
-		sb.append("# Si c'est superieur a 0, on met 1 dans $v0\n");
-		sb.append("alors_" + this.hashCode() + " :\n");
-		sb.append("li $v0, 1\n");
-		sb.append("fin_" + this.hashCode() + " :\n");
-		
-		return sb.toString();
+		return inf.toString();
 	}
 
 	@Override
@@ -44,6 +38,7 @@ public class Inferieur extends Comparaison {
 		
 		if (gauche.getType() != ENTIER) {
 			StringBuilder erreur = new StringBuilder(30);
+			
 			erreur.append("L'opérande gauche doit être entier : ");
 	    	erreur.append(gauche.getType());
 	    	
@@ -51,6 +46,7 @@ public class Inferieur extends Comparaison {
 	    	
 		} else if (droite.getType() != ENTIER) {
 			StringBuilder erreur = new StringBuilder(30);
+			
 			erreur.append("L'opérande droite doit être entier : ");
 	    	erreur.append(droite.getType());
 	    	

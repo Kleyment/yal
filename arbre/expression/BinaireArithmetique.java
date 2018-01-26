@@ -28,4 +28,9 @@ public abstract class BinaireArithmetique extends Binaire {
 	    }		
     }
   
+    @Override
+    public String toMIPS() {
+    	return super.toMIPS();
+    }
+    
 }

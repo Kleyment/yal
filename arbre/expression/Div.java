@@ -19,39 +19,32 @@ public class Div extends BinaireArithmetique {
 	    return ENTIER;
     }
     
+    @Override
+	public String operation() {
+		return " Division ";
+	}
+    
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder(200);
+		StringBuilder div = new StringBuilder(150);
+		int hash = hashCode();
 		
-		sb.append("# Division\n");
+		div.append(super.toMIPS());		
 		
-		sb.append("# Calcul de la partie gauche\n");
-		sb.append(gauche.toMIPS());
-		sb.append("# Empilement de la partie gauche\n");
-		sb.append("sw $v0, 0($sp)\n");
-		sb.append("add $sp, $sp, -4\n");
+		div.append("# Gestion de la division par 0\n");
+		div.append("beqz $v0, alors_" + hash + "\n");
 		
-		sb.append("# Calcul de la partie droite\n");
-		sb.append(droite.toMIPS());
-		sb.append("# Dépilement de la partie gauche\n");
-		sb.append("add $sp, $sp, 4\n");
-		sb.append("lw $t8, ($sp)\n");
-		
-		sb.append("# Gestion de la division par 0\n");
-		sb.append("beqz $v0, alors_" + this.hashCode() + "\n");
-		
-		sb.append("# Division entre $v0 et $t8 -> $v0\n");
-		sb.append("div $v0, $t8, $v0\n");
-		sb.append("j fin_" + this.hashCode() + "\n");
-		sb.append("alors_" + this.hashCode() + " :\n");
-		sb.append("# Message d'erreur car l'expression droite est egale a 0\n");
-		sb.append("li $v0, 4\n");
-		sb.append("la $a0, err_div\n");
-		sb.append("syscall\n");
-		sb.append("j end\n");
-		sb.append("fin_" + this.hashCode() + " :\n");
+		div.append("div $v0, $t8, $v0\n");
+		div.append("j fin_" + hash + "\n");
+		div.append("alors_" + hash + " :\n");
+		div.append("# Message d'erreur car l'expression droite est egale a 0\n");
+		div.append("li $v0, 4\n");
+		div.append("la $a0, err_div\n");
+		div.append("syscall\n");
+		div.append("j end\n");
+		div.append("fin_" + hash + " :\n");
 				
-		return sb.toString();
+		return div.toString();
 	}
 	
 }

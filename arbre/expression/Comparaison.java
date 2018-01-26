@@ -19,4 +19,9 @@ public abstract class Comparaison extends Binaire {
         super.verifier();	
     }
     
+    @Override
+    public String toMIPS() {
+    	return super.toMIPS();
+    }
+    
 }

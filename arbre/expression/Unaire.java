@@ -7,6 +7,7 @@ public abstract class Unaire extends Expression {
     
     protected Expression expression ;
 
+    
     protected Unaire(Expression expr) {
         super(expr.getNoLigne());
         expression = expr ;
@@ -22,6 +23,20 @@ public abstract class Unaire extends Expression {
     @Override
     public void verifier() {
     	expression.verifier();
+    }
+    
+    @Override
+    public String toMIPS() {
+    	StringBuilder unaire = new StringBuilder(40);
+    	
+    	unaire.append("#" + operation() + "\n");
+    	
+    	unaire.append("# Calcul de l'expression\n");
+		unaire.append(expression.toMIPS());
+		
+		unaire.append("#" + operation() + "sur $v0\n");
+		
+        return unaire.toString();
     }
     
 }

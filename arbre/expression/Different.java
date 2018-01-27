@@ -26,7 +26,7 @@ public class Different extends Comparaison {
     	super.verifier();
     	
 		if (gauche.getType() != droite.getType()) {
-            StringBuilder erreur = new StringBuilder(40);
+            StringBuilder erreur = new StringBuilder(50);
 	    	
 	    	erreur.append("erreur de type :\t");
             erreur.append(gauche);

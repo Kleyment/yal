@@ -20,17 +20,6 @@ public class Superieur extends Comparaison {
 	public String operation() {
 		return " Supérieur ";
 	}
-    
-	@Override
-	public String toMIPS() {
-        StringBuilder sup = new StringBuilder(40);
-		
-        sup.append(super.toMIPS());
-        sup.append("# Si la partie gauche est supérieure à la droite, on met 1 dans $v0, sinon 0\n");
-        sup.append("sgt $v0, $t8, $v0\n");
-		
-		return sup.toString();
-	}
 
 	@Override
 	public void verifier() {
@@ -47,11 +36,22 @@ public class Superieur extends Comparaison {
 		} else if (droite.getType() != ENTIER) {
 			StringBuilder erreur = new StringBuilder(30);
 			
-			erreur.append("L'opérande droite doit être entier : ");
+			erreur.append("L'opérande droit doit être entier : ");
 	    	erreur.append(droite.getType());
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 		}
+	}
+	
+	@Override
+	public String toMIPS() {
+        StringBuilder sup = new StringBuilder(100);
+		
+        sup.append(super.toMIPS());
+        sup.append("# Si la partie gauche est supérieure à la droite, on met 1 dans $v0, sinon 0\n");
+        sup.append("sgt $v0, $t8, $v0\n");
+		
+		return sup.toString();
 	}
     
 }

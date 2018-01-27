@@ -20,17 +20,6 @@ public class Inferieur extends Comparaison {
 	public String operation() {
 		return " Inférieur ";
 	}
-    
-	@Override
-	public String toMIPS() {
-		StringBuilder inf = new StringBuilder(40);
-		
-		inf.append(super.toMIPS());
-		inf.append("# Si la partie gauche est inférieure à la droite, on met 1 dans $v0, sinon 0\n");
-		inf.append("slt $v0, $t8, $v0\n");
-		
-		return inf.toString();
-	}
 
 	@Override
 	public void verifier() {
@@ -52,6 +41,17 @@ public class Inferieur extends Comparaison {
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 		}
+	}
+	
+	@Override
+	public String toMIPS() {
+		StringBuilder inf = new StringBuilder(100);
+		
+		inf.append(super.toMIPS());
+		inf.append("# Si la partie gauche est inférieure à la droite, on met 1 dans $v0, sinon 0\n");
+		inf.append("slt $v0, $t8, $v0\n");
+		
+		return inf.toString();
 	}
 	
 }

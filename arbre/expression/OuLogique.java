@@ -21,7 +21,7 @@ public class OuLogique extends BinaireLogique {
     
 	@Override
 	public String toMIPS() {
-		StringBuilder ou = new StringBuilder(20);
+		StringBuilder ou = new StringBuilder(100);
 		
         ou.append(super.toMIPS());
 		ou.append("or $v0, $t8, $v0\n");

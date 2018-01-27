@@ -34,8 +34,6 @@ public abstract class Unaire extends Expression {
     	unaire.append("# Calcul de l'expression\n");
 		unaire.append(expression.toMIPS());
 		
-		unaire.append("#" + operation() + "sur $v0\n");
-		
         return unaire.toString();
     }
     

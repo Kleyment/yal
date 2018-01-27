@@ -21,7 +21,7 @@ public class EtLogique extends BinaireLogique {
     
     @Override
 	public String toMIPS() {
-		StringBuilder et = new StringBuilder(20);
+		StringBuilder et = new StringBuilder(100);
 		
 		et.append(super.toMIPS());
 		et.append("and $v0, $t8, $v0\n");

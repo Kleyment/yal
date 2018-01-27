@@ -16,7 +16,7 @@ public abstract class BinaireArithmetique extends Binaire {
     	super.verifier();
     	
 	    if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
-	    	StringBuilder erreur = new StringBuilder(25);
+	    	StringBuilder erreur = new StringBuilder(40);
 	    	
 	    	erreur.append("erreur de type :\t");
 	    	erreur.append(gauche);

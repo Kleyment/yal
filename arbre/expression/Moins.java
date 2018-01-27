@@ -26,7 +26,7 @@ public class Moins extends BinaireArithmetique {
     
 	@Override
 	public String toMIPS() {
-		StringBuilder soustraction = new StringBuilder(20);
+		StringBuilder soustraction = new StringBuilder(100);
 		
 		soustraction.append(super.toMIPS());		
 		soustraction.append("sub $v0, $t8, $v0\n");	

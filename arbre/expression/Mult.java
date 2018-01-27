@@ -26,7 +26,7 @@ public class Mult extends BinaireArithmetique {
     
 	@Override
 	public String toMIPS() {
-		StringBuilder mult = new StringBuilder(30);
+		StringBuilder mult = new StringBuilder(100);
 		
 		mult.append(super.toMIPS());
 		mult.append("mult $v0, $t8\n");

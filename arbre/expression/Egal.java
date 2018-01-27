@@ -26,7 +26,7 @@ public class Egal extends Comparaison {
 		super.verifier();
 		
 		if (gauche.getType() != droite.getType()) {
-            StringBuilder erreur = new StringBuilder(30);
+            StringBuilder erreur = new StringBuilder(50);
 	    	
             erreur.append("erreur de type :\t");
             erreur.append(gauche);
@@ -40,7 +40,7 @@ public class Egal extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder egal = new StringBuilder(40);
+		StringBuilder egal = new StringBuilder(100);
 		
 		egal.append(super.toMIPS());	
 		egal.append("# En cas d'égalité, on met 1 dans $v0, sinon 0\n");

@@ -46,7 +46,10 @@ public class MoinsUnaire extends Unaire {
 		StringBuilder moins = new StringBuilder(100);
 		
 		moins.append(super.toMIPS());
-		moins.append("negu $v0, $v0\n");
+		
+		moins.append("#" + operation() + "sur $v0\n");
+		moins.append("# Equivalent à sub $v0, 0, $v0\n");
+		moins.append("neg $v0, $v0\n");
 		
 		return moins.toString();
 	}

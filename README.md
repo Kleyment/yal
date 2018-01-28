@@ -4,13 +4,13 @@
 Clément Bellanger, Pierre Génard, Valentin Thouvenin
 
 ## Assembleur MIPS
-[Télécharger MARS](http://courses.missouristate.edu/KenVollmar/MARS/download.htm)
-[Utiliser MARS en ligne de commande](https://courses.missouristate.edu/KenVollmar/mars/Help/MarsHelpCommand.html)
+- [Télécharger MARS](http://courses.missouristate.edu/KenVollmar/MARS/download.htm)
+- [Utiliser MARS en ligne de commande](https://courses.missouristate.edu/KenVollmar/mars/Help/MarsHelpCommand.html)
 
 ## Documentation MIPS
-[MIPS Assembly Language](http://service.scs.carleton.ca/sivarama/org_book/org_book_web/slides/chap_1_versions/ch15_1.pdf)
-[MIPS Assembly Instructions](https://www2.cs.duke.edu/courses/fall13/compsci250/MIPS-ASM.pdf)
-[MIPS Summary](http://www.cs.tufts.edu/comp/140/lectures/Day_3/mips_summary.pdf)
+- [MIPS Assembly Language](http://service.scs.carleton.ca/sivarama/org_book/org_book_web/slides/chap_1_versions/ch15_1.pdf)
+- [MIPS Assembly Instructions](https://www2.cs.duke.edu/courses/fall13/compsci250/MIPS-ASM.pdf)
+- [MIPS Summary](http://www.cs.tufts.edu/comp/140/lectures/Day_3/mips_summary.pdf)
 
 ## Feuille de route
 - **YAL0** --> Mardi 30 Janvier

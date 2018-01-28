@@ -22,7 +22,7 @@ public abstract class Constante extends Expression {
     
     @Override
     public String toMIPS() {
-    	StringBuilder constante = new StringBuilder(30);
+    	StringBuilder constante = new StringBuilder(40);
     	
     	constante.append("#" + operation() + "\n");
     	constante.append("# On met la constante dans $v0\n");

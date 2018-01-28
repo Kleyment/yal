@@ -14,11 +14,6 @@ public abstract class Unaire extends Expression {
     }
     
     public abstract String operateur() ;
-
-    @Override
-    public String toString() {
-        return "(" + operateur() + expression + ")" ;
-    }
     
     @Override
     public void verifier() {
@@ -35,6 +30,11 @@ public abstract class Unaire extends Expression {
 		unaire.append(expression.toMIPS());
 		
         return unaire.toString();
+    }
+    
+    @Override
+    public String toString() {
+        return "(" + operateur() + expression + ")" ;
     }
     
 }

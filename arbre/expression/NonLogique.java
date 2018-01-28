@@ -46,7 +46,7 @@ public class NonLogique extends Unaire {
 		StringBuilder non = new StringBuilder(100);
 		
 		non.append(super.toMIPS());
-		non.append("#" + operation() + ", on fait le XOR entre $v0 et 1\n");
+		non.append("# On fait un XOR entre $v0 et 1\n");
 		non.append("xori $v0, $v0, 1\n");
 		
 		return non.toString();

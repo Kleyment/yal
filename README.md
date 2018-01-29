@@ -14,7 +14,7 @@ do
   echo $sep
   echo $yal
   java -jar yal.jar $yal
-  [ $? -eq 0 ] && java -jar Mars4_5.jar dec v1  ${yal:${#yal}-4:3}.mips # ${yal//yal/mips}
+  [ $? -eq 0 ] && java -jar Mars4_5.jar dec v1 ${yal//yal/mips}
 done
 
 exit 0

@@ -25,22 +25,18 @@ public class Superieur extends Comparaison {
 	public void verifier() {
 		super.verifier();
 		
-		if (gauche.getType() != ENTIER) {
-			StringBuilder erreur = new StringBuilder(30);
-			
-			erreur.append("L'opérande gauche doit être entier : ");
-	    	erreur.append(gauche.getType());
+		if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
+	    	StringBuilder erreur = new StringBuilder(40);
 	    	
-	    	throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
+	    	erreur.append("erreur de type :\t");
+	    	erreur.append(gauche);
+	    	erreur.append(operateur());
+	    	erreur.append(droite);
+	    	erreur.append("\n\t");
+	    	erreur.append("les deux opérandes doivent être des entiers");
 	    	
-		} else if (droite.getType() != ENTIER) {
-			StringBuilder erreur = new StringBuilder(30);
-			
-			erreur.append("L'opérande droit doit être entier : ");
-	    	erreur.append(droite.getType());
-	    	
-	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
-		}
+	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
+	    }
 	}
 	
 	@Override

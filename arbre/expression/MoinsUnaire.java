@@ -33,9 +33,11 @@ public class MoinsUnaire extends Unaire {
 	    if (expression.getType() != ENTIER) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	
-	    	erreur.append("erreur de type : ");
+	    	erreur.append("erreur de type :\t");
 	    	erreur.append(operateur());
-	    	erreur.append(expression.getType());
+	    	erreur.append(expression);
+	    	erreur.append("\n\t");
+	    	erreur.append("l'opérande doit être entier");
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
 	    }		

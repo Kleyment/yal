@@ -22,7 +22,8 @@ public abstract class BinaireArithmetique extends Binaire {
 	    	erreur.append(gauche);
 	    	erreur.append(operateur());
 	    	erreur.append(droite);
-	    	erreur.append("\n\tles deux opérandes doivent être des entiers");
+	    	erreur.append("\n\t");
+	    	erreur.append("les deux opérandes doivent être des entiers");
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
 	    }		

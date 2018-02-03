@@ -20,19 +20,18 @@ public abstract class BinaireLogique extends Binaire {
 	public void verifier() {
     	super.verifier();
     	
-		if (gauche.getType() != BOOLEEN) {
-			StringBuilder erreur = new StringBuilder(40);
-			erreur.append("L'opérande gauche doit être booléen : ");
+    	if (gauche.getType() != BOOLEEN || droite.getType() != BOOLEEN) {
+	    	StringBuilder erreur = new StringBuilder(40);
+	    	
+	    	erreur.append("erreur de type :\t");
 	    	erreur.append(gauche);
-	    	
-	    	throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
-		} else if (droite.getType() != BOOLEEN) {
-			StringBuilder erreur = new StringBuilder(40);
-			erreur.append("L'opérande droit doit être booléen : ");
+	    	erreur.append(operateur());
 	    	erreur.append(droite);
+	    	erreur.append("\n\t");
+	    	erreur.append("les deux opérandes doivent être des booléens");
 	    	
-	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
-		}
+	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
+	    }	
 	}
     
     @Override

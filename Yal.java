@@ -22,28 +22,16 @@ public class Yal {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(source)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
                     
-            /* Vérification de l'arbre abstrait */
             arbre.verifier(); 
             System.out.println("COMPILATION OK");
             
-            /* Concaténation du code */
-            StringBuilder code = new StringBuilder(200);
+            StringBuilder mips = new StringBuilder(200);
             
-            code.append(".data\n");
-            code.append("err_div:\t.asciiz \"ERREUR EXECUTION :\\n\\t division par zéro\"\n\n");
-            code.append(".text\n");
-            code.append("main :\n");
-            code.append("# initialiser s7 avec sp (initialisation de la base des variables)\n");
-            code.append("move $s7, $sp\n");
-            code.append(arbre.toMIPS());
-            code.append("\nend :\n");
-            code.append("# fin du programme\n");
-            code.append("move $v1, $v0\t# copie de $v0 dans $v1 pour permettre les tests de yal0\n");
-            code.append("li $v0, 10\t# retour au système\n");
-            code.append("syscall\n");
+            data(mips);
+            text(mips, arbre);            
+            end(mips);
             
-            /* Ecriture du code */
-            ecriture(code.toString(), sortie(source));
+            ecriture(mips.toString(), sortie(source));
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + source + " inexistant");
@@ -55,9 +43,36 @@ public class Yal {
         }
         catch (Exception ex) {
             Logger.getLogger(Yal.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(1);
         }
     }
 
+    public void data(StringBuilder mips) {
+    	mips.append(".data\n");
+        mips.append("err_div :\t");
+        mips.append(".asciiz \"ERREUR EXECUTION :\\n\\t division par zéro\"\n");
+        mips.append("\n");
+    }
+    
+    public void text(StringBuilder mips, ArbreAbstrait arbre) {
+    	mips.append(".text\n");
+        mips.append("main :\n");
+        mips.append("# initialiser s7 avec sp (initialisation de la base des variables)\n");
+        mips.append("move $s7, $sp\n");
+        mips.append(arbre.toMIPS());
+    }
+    
+    public void end(StringBuilder mips) {
+    	mips.append("\n");
+    	mips.append("end :\n");
+        mips.append("# fin du programme\n");
+        mips.append("move $v1, $v0\t");
+        mips.append("# copie de $v0 dans $v1 pour permettre les tests de yal0\n");
+        mips.append("li $v0, 10\t");
+        mips.append("# retour au système\n");
+        mips.append("syscall\n");
+    }
+    
     /**
      * Crée le nom du fichier de sortie
      * @param source

@@ -22,14 +22,14 @@ public abstract class BinaireLogique extends Binaire {
     	
 		if (gauche.getType() != BOOLEEN) {
 			StringBuilder erreur = new StringBuilder(40);
-			erreur.append("L'opérande gauche doit être booléenne : ");
-	    	erreur.append(gauche.getType());
+			erreur.append("L'opérande gauche doit être booléen : ");
+	    	erreur.append(gauche);
 	    	
 	    	throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 		} else if (droite.getType() != BOOLEEN) {
 			StringBuilder erreur = new StringBuilder(40);
-			erreur.append("L'opérande droite doit être booléenne : ");
-	    	erreur.append(droite.getType());
+			erreur.append("L'opérande droit doit être booléen : ");
+	    	erreur.append(droite);
 	    	
 	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());	
 		}

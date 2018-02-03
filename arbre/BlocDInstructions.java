@@ -1,31 +1,58 @@
 package yal.arbre;
 
+import java.util.ArrayList;
+
+import yal.arbre.instruction.Instruction;
+
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
 public class BlocDInstructions extends ArbreAbstrait {
     
-    protected ArbreAbstrait expr;
+	/**
+	 * Liste des instructions du bloc
+	 */
+	private ArrayList<Instruction> bloc;
+	
     
     public BlocDInstructions(int n) {
-        super(n) ;
+        super(n);
+        bloc = new ArrayList<Instruction>();
     }
     
-    public void ajouter(ArbreAbstrait a) {
-        expr = a ;
+    public void ajouter(Instruction a) {
+        bloc.add(a);
+    }
+       
+    @Override
+    public void verifier() {
+    	for (Instruction instr : bloc) {
+    		instr.verifier();
+    	}
     }
     
     @Override
-    public String toString() {
-        return expr.toString() ;
-    }
-    
-    public void verifier() {
-    	expr.verifier();
-    }
-    
     public String toMIPS() {
-    	return expr.toMIPS();
+        StringBuilder mips = new StringBuilder(20);
+    	
+    	for (Instruction instr : bloc) {
+			mips.append(instr.toMIPS());
+			mips.append("\n");
+		}
+		
+        return mips.toString() ;
     }
 
+    @Override
+    public String toString() {
+    	StringBuilder yal = new StringBuilder(20);
+    	
+    	for (Instruction instr : bloc) {
+			yal.append(instr.toString());
+			yal.append("\n");
+		}
+		
+        return yal.toString() ;
+    }
+    
 }

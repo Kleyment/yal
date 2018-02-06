@@ -84,6 +84,8 @@ precedence left PLUS, MOINS;
 precedence left MULT, DIV ;
 precedence left NON ;
 
+/* Grep expression for "" echo '""aa"" "d' | grep '[^"]*""\([^"]*\)""[^"]*' && echo "OK" || echo "PAS OK" */
+
 /* ----------------------------Grammar Section-------------------- */
  
 start with PROG;

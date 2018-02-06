@@ -68,12 +68,13 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
-terminal String    CONSTANTEINT, CONSTANTEBOOL;
+terminal String    CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG ;
-non terminal Expression EXPR, CSTE ;
+non terminal BlocDInstructions PROG;
+non terminal Instruction DECLARATION, DECL_VAR, INSTRUCTION, AFFECT, ECRIRE;
+non terminal Expression EXPR, CSTE;
 
 precedence left OU ;
 precedence left ET ;
@@ -85,14 +86,42 @@ precedence left NON ;
 
 /* ----------------------------Grammar Section-------------------- */
  
-start with PROG ;
-     
-PROG    ::=     EXPR:e 
-                {: BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
-                   arbre.ajouter(e) ;
-                   RESULT = arbre ; :}
-                ;
+start with PROG;
+
+PROG    ::=    PROG IDF DEBUT DECLARATION:d INSTRUCTION:i FIN
+               {: BlocDInstructions arbre = new BlocDInstructions(eleft+1);
+                  arbre.ajouter(d);
+                  arbre.ajouter(i);
+                  RESULT = arbre;              
+               :}
+               ;
     
+DECLARATION    ::=    DECL_VAR:d
+                      {: RESULT = decl; :}
+                      ;
+                      
+DECL_VAR    ::=    TYPE:type IDF:idf POINTVIRGULE
+                   {: Instruction decl = new Declaration(type, idf);
+                      RESULT = decl;
+                   :}
+                   ;
+  
+INSTRUCTION    ::=    AFFECT | ECRIRE
+                      {: RESULT = decl; :}
+                      ;
+           
+AFFECT    ::=    IDF:idf EGAL EXP:exp
+                 {: Instruction aff = new Affectation(idf, exp);
+                    RESULT = aff;
+                 :}
+                 ;
+
+ECRIRE    ::=    ECRIRE:e EXP:exp
+                 {: Instruction e = new Ecrire(exp); 
+                    RESULT = e;
+                 :}  
+                 ;                                     
+                         
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
         | 
@@ -130,14 +159,20 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new NonLogique(e); :}
         |
                 CSTE:c
-                {: RESULT = c ; :}
+                {: RESULT = c; :}
         |
                 PAROUV  EXPR:e  PARFER
-                {: RESULT = e ; :}
+                {: RESULT = e; :}
+        |       
+                IDF:idf
+                {: RESULT = idf; :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1) ; :}
         |       CONSTANTEBOOL:e 
                 {: RESULT = new ConstanteBool(e, eleft+1) ; :}
+        |       CONSTANTECHAINE:c
+                {: RESULT = new ConstanteChaine(c, cleft + 1); :}
                 ;
+               

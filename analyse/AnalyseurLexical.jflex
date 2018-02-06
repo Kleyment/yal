@@ -36,7 +36,6 @@ prog = "programme"
 debut = "debut"
 fin = "fin"
 
-fct = "ecrire"
 type = "entier"
 
 idf = [a-zA-Z][a-zA-Z0-9]*
@@ -65,6 +64,8 @@ commentaireSlashSlash = [/][/].*
 "("                	{ return symbol(CodesLexicaux.PAROUV); }
 ")"                	{ return symbol(CodesLexicaux.PARFER); }
 
+";" {return symbol(CodeLexicaux.POINTVIRGULE); }
+
 {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }
 {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
 {csteC}      	        { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext()); }
@@ -73,7 +74,9 @@ commentaireSlashSlash = [/][/].*
 {debut} { return symbol(CodesLexicaux.DEBUT); }
 {fin} { return symbol(CodesLexicaux.FIN); }
 
-{fct} { return symbol(CodesLexicaux.FCT, yytext()); }
+"ecrire" { return symbol(CodesLexicaux.ECRIRE); }
+"lire" { return symbol(CodesLexicaux.LIRE); }
+
 {type} { return symbol(CodesLexicaux.TYPE, yytext()); }
 
 {idf} { return symbol(CodesLexicaux.IDF, yytext()); }

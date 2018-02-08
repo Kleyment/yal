@@ -1,0 +1,38 @@
+package yal.arbre.expression;
+
+public class ConstanteChaine extends Constante {
+
+	protected ConstanteChaine(String texte, int n) {
+		super(texte, n);
+	}
+
+	@Override
+	public String constante() {
+		return cste;
+	}
+
+	@Override
+	public int getType() {
+		return CHAINE;
+	}
+
+	@Override
+	public String operation() {
+		return "Constante Chaine";
+	}
+	
+	public String toMIPS(){
+		StringBuilder csteChaine = new StringBuilder();
+		int hash = hashCode();
+		
+		csteChaine.append("\n");
+		csteChaine.append("#" + operation() + "\n");
+		csteChaine.append(".data\n");
+		csteChaine.append("texte"+hash+":	.asciiz "+this.cste+"\n");
+		csteChaine.append(".text\n");
+		csteChaine.append("\n");
+		
+		return csteChaine.toString();
+	}
+
+}

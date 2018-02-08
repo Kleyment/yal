@@ -28,7 +28,7 @@ public class ConstanteChaine extends Constante {
 		csteChaine.append("\n");
 		csteChaine.append("#" + operation() + "\n");
 		csteChaine.append(".data\n");
-		csteChaine.append("texte"+hash+":	.asciiz "+this.cste+"\n");
+		csteChaine.append("chaine"+hash+":	.asciiz "+this.cste+"\n");
 		csteChaine.append(".text\n");
 		csteChaine.append("\n");
 		

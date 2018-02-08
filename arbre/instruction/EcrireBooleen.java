@@ -9,11 +9,6 @@ public class EcrireBooleen extends Ecrire {
 	}
 
 	@Override
-	public void verifier() {
-		this.expression.verifier();
-	}
-
-	@Override
 	public String toMIPS() {
 		StringBuilder sb=new StringBuilder(100);
 		int hash=this.hashCode();

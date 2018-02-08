@@ -11,7 +11,9 @@ public abstract class Ecrire extends Instruction {
         expression = expr ;
 	}
 	
-	
+	public void verifier() {
+		this.expression.verifier();		
+	}
 	
 
 }

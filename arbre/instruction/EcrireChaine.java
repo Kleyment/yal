@@ -1,6 +1,7 @@
 package yal.arbre.instruction;
 
 import yal.arbre.expression.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class EcrireChaine extends Ecrire{
 
@@ -8,6 +9,21 @@ public class EcrireChaine extends Ecrire{
 		super(expr);
 	}
 
+	@Override
+	public void verifier(){
+		if (expression.getType() != CHAINE){
+			StringBuilder erreur = new StringBuilder(25);
+	    	
+	    	erreur.append("erreur de type :\t");
+	    	erreur.append("type de l'expression\n");
+	    	erreur.append(expression);
+	    	erreur.append("\n\t");
+	    	erreur.append("l'expression doit être une chaîne de caractères");
+	    	
+	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
+		}
+	}
+	
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder();

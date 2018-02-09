@@ -12,7 +12,7 @@ public class EcrireChaine extends Ecrire{
 	@Override
 	public void verifier(){
 		if (expression.getType() != CHAINE){
-			StringBuilder erreur = new StringBuilder(25);
+			StringBuilder erreur = new StringBuilder(50);
 	    	
 	    	erreur.append("erreur de type :\t");
 	    	erreur.append("type de l'expression\n");
@@ -26,14 +26,15 @@ public class EcrireChaine extends Ecrire{
 	
 	@Override
 	public String toMIPS() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(50);
+		
 		sb.append("# Ecriture d'une chaine \n");
 		sb.append(expression.toMIPS());
 		sb.append("li $v0, 4\n");
 		sb.append("la $a0, chaine"+expression.hashCode()+"\n");
 		sb.append("syscall\n");
+		
 		return sb.toString();
 	}
-
 	
 }

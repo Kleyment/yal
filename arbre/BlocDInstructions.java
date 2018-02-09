@@ -33,8 +33,11 @@ public class BlocDInstructions extends ArbreAbstrait {
     
     @Override
     public String toMIPS() {
-        StringBuilder mips = new StringBuilder(20);
+        StringBuilder mips = new StringBuilder(50);
     	
+        mips.append("# initialisation de la base des variables\n");
+        mips.append("move $s7, $sp\n");
+        
     	for (Instruction instr : bloc) {
 			mips.append(instr.toMIPS());
 			mips.append("\n");

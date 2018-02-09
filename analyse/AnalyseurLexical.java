@@ -725,7 +725,7 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
             }
           case 38: break;
           case 13: 
-            { return symbol(CodeLexicaux.POINTVIRGULE);
+            { return symbol(CodesLexicaux.POINTVIRGULE);
             }
           case 39: break;
           case 14: 

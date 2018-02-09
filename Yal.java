@@ -60,9 +60,7 @@ public class Yal {
     
     public void text(StringBuilder mips, ArbreAbstrait arbre) {
     	mips.append(".text\n");
-        mips.append("main :\n");
-        mips.append("# initialiser s7 avec sp (initialisation de la base des variables)\n");
-        mips.append("move $s7, $sp\n");
+        mips.append("main :\n");      
         mips.append(arbre.toMIPS());
     }
     

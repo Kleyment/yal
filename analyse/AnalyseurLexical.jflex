@@ -64,7 +64,7 @@ commentaireSlashSlash = [/][/].*
 "("                	{ return symbol(CodesLexicaux.PAROUV); }
 ")"                	{ return symbol(CodesLexicaux.PARFER); }
 
-";" { return symbol(CodeLexicaux.POINTVIRGULE); }
+";" { return symbol(CodesLexicaux.POINTVIRGULE); }
 
 {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }
 {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }

@@ -14,6 +14,10 @@ public class Symbole {
 		}
 	}
 	
+	public void setDeplacement(int depl) {
+		deplacement = depl;
+	}
+	
 	public int getDeplacement(){
 		return deplacement;
 	}

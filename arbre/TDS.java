@@ -26,17 +26,9 @@ public class TDS {
 		
 		return s;
 	}
-	
-	public void entreeBloc() {
-		
-	}
-	
-	public void sortieBloc() {
-		
-	}
-	
+
 	public int tailleZoneDesVariables() {
 		return table.size() * -4;
-	}
+    }
 	
 }

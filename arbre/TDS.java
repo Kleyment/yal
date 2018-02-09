@@ -25,7 +25,12 @@ public class TDS {
 		return s;
 	}
 	
-	public void entreeBloc(){
+	public int getTailleMemoire() {
+		return table.size() * 4;
+	}
+	
+	/* POUR PLUS TARD 
+	
 		BlocDInstructions newBloc = new BlocDInstructions(noBloc);
 		noBloc++;
 		listeBloc.add(newBloc);
@@ -39,6 +44,8 @@ public class TDS {
 			blocActuel = null;
 		}
 	}
+	
+	*/
 	
 	public static TDS getInstance() {
 		return ourInstance;

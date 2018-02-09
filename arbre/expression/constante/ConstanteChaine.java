@@ -1,4 +1,4 @@
-package yal.arbre.expression;
+package yal.arbre.expression.constante;
 
 public class ConstanteChaine extends Constante {
 

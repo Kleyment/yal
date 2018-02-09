@@ -71,11 +71,11 @@ commentaireSlashSlash = [/][/].*
 {csteC}      	        { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext()); }
 
 {prog} { return symbol(CodesLexicaux.SYM_PROG); }
-{debut} { return symbol(CodesLexicaux.DEBUT); }
-{fin} { return symbol(CodesLexicaux.FIN); }
+{debut} { return symbol(CodesLexicaux.SYM_DEBUT); }
+{fin} { return symbol(CodesLexicaux.SYM_FIN); }
 
-"ecrire" { return symbol(CodesLexicaux.ECRIRE); }
-"lire" { return symbol(CodesLexicaux.LIRE); }
+"ecrire" { return symbol(CodesLexicaux.SYM_ECRIRE); }
+"lire" { return symbol(CodesLexicaux.SYM_LIRE); }
 
 {type} { return symbol(CodesLexicaux.TYPE, yytext()); }
 

@@ -66,7 +66,8 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    SYM_PROG, DEBUT, FIN, POINTVIRGULE;
+terminal Symbol    SYM_PROG, SYM_DEBUT, SYM_FIN, POINTVIRGULE;
+terminal Symbol    SYM_ECRIRE, SYM_LIRE;
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
 terminal Symbol    EGAL;
@@ -92,10 +93,10 @@ precedence left NON ;
  
 start with PROG;
 
-PROG    ::=    SYM_PROG IDF DEBUT LDECL LINST:li FIN
+PROG    ::=    SYM_PROG IDF SYM_DEBUT LDECL LINST:li SYM_FIN
                {: RESULT = li; :}    
         |
-               SYM_PROG IDF DEBUT LINST:li FIN
+               SYM_PROG IDF SYM_DEBUT LINST:li SYM_FIN
                {: RESULT = li; :}
                ;
 
@@ -133,7 +134,7 @@ AFFECT    ::=    IDF:idf EGAL EXPR:exp
                  {: RESULT = new Affectation(idf, exp); :}
                  ;
 
-ECRIRE    ::=    ECRIRE EXPR:exp
+ECRIRE    ::=    SYM_ECRIRE EXPR:exp
                  {: RESULT = new Ecrire(exp); :}  
                  ;                                     
                          

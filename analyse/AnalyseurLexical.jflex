@@ -70,7 +70,7 @@ commentaireSlashSlash = [/][/].*
 {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
 {csteC}      	        { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext()); }
 
-{prog} { return symbol(CodesLexicaux.PROG); }
+{prog} { return symbol(CodesLexicaux.SYM_PROG); }
 {debut} { return symbol(CodesLexicaux.DEBUT); }
 {fin} { return symbol(CodesLexicaux.FIN); }
 
@@ -82,6 +82,7 @@ commentaireSlashSlash = [/][/].*
 {idf} { return symbol(CodesLexicaux.IDF, yytext()); }
 
 {commentaireSlashSlash} {}
+
 {espace}                {}
 
 .                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }

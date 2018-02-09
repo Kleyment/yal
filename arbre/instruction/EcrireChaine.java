@@ -3,14 +3,18 @@ package yal.arbre.instruction;
 import yal.arbre.expression.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
-public class EcrireChaine extends Ecrire{
+public class EcrireChaine extends Instruction{
 
-	public EcrireChaine(Expression expr) {
-		super(expr);
+	private String str;
+	
+	public EcrireChaine(int no, String string) {
+		super(no);
+		this.str=string;
+		
 	}
 
 	@Override
-	public void verifier(){
+	public void verifier() {
 		if (expression.getType() != CHAINE){
 			StringBuilder erreur = new StringBuilder(50);
 	    	
@@ -27,11 +31,14 @@ public class EcrireChaine extends Ecrire{
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder(50);
+		int hash = hashCode();
 		
 		sb.append("# Ecriture d'une chaine \n");
-		sb.append(expression.toMIPS());
+		sb.append(".data\n");
+		sb.append("chaine_"+hash+":	.asciiz "+this.str+"\n");
+		sb.append(".text\n");
 		sb.append("li $v0, 4\n");
-		sb.append("la $a0, chaine"+expression.hashCode()+"\n");
+		sb.append("la $a0, chaine_"+hash+"\n");
 		sb.append("syscall\n");
 		
 		return sb.toString();

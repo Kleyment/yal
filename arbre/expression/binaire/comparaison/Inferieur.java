@@ -1,5 +1,6 @@
-package yal.arbre.expression;
+package yal.arbre.expression.binaire.comparaison;
 
+import yal.arbre.expression.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**

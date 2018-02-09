@@ -1,4 +1,6 @@
-package yal.arbre.expression;
+package yal.arbre.expression.binaire.arithmetique;
+
+import yal.arbre.expression.Expression;
 
 /**
  * @author Clément Bellanger, Pierre génard, Valentin Thouvenin

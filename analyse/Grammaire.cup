@@ -68,12 +68,14 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
-terminal String    CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
+terminal String    IDF, CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal BlocDInstructions PROG;
-non terminal Instruction DECLARATION, DECL_VAR, INSTRUCTION, AFFECT, ECRIRE;
+
+non terminal Symbol PROG;
+non terminal BlocDInstructions PROGRAMME, BLOC;
+non terminal Instruction DECL, DECL_VAR, INSTRUCTION, AFFECT, ECRIRE;
 non terminal Expression EXPR, CSTE;
 
 precedence left OU ;
@@ -84,33 +86,48 @@ precedence left PLUS, MOINS;
 precedence left MULT, DIV ;
 precedence left NON ;
 
-/* Grep expression for "" echo '""aa"" "d' | grep '[^"]*""\([^"]*\)""[^"]*' && echo "OK" || echo "PAS OK" */
-
 /* ----------------------------Grammar Section-------------------- */
  
-start with PROG;
+start with PROGRAMME;
 
-PROG    ::=    PROG IDF DEBUT DECLARATION:d INSTRUCTION:i FIN
-               {: BlocDInstructions arbre = new BlocDInstructions(eleft+1);
-                  arbre.ajouter(d);
-                  arbre.ajouter(i);
-                  RESULT = arbre;              
+PROGRAMME    ::=    PROG IDF DEBUT BLOC:b FIN
+                        RESULT = b;              
+                    :}
+             ;
+
+BLOC    ::=    BLOC:b INST:i
+               {: b.ajouter(i);
+                  RESULT = b;
                :}
+	|
+	       DECL:d BLOC:b 
+	       {: b.ajouter(d);
+	          RESULT = b;
+	       :}
+	|
+	       DECL:d
+	       {: BlocDInstructions b = new BlocDInstructions();
+	          b.ajouter(d);
+                  RESULT = b;
+               :}
+	       ;
+		
+DECL    ::=    DECL_VAR:d
+               {: RESULT = d; :}
                ;
-    
-DECLARATION    ::=    DECL_VAR:d
-                      {: RESULT = decl; :}
-                      ;
                       
 DECL_VAR    ::=    TYPE:type IDF:idf POINTVIRGULE
-                   {: Instruction decl = new Declaration(type, idf);
-                      RESULT = decl;
+                   {: Instruction d = new Declaration(type, idf);
+                      RESULT = d;
                    :}
                    ;
-  
-INSTRUCTION    ::=    AFFECT | ECRIRE
-                      {: RESULT = decl; :}
-                      ;
+		
+INST    ::=    AFFECT:a
+               {: RESULT = new Affect(a, aleft + 1); :}
+        |
+	       ECRIRE:e
+               {: RESULT = new Ecrire(e, eleft + 1); :}
+               ;
            
 AFFECT    ::=    IDF:idf EGAL EXP:exp
                  {: Instruction aff = new Affectation(idf, exp);

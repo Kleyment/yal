@@ -1,5 +1,7 @@
-package yal.arbre.expression;
+package yal.arbre.expression.binaire.arithmetique;
 
+import yal.arbre.expression.Expression;
+import yal.arbre.expression.binaire.Binaire;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**

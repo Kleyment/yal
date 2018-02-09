@@ -18,11 +18,11 @@ public class ConstanteChaine extends Constante {
 
 	@Override
 	public String operation() {
-		return "Constante Chaine";
+		return " Constante Chaine ";
 	}
 	
 	public String toMIPS(){
-		StringBuilder csteChaine = new StringBuilder();
+		StringBuilder csteChaine = new StringBuilder(30);
 		int hash = hashCode();
 		
 		csteChaine.append("\n");

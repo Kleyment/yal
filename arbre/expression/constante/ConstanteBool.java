@@ -1,32 +1,37 @@
-package yal.arbre.expression;
+package yal.arbre.expression.constante;
 
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-public class ConstanteEntiere extends Constante {
+public class ConstanteBool extends Constante {
     
-    public ConstanteEntiere(String texte, int n) {
+    public ConstanteBool(String texte, int n) {
         super(texte, n) ;
     }
 
 	@Override
 	public int getType() {
-		return ENTIER;
+		return BOOLEEN;
 	}
-
+	
 	@Override
 	public String operation() {
-		return " Constante Entière ";
+		return " Constante Booléenne ";
 	}
 	
 	@Override
 	public String constante() {
-		return cste;
+		if (cste.equals("vrai")) {
+			return "1";
+		}
+		else {
+			return "0";
+		}
 	}
 	
 	@Override
 	public String toMIPS() {
         return super.toMIPS();
 	}
-	
+
 }

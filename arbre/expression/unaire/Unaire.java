@@ -1,4 +1,6 @@
-package yal.arbre.expression;
+package yal.arbre.expression.unaire;
+
+import yal.arbre.expression.Expression;
 
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin

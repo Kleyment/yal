@@ -30,7 +30,7 @@ import yal.exceptions.AnalyseLexicaleException;
 
 csteE = [0-9]+
 csteB = "vrai" | "faux"
-csteC = ["][a-zA-Z]*["]
+csteC = \"([^\"]|(\"\"))+\"
 
 prog = "programme"
 debut = "debut"
@@ -64,7 +64,7 @@ commentaireSlashSlash = [/][/].*
 "("                	{ return symbol(CodesLexicaux.PAROUV); }
 ")"                	{ return symbol(CodesLexicaux.PARFER); }
 
-";" {return symbol(CodeLexicaux.POINTVIRGULE); }
+";" { return symbol(CodeLexicaux.POINTVIRGULE); }
 
 {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }
 {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
@@ -81,8 +81,7 @@ commentaireSlashSlash = [/][/].*
 
 {idf} { return symbol(CodesLexicaux.IDF, yytext()); }
 
-{espace}                { }
-
-{commentaireSlashSlash} { }
+{commentaireSlashSlash} {}
+{espace}                {}
 
 .                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }

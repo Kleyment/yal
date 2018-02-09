@@ -1,34 +1,35 @@
-package yal.arbre.expression;
+package yal.arbre.expression.binaire.comparaison;
 
+import yal.arbre.expression.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin
  */
-public class Different extends Comparaison {
+public class Egal extends Comparaison {
 
-    public Different(Expression gauche, Expression droite) {
+    public Egal(Expression gauche, Expression droite) {
         super(gauche, droite);
     }
-
+    
     @Override
     public String operateur() {
-        return " != ";
+        return " == ";
     }
 
     @Override
 	public String operation() {
-		return " Différent ";
+		return " Egal ";
 	}
     
-    @Override
+	@Override
 	public void verifier() throws AnalyseSemantiqueException {
-    	super.verifier();
-    	
+		super.verifier();
+		
 		if (gauche.getType() != droite.getType()) {
             StringBuilder erreur = new StringBuilder(50);
 	    	
-	    	erreur.append("erreur de type :\t");
+            erreur.append("erreur de type :\t");
             erreur.append(gauche);
 	    	erreur.append(operateur());
 	    	erreur.append(droite);
@@ -40,13 +41,13 @@ public class Different extends Comparaison {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder diff = new StringBuilder(40);
+		StringBuilder egal = new StringBuilder(100);
 		
-		diff.append(super.toMIPS());
-		diff.append("# Si c'est différent, on met 1 dans $v0, sinon 0\n");
-		diff.append("sne $v0, $v0, $t8\n");
+		egal.append(super.toMIPS());	
+		egal.append("# En cas d'égalité, on met 1 dans $v0, sinon 0\n");
+		egal.append("seq $v0, $v0, $t8\n");
 		
-		return diff.toString();
+		return egal.toString();
 	}
-  
+    
 }

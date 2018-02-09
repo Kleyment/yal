@@ -1,4 +1,7 @@
-package yal.arbre.expression;
+package yal.arbre.expression.binaire.comparaison;
+
+import yal.arbre.expression.Expression;
+import yal.arbre.expression.binaire.Binaire;
 
 /**
  * @author Clément Bellanger, Pierre Génard, Valentin Thouvenin

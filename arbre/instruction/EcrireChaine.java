@@ -15,17 +15,7 @@ public class EcrireChaine extends Instruction{
 
 	@Override
 	public void verifier() {
-		if (expression.getType() != CHAINE){
-			StringBuilder erreur = new StringBuilder(50);
-	    	
-	    	erreur.append("erreur de type :\t");
-	    	erreur.append("type de l'expression\n");
-	    	erreur.append(expression);
-	    	erreur.append("\n\t");
-	    	erreur.append("l'expression doit être une chaîne de caractères");
-	    	
-	        throw new AnalyseSemantiqueException(getNoLigne(), erreur.toString());
-		}
+		
 	}
 	
 	@Override

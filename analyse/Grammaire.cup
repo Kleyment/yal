@@ -123,10 +123,10 @@ DECL_VAR    ::=    TYPE:type IDF:idf POINTVIRGULE
                    ;
 		
 INST    ::=    AFFECT:a
-               {: RESULT = new Affectation(a, aleft + 1); :}
+               {: RESULT = a; :}
         |
 	           ECRIRE:e
-               {: RESULT = new Ecrire(e, eleft + 1); :}
+               {: RESULT = e; :}
                ;
            
 AFFECT    ::=    IDF:idf EGAL EXPR:exp
@@ -180,9 +180,7 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = e; :}
         |       
                 IDF:idf
-                {: Variable var = new Variable(idf);
-                   RESULT = var; 
-                :}
+                {: RESULT = new Variable(idf); :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 

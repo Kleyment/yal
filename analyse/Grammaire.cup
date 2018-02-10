@@ -2,6 +2,10 @@ package yal.analyse ;
 
 import java.util.*;
 
+import yal.analyse.tds.*;
+import yal.analyse.tds.entree.*;
+import yal.analyse.tds.symbole.*;
+
 import yal.arbre.* ;
 import yal.arbre.expression.* ;
 import yal.arbre.expression.binaire.arithmetique.* ;
@@ -122,14 +126,17 @@ LINST   ::=    LINST:li INST:i
 	           ;
 	           
 LDECL    ::=    LDECL DECL
+                {: :}
+         |
+                DECL
+                {: :}
                 ;
                 	
-DECL    ::=    DECL_VAR:d
-               {: RESULT = d; :}
+DECL    ::=    DECL_VAR
                ;
                       
-DECL_VAR    ::=    TYPE:type IDF:idf POINTVIRGULE
-                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(type)); :}
+DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
+                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(t)); :}
                    ;
 		
 INST    ::=    AFFECT:a
@@ -139,14 +146,14 @@ INST    ::=    AFFECT:a
                {: RESULT = e; :}
                ;
            
-AFFECT    ::=    IDF:idf EGAL EXPR:exp
+AFFECT    ::=    IDF:idf EGAL EXPR:exp POINTVIRGULE
                  {: RESULT = new Affectation(idf, exp); :}
                  ;
 
-ECRIRE    ::=    SYM_ECRIRE EXPR:exp
+ECRIRE    ::=    SYM_ECRIRE EXPR:exp POINTVIRGULE
                  {: RESULT = new Ecrire(exp); :}  
           |
-                 SYM_ECRIRE CONSTANTECHAINE:c
+                 SYM_ECRIRE CONSTANTECHAINE:c POINTVIRGULE
                  {: RESULT = new EcrireChaine(c, cleft+1); :}
                  ;                                     
                          

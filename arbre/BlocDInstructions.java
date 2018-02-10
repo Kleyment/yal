@@ -2,6 +2,7 @@ package yal.arbre;
 
 import java.util.ArrayList;
 
+import yal.analyse.tds.TDS;
 import yal.arbre.instruction.Instruction;
 
 /**
@@ -14,6 +15,8 @@ public class BlocDInstructions extends ArbreAbstrait {
 	 */
 	private ArrayList<Instruction> bloc;
 	
+    private int tailleZoneDesVariables;
+    
     
     public BlocDInstructions(int n) {
         super(n);
@@ -26,6 +29,8 @@ public class BlocDInstructions extends ArbreAbstrait {
        
     @Override
     public void verifier() {
+    	tailleZoneDesVariables = TDS.getInstance().tailleZoneDesVariables();
+    	
     	for (Instruction instr : bloc) {
     		instr.verifier();
     	}
@@ -33,11 +38,29 @@ public class BlocDInstructions extends ArbreAbstrait {
     
     @Override
     public String toMIPS() {
-        StringBuilder mips = new StringBuilder(50);
+        StringBuilder mips = new StringBuilder(100);
     	
         mips.append("# initialisation de la base des variables\n");
-        mips.append("move $s7, $sp");
+        mips.append("move $s7, $sp\n");
+        mips.append("\n");
+        
+        mips.append("# réservation de l'espace pour ");
+        mips.append(tailleZoneDesVariables / 4);
+        mips.append(" variable(s)\n");
+        mips.append("addi $sp, $sp, ");
+        mips.append(- tailleZoneDesVariables);
         mips.append("\n\n");
+        
+        mips.append("# initialisations\n");
+        mips.append("li $t8, 0\n");
+        
+        for (int deplacement = 0; deplacement < tailleZoneDesVariables; deplacement += 4) {
+        	mips.append("sw $t8, -");
+        	mips.append(deplacement);
+        	mips.append("($s7)\n");
+        }
+        
+        mips.append("\n");
         
     	for (Instruction instr : bloc) {
 			mips.append(instr.toMIPS());

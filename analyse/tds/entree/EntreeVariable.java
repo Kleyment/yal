@@ -1,4 +1,4 @@
-package yal.arbre;
+package yal.analyse.tds.entree;
 
 public class EntreeVariable extends Entree {
 

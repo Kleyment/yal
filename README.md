@@ -8,9 +8,22 @@ Clément Bellanger, Pierre Génard, Valentin Thouvenin
 ```bash
 programme test 
 debut
+
+// declarations
+entier a;
+entier b;
+
 // "vrai de vrai"
-ecrire "vrai de "
-ecrire vrai
+ecrire -(5 * -1) == -5 / -1;
+ecrire " de ";
+ecrire vrai;
+ecrire "\n";
+
+// "0 == 0"
+ecrire a;
+ecrire " == ";
+ecrire (6 - 8 + (-2) * (-1));
+
 fin
 ```
 

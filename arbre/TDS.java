@@ -17,7 +17,7 @@ public class TDS {
 		return ourInstance;
 	}
 	
-	public void ajouter(Entree e, Symbole s){
+	public void ajouter(Entree e, Symbole s) {
 		table.put(e, s);
 	}
 	

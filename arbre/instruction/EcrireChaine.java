@@ -1,16 +1,13 @@
 package yal.arbre.instruction;
 
-import yal.arbre.expression.Expression;
-import yal.exceptions.AnalyseSemantiqueException;
+public class EcrireChaine extends Instruction {
 
-public class EcrireChaine extends Instruction{
-
-	private String str;
+	private String chaine;
 	
-	public EcrireChaine(int no, String string) {
+	
+	public EcrireChaine(String chaine, int no) {
 		super(no);
-		this.str=string;
-		
+		this.chaine = chaine;	
 	}
 
 	@Override
@@ -25,10 +22,11 @@ public class EcrireChaine extends Instruction{
 		
 		sb.append("# Ecriture d'une chaine \n");
 		sb.append(".data\n");
-		sb.append("chaine_"+hash+":	.asciiz "+this.str+"\n");
+		sb.append("chaine_" + hash + " :\t");
+		sb.append(".asciiz \"" + chaine + "\"\n");
 		sb.append(".text\n");
 		sb.append("li $v0, 4\n");
-		sb.append("la $a0, chaine_"+hash+"\n");
+		sb.append("la $a0, chaine_" + hash + "\n");
 		sb.append("syscall\n");
 		
 		return sb.toString();

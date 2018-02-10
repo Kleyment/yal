@@ -52,9 +52,9 @@ public class Yal {
         mips.append("err_div :\t");
         mips.append(".asciiz \"ERREUR EXECUTION :\\n\\t division par zéro\"\n");
         mips.append("vrai :\t");
-        mips.append(".asciiz \"vrai \"\n");
+        mips.append(".asciiz \"vrai\"\n");
         mips.append("faux :\t");
-        mips.append(".asciiz \"faux \"\n");
+        mips.append(".asciiz \"faux\"\n");
         mips.append("\n");
     }
     

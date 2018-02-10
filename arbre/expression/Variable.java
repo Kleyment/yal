@@ -2,11 +2,13 @@ package yal.arbre.expression;
 
 public class Variable extends Expression {
 
+	private String idf;
 	private int deplacement;
 	
 	
-	public Variable(int n) {
+	public Variable(String idf, int n) {
 		super(n);
+		this.idf = idf;
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class Variable extends Expression {
 	public String toMIPS() {
 		StringBuilder var = new StringBuilder("20");
 		
-		var.append("li $v0, ");
+		var.append("lw $v0, ");
 		var.append(deplacement);
 		var.append("($s7)");
 		var.append("\n");

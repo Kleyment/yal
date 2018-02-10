@@ -1,15 +1,16 @@
 package yal.arbre;
 
-public class Entree {
+public abstract class Entree {
 
-	private String identificateur;
+	private String idf;
 	
-	public Entree (String ident){
-		identificateur = ident;
+	
+	public Entree (String idf) {
+		this.idf = idf;
 	}
 	
-	public String toString(){
-		return identificateur;
+	public String toString() {
+		return idf;
 	}
 	
 }

@@ -9,13 +9,15 @@ import yal.arbre.expression.binaire.comparaison.* ;
 import yal.arbre.expression.binaire.logique.* ;
 import yal.arbre.expression.constante.*;
 import yal.arbre.expression.unaire.*;
+import yal.arbre.instruction.*;
 
 import yal.exceptions.AnalyseSyntaxiqueException;
 
 import java_cup.runtime.*;
 
 action code {: 
-             :} ;
+
+:};
 
 parser code {:
 
@@ -73,8 +75,8 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    SYM_PROG, SYM_DEBUT, SYM_FIN, POINTVIRGULE;
-terminal Symbol    SYM_ECRIRE, SYM_LIRE;
+terminal Symbol    SYM_PROG, DEBUT, FIN, POINTVIRGULE;
+terminal Symbol    SYM_ECRIRE;
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
 terminal Symbol    EGAL;
@@ -86,6 +88,7 @@ non terminal Symbol LDECL, DECL, DECL_VAR;
 non terminal BlocDInstructions PROG, LINST;
 non terminal Instruction INST, AFFECT, ECRIRE;
 non terminal Expression EXPR, CSTE;
+
 
 precedence left OU ;
 precedence left ET ;
@@ -99,10 +102,10 @@ precedence left NON ;
  
 start with PROG;
 
-PROG    ::=    SYM_PROG IDF SYM_DEBUT LDECL LINST:li SYM_FIN
+PROG    ::=    SYM_PROG IDF DEBUT LDECL LINST:li FIN
                {: RESULT = li; :}    
         |
-               SYM_PROG IDF SYM_DEBUT LINST:li SYM_FIN
+               SYM_PROG IDF DEBUT LINST:li FIN
                {: RESULT = li; :}
                ;
 
@@ -126,7 +129,7 @@ DECL    ::=    DECL_VAR:d
                ;
                       
 DECL_VAR    ::=    TYPE:type IDF:idf POINTVIRGULE
-                   {: TDS.getInstance(new EntreeVariable(idf), new SymboleVariable(type)); :}
+                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(type)); :}
                    ;
 		
 INST    ::=    AFFECT:a
@@ -144,7 +147,7 @@ ECRIRE    ::=    SYM_ECRIRE EXPR:exp
                  {: RESULT = new Ecrire(exp); :}  
           |
                  SYM_ECRIRE CONSTANTECHAINE:c
-                 {: RESULT = new EcrireChaine(new ConstanteChaine(c, cleft+1)); :}
+                 {: RESULT = new EcrireChaine(c, cleft+1); :}
                  ;                                     
                          
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
@@ -189,15 +192,13 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 PAROUV  EXPR:e  PARFER
                 {: RESULT = e; :}
         |       
-                IDF:idf
-                {: RESULT = new Variable(idf); :}
+                IDF:i
+                {: RESULT = new Variable(i, ileft+1); :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1) ; :}
         |       CONSTANTEBOOL:e 
                 {: RESULT = new ConstanteBool(e, eleft+1) ; :}
-        |       CONSTANTECHAINE:c
-                {: RESULT = new ConstanteChaine(c, cleft + 1); :}
                 ;
                

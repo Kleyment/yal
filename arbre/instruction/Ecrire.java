@@ -2,9 +2,10 @@ package yal.arbre.instruction;
 
 import yal.arbre.expression.Expression;
 
-public abstract class Ecrire extends Instruction {
+public class Ecrire extends Instruction {
 
 	protected Expression expression;
+	
 	
 	public Ecrire(Expression expr) {
 		super(expr.getNoLigne());
@@ -16,11 +17,11 @@ public abstract class Ecrire extends Instruction {
 	}
 	
 	public String toMIPS() {
-		StringBuilder sb=new StringBuilder();
-		int hash=this.hashCode();
+		StringBuilder sb = new StringBuilder();
+		int hash = hashCode();
 		
 		if (expression.getType() == BOOLEEN) {		
-			sb.append(this.expression.toMIPS());
+			sb.append(expression.toMIPS());
 			sb.append("# Ecriture d'un booléen \n");
 			sb.append("beqz $v0, alors_" + hash + "\n");
 			sb.append("la $a0, vrai\n");
@@ -30,13 +31,15 @@ public abstract class Ecrire extends Instruction {
 			sb.append("end_" + hash + " :\n");
 			sb.append("li $v0, 4\n");
 			sb.append("syscall\n");
-		} else {
+		} 
+		else {
 			sb.append("# Ecriture d'un entier \n");
-			sb.append(this.expression.toMIPS());
+			sb.append(expression.toMIPS());
 			sb.append("move $a0, $v0\n");
 			sb.append("li $v0, 1\n");
 			sb.append("syscall\n");
 		}
+		
 		return sb.toString();
 	}
 

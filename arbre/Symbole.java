@@ -14,12 +14,12 @@ public abstract class Symbole {
 		deplacement = TDS.getInstance().tailleZoneDesVariables();
 	}
 	
-	public int getDeplacement() {
-		return deplacement;
-	}
-	
 	public String getType() {
 		return type;
 	}
+	
+	public int getDeplacement() {
+		return deplacement;
+	}	
 	
 }

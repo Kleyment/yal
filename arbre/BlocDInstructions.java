@@ -36,7 +36,8 @@ public class BlocDInstructions extends ArbreAbstrait {
         StringBuilder mips = new StringBuilder(50);
     	
         mips.append("# initialisation de la base des variables\n");
-        mips.append("move $s7, $sp\n");
+        mips.append("move $s7, $sp");
+        mips.append("\n\n");
         
     	for (Instruction instr : bloc) {
 			mips.append(instr.toMIPS());

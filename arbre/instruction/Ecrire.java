@@ -13,7 +13,7 @@ public class Ecrire extends Instruction {
 	}
 	
 	public void verifier() {
-		this.expression.verifier();		
+		expression.verifier();		
 	}
 	
 	public String toMIPS() {

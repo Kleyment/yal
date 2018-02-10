@@ -23,7 +23,7 @@ public class EcrireChaine extends Instruction {
 		sb.append("# Ecriture d'une chaine \n");
 		sb.append(".data\n");
 		sb.append("chaine_" + hash + " :\t");
-		sb.append(".asciiz \"" + chaine + "\"\n");
+		sb.append(".asciiz " + chaine + "\n");
 		sb.append(".text\n");
 		sb.append("li $v0, 4\n");
 		sb.append("la $a0, chaine_" + hash + "\n");

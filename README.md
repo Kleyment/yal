@@ -1,5 +1,5 @@
 # Yal
-Le langage ​YAL est un langage de programmation typé rudimentaire incluant les structures de contrôle élémentaires, les tableaux et les fonctions.
+Le langage ​**YAL** est un langage de programmation typé rudimentaire incluant les structures de contrôle élémentaires, les tableaux et les fonctions.
 
 ## Auteurs
 Clément Bellanger, Pierre Génard, Valentin Thouvenin
@@ -8,6 +8,7 @@ Clément Bellanger, Pierre Génard, Valentin Thouvenin
 ```bash
 programme test 
 debut
+// "vrai de vrai"
 ecrire "vrai de "
 ecrire vrai
 fin
@@ -41,8 +42,8 @@ exit 0
 - [MIPS Summary](http://www.cs.tufts.edu/comp/140/lectures/Day_3/mips_summary.pdf)
 
 ## Feuille de route
-- **YAL0** --> Mardi 30 Janvier
-- **YAL1** --> Mardi 13 Février
+- **YAL0** --> Mardi 30 Janvier  **[OK]**
+- **YAL1** --> Mardi 13 Février  **[En cours]**
 - **YAL2** --> Mardi 6 Mars
 - **YAL3** --> Mardi 20 Mars
 - **YAL4** --> Mardi 27 Mars

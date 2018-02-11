@@ -11,10 +11,14 @@ public class TDS {
 	private static TDS ourInstance = new TDS();
 	
 	private HashMap<Entree, Symbole> table;
+	private int numeroRegion;
+	private int numeroImbrication;
 	
 	
 	private TDS() {
 		table = new HashMap<Entree, Symbole>();
+		numeroRegion = -1;
+		numeroImbrication = -1;
 	}
 	
 	public static TDS getInstance() {
@@ -33,6 +37,23 @@ public class TDS {
 		return table.get(e);
 	}
 
+	public void entreeBloc() {
+		numeroRegion++;
+		numeroImbrication++;
+	}
+	
+	public void sortieBloc() {
+		numeroImbrication--;
+	}
+	
+	public int numeroRegion() {
+		return numeroRegion;
+	}
+	
+	public int numeroImbrication() {
+		return numeroImbrication;
+	}
+	
 	public int nbVariables() {
 		return table.size();
 	}

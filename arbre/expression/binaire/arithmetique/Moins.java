@@ -17,8 +17,8 @@ public class Moins extends BinaireArithmetique {
     }
 
     @Override
-    public int getType() {
-	    return ENTIER;
+    public String getType() {
+	    return "entier";
     }
     
     @Override

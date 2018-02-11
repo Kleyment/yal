@@ -18,8 +18,8 @@ public class NonLogique extends Unaire {
     }
 
     @Override
-	public int getType() {
-		return BOOLEEN;
+	public String getType() {
+		return "booleen";
 	}
     
     @Override
@@ -31,7 +31,7 @@ public class NonLogique extends Unaire {
     public void verifier() throws AnalyseSemantiqueException {
     	super.verifier();
     	
-	    if (expression.getType() != BOOLEEN) {
+	    if (!expression.getType().equals("booleen")) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	
 	    	erreur.append("erreur de type :\t");

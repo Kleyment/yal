@@ -2,15 +2,12 @@ package yal.analyse.tds.symbole;
 
 public class SymboleFonction extends Symbole {
 
-	private String typeRetour;
-
 	public SymboleFonction(String typeRetour) {
-		super();
-		this.typeRetour = typeRetour;
+		super(typeRetour);
 	}
 	
 	public String getTypeRetour() {
-		return typeRetour;
+		return getType();
 	}
 	
 }

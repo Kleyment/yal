@@ -4,29 +4,6 @@ Le langage ​**YAL** est un langage de programmation typé rudimentaire incluan
 ## Auteurs
 Clément Bellanger, Pierre Génard, Valentin Thouvenin
 
-## Exemple
-```bash
-programme test 
-debut
-
-// declarations
-entier a;
-entier b;
-
-// "vrai de vrai"
-ecrire -(5 * -1) == -5 / -1;
-ecrire " de ";
-ecrire vrai;
-ecrire "\n";
-
-// "0 == 0"
-ecrire a;
-ecrire " == ";
-ecrire (6 - 8 + (-2) * (-1));
-
-fin
-```
-
 ## Des tests
 ```bash
 #!/bin/bash
@@ -55,9 +32,9 @@ exit 0
 - [MIPS Summary](http://www.cs.tufts.edu/comp/140/lectures/Day_3/mips_summary.pdf)
 
 ## Feuille de route
-- **YAL0** --> Mardi 30 Janvier  **[OK]**
-- **YAL1** --> Mardi 13 Février  **[En cours]**
-- **YAL2** --> Mardi 6 Mars
+- **YAL0** --> Mardi 30 Janvier **[OK]**
+- **YAL1** --> Mardi 13 Février **[OK]**
+- **YAL2** --> Mardi 6 Mars **[En cours]**
 - **YAL3** --> Mardi 20 Mars
 - **YAL4** --> Mardi 27 Mars
 - **YAL5** --> Vendredi 6 Avril

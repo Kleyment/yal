@@ -60,6 +60,8 @@ commentaireSlashSlash = [/][/].*
 "("                	{ return symbol(CodesLexicaux.PAROUV); }
 ")"                	{ return symbol(CodesLexicaux.PARFER); }
 
+"=" { return symbol(CodesLexicaux.EGAL); }
+
 ";" { return symbol(CodesLexicaux.POINTVIRGULE); }
 
 {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }

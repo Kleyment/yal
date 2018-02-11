@@ -10,8 +10,8 @@ public class ConstanteEntiere extends Constante {
     }
 
 	@Override
-	public int getType() {
-		return ENTIER;
+	public String getType() {
+		return "entier";
 	}
 
 	@Override

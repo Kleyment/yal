@@ -55,11 +55,11 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\3\3\1\1\4\3\1\4\1\5"+
-    "\1\6\1\7\1\10\2\1\1\11\1\12\1\13\1\14"+
-    "\1\15\4\3\2\0\1\3\1\16\1\3\1\17\2\3"+
-    "\1\4\1\20\1\21\3\3\1\22\1\23\3\3\1\24"+
-    "\1\3\1\25\7\3\1\26\1\3\1\27\1\30\2\3"+
-    "\1\31";
+    "\1\6\1\7\1\10\1\11\1\1\1\12\1\13\1\14"+
+    "\1\15\1\16\4\3\2\0\1\3\1\17\1\3\1\20"+
+    "\2\3\1\4\1\21\1\22\3\3\1\23\1\24\3\3"+
+    "\1\25\1\3\1\26\7\3\1\27\1\3\1\30\1\31"+
+    "\2\3\1\32";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[63];
@@ -675,103 +675,107 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
           case 1: 
             { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ;
             }
-          case 26: break;
+          case 27: break;
           case 2: 
             { return symbol(CodesLexicaux.CONSTANTEINT, yytext());
             }
-          case 27: break;
+          case 28: break;
           case 3: 
             { return symbol(CodesLexicaux.IDF, yytext());
             }
-          case 28: break;
+          case 29: break;
           case 4: 
             { 
             }
-          case 29: break;
+          case 30: break;
           case 5: 
             { return symbol(CodesLexicaux.DIV);
             }
-          case 30: break;
+          case 31: break;
           case 6: 
             { return symbol(CodesLexicaux.PLUS);
             }
-          case 31: break;
+          case 32: break;
           case 7: 
             { return symbol(CodesLexicaux.MOINS);
             }
-          case 32: break;
+          case 33: break;
           case 8: 
             { return symbol(CodesLexicaux.MULT);
             }
-          case 33: break;
-          case 9: 
-            { return symbol(CodesLexicaux.INF);
-            }
           case 34: break;
-          case 10: 
-            { return symbol(CodesLexicaux.SUP);
+          case 9: 
+            { return symbol(CodesLexicaux.EGAL);
             }
           case 35: break;
-          case 11: 
-            { return symbol(CodesLexicaux.PAROUV);
+          case 10: 
+            { return symbol(CodesLexicaux.INF);
             }
           case 36: break;
-          case 12: 
-            { return symbol(CodesLexicaux.PARFER);
+          case 11: 
+            { return symbol(CodesLexicaux.SUP);
             }
           case 37: break;
-          case 13: 
-            { return symbol(CodesLexicaux.POINTVIRGULE);
+          case 12: 
+            { return symbol(CodesLexicaux.PAROUV);
             }
           case 38: break;
-          case 14: 
-            { return symbol(CodesLexicaux.OU);
+          case 13: 
+            { return symbol(CodesLexicaux.PARFER);
             }
           case 39: break;
-          case 15: 
-            { return symbol(CodesLexicaux.ET);
+          case 14: 
+            { return symbol(CodesLexicaux.POINTVIRGULE);
             }
           case 40: break;
-          case 16: 
-            { return symbol(CodesLexicaux.EGALEGAL);
+          case 15: 
+            { return symbol(CodesLexicaux.OU);
             }
           case 41: break;
-          case 17: 
-            { return symbol(CodesLexicaux.DIFF);
+          case 16: 
+            { return symbol(CodesLexicaux.ET);
             }
           case 42: break;
-          case 18: 
-            { return symbol(CodesLexicaux.FIN);
+          case 17: 
+            { return symbol(CodesLexicaux.EGALEGAL);
             }
           case 43: break;
-          case 19: 
-            { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext());
+          case 18: 
+            { return symbol(CodesLexicaux.DIFF);
             }
           case 44: break;
-          case 20: 
-            { return symbol(CodesLexicaux.NON);
+          case 19: 
+            { return symbol(CodesLexicaux.FIN);
             }
           case 45: break;
-          case 21: 
-            { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext());
+          case 20: 
+            { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext());
             }
           case 46: break;
-          case 22: 
-            { return symbol(CodesLexicaux.DEBUT);
+          case 21: 
+            { return symbol(CodesLexicaux.NON);
             }
           case 47: break;
-          case 23: 
-            { return symbol(CodesLexicaux.TYPE, yytext());
+          case 22: 
+            { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext());
             }
           case 48: break;
-          case 24: 
-            { return symbol(CodesLexicaux.SYM_ECRIRE);
+          case 23: 
+            { return symbol(CodesLexicaux.DEBUT);
             }
           case 49: break;
-          case 25: 
-            { return symbol(CodesLexicaux.SYM_PROG);
+          case 24: 
+            { return symbol(CodesLexicaux.TYPE, yytext());
             }
           case 50: break;
+          case 25: 
+            { return symbol(CodesLexicaux.SYM_ECRIRE);
+            }
+          case 51: break;
+          case 26: 
+            { return symbol(CodesLexicaux.SYM_PROG);
+            }
+          case 52: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

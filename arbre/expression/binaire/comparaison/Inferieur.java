@@ -26,7 +26,7 @@ public class Inferieur extends Comparaison {
 	public void verifier() {
 		super.verifier();
 		
-		if (gauche.getType() != ENTIER || droite.getType() != ENTIER) {
+		if (!gauche.getType().equals("entier") || !droite.getType().equals("entier")) {
 	    	StringBuilder erreur = new StringBuilder(40);
 	    	
 	    	erreur.append("erreur de type :\t");

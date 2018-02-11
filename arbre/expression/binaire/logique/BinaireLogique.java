@@ -14,15 +14,15 @@ public abstract class BinaireLogique extends Binaire {
     }
     
     @Override
-	public int getType() {
-	    return BOOLEEN;
+	public String getType() {
+	    return "booleen";
     }
     
     @Override
 	public void verifier() {
     	super.verifier();
     	
-    	if (gauche.getType() != BOOLEEN || droite.getType() != BOOLEEN) {
+    	if (!gauche.getType().equals("booleen") || !droite.getType().equals("booleen")) {
 	    	StringBuilder erreur = new StringBuilder(40);
 	    	
 	    	erreur.append("erreur de type :\t");

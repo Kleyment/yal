@@ -7,8 +7,8 @@ import yal.arbre.expression.Expression;
  */
 public abstract class Binaire extends Expression {
     
-    protected Expression gauche ;
-    protected Expression droite ;
+    protected Expression gauche;
+    protected Expression droite;
 
     
     protected Binaire(Expression gauche, Expression droite) {
@@ -17,7 +17,7 @@ public abstract class Binaire extends Expression {
         this.droite = droite;
     }
     
-    public abstract String operateur() ;
+    public abstract String operateur();
 
     @Override
     public void verifier() {
@@ -33,17 +33,21 @@ public abstract class Binaire extends Expression {
         
         code.append("# Calcul de la partie gauche\n");
         code.append(gauche.toMIPS());
+		code.append("\n");
 		
         code.append("# Empilement de la partie gauche\n");
         code.append("sw $v0, 0($sp)\n");
         code.append("add $sp, $sp, -4\n");
-		
+        code.append("\n");
+        
 		code.append("# Calcul de la partie droite\n");
 		code.append(droite.toMIPS());
+		code.append("\n");
 		
 		code.append("# Dépilement de la partie gauche\n");
 		code.append("add $sp, $sp, 4\n");
 		code.append("lw $t8, 0($sp)\n");
+		code.append("\n");
 		
 		code.append("#" + operation() + "entre $v0 et $t8\n");
 		

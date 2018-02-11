@@ -11,7 +11,7 @@ public abstract class Expression extends ArbreAbstrait {
         super(n) ;
     }
 
-    public abstract int getType();
+    public abstract String getType();
     public abstract String operation();
     
 }

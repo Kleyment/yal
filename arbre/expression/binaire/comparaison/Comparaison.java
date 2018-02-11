@@ -13,8 +13,8 @@ public abstract class Comparaison extends Binaire {
     }
 
     @Override
-    public int getType() {
-    	return BOOLEEN;
+    public String getType() {
+    	return "booleen";
     }
     
     @Override

@@ -18,8 +18,8 @@ public class MoinsUnaire extends Unaire {
     }
  
 	@Override
-	public int getType() {
-		return ENTIER;
+	public String getType() {
+		return "entier";
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class MoinsUnaire extends Unaire {
     public void verifier() throws AnalyseSemantiqueException {   	
     	super.verifier();
     	
-	    if (expression.getType() != ENTIER) {
+	    if (!expression.getType().equals("entier")) {
 	    	StringBuilder erreur = new StringBuilder(25);
 	    	
 	    	erreur.append("erreur de type :\t");

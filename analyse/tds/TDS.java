@@ -30,12 +30,6 @@ public class TDS {
 	}
 	
 	public Symbole identifier(Entree e) {
-		Symbole s;
-		
-		if (table.containsKey(e)) {
-		  
-		}
-		
 		return table.get(e);
 	}
 
@@ -46,5 +40,10 @@ public class TDS {
 	public int tailleZoneDesVariables() {
 		return table.size() * 4;
     }
+	
+	@Override
+	public String toString() {
+		return table.toString();
+	}
 	
 }

@@ -8,7 +8,7 @@ import yal.exceptions.AnalyseSemantiqueException;
 public class Variable extends Expression {
 
 	private String idf;
-	// private String type;
+	private String type;
 	private int deplacement;
 	
 	
@@ -18,8 +18,8 @@ public class Variable extends Expression {
 	}
 
 	@Override
-	public int getType() {
-		return 0;
+	public String getType() {
+		return type;
 	}
 
 	@Override
@@ -36,6 +36,7 @@ public class Variable extends Expression {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune déclaration de `" + idf + "`");
 		}
 		
+   	    type = s.getType();
 		deplacement = s.getDeplacement();
 	}
 
@@ -44,7 +45,7 @@ public class Variable extends Expression {
 		StringBuilder var = new StringBuilder(20);
 		
 		var.append("lw $v0, ");
-		var.append(- deplacement);
+		var.append(deplacement);
 		var.append("($s7)");
 		var.append("\n");
 		
@@ -53,7 +54,7 @@ public class Variable extends Expression {
 
 	@Override
 	public String toString() {
-		return " " + idf + " ";
+		return idf;
 	}
 	
 }

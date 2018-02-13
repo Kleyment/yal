@@ -40,18 +40,18 @@ public class BlocDInstructions extends ArbreAbstrait {
     public String toMIPS() {
         StringBuilder mips = new StringBuilder(100);
     	
-        mips.append("# initialisation de la base des variables\n");
+        mips.append("# Initialisation de la base des variables\n");
         mips.append("move $s7, $sp\n");
         mips.append("\n");
         
-        mips.append("# réservation de l'espace pour ");
+        mips.append("# Réservation de l'espace pour ");
         mips.append(tailleZoneDesVariables / 4);
         mips.append(" variable(s)\n");
         mips.append("addi $sp, $sp, ");
         mips.append(- tailleZoneDesVariables);
         mips.append("\n\n");
         
-        mips.append("# initialisations\n");
+        mips.append("# Initialisations\n");
         mips.append("li $t8, 0\n");
         
         for (int deplacement = 0; deplacement < tailleZoneDesVariables; deplacement += 4) {

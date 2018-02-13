@@ -133,10 +133,11 @@ LDECL    ::=    LDECL DECL
                 ;
                 	
 DECL    ::=    DECL_VAR
+               {: :}
                ;
                       
 DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
-                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(t)); :}
+                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(t), tleft+1); :}
                    ;
 		
 INST    ::=    AFFECT:a

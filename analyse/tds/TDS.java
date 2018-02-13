@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import yal.analyse.tds.entree.Entree;
 import yal.analyse.tds.symbole.Symbole;
-import yal.exceptions.AnalyseSyntaxiqueException;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class TDS {
 
@@ -25,9 +25,9 @@ public class TDS {
 		return ourInstance;
 	}
 	
-	public void ajouter(Entree e, Symbole s) {
+	public void ajouter(Entree e, Symbole s, int noLigne) {
 		if (table.containsKey(e)) {
-			throw new AnalyseSyntaxiqueException("redéclaration de `" + e.getIdf() + "`");
+			throw new AnalyseSemantiqueException(noLigne, "redéclaration de `" + e.getIdf() + "`");
 		}
 		
 		table.put(e, s);

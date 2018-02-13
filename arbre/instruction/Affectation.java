@@ -51,11 +51,11 @@ public class Affectation extends Instruction {
 	public String toMIPS() {
 		StringBuilder aff = new StringBuilder(50);
 		
+		aff.append("# Affectation\n");
 		aff.append(exp.toMIPS());
 		aff.append("sw $v0, ");
 		aff.append(deplacement);
 		aff.append("($s7)\n");
-		aff.append("\n");
 		
         return aff.toString();
 	}

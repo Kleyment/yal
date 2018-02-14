@@ -34,7 +34,31 @@ public class Boucle extends Instruction {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder boucle = new StringBuilder(50);
+		StringBuilder boucle = new StringBuilder(150);
+		int hash = hashCode();
+		
+		boucle.append("# Boucle\n");
+		
+		boucle.append("tq_");
+		boucle.append(hash);
+		boucle.append(" :\n");
+		boucle.append(exp.toMIPS());
+		
+		boucle.append("beqz $v0, fintq_");
+		boucle.append(hash);
+		boucle.append("\n");
+		
+		boucle.append("iter_");
+		boucle.append(hash);
+		boucle.append(" :\n");
+		boucle.append(instructions.toMIPS());
+		boucle.append("j tq_");
+		boucle.append(hash);
+		boucle.append("\n");
+		
+		boucle.append("fintq_");
+		boucle.append(hash);
+		boucle.append(" :\n");
 		
 		return boucle.toString();
 	}

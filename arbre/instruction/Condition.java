@@ -14,6 +14,7 @@ public class Condition extends Instruction {
 	public Condition(Expression expr, BlocDInstructions li) {
 		super(expr.getNoLigne());
 		exp = expr;
+		alors = new BlocDInstructions(noLigne + 1);
 		sinon = li;
 	}
 
@@ -42,7 +43,36 @@ public class Condition extends Instruction {
 
 	@Override
 	public String toMIPS() {
-        StringBuilder condition = new StringBuilder(50);
+        StringBuilder condition = new StringBuilder(150);
+		int hash = hashCode();
+		
+		condition.append("# Condition\n");
+		
+		condition.append("si_");
+		condition.append(hash);
+		condition.append(" :\n");
+		condition.append(exp.toMIPS());
+		
+		condition.append("beqz $v0, sinon_");
+		condition.append(hash);
+		condition.append("\n");
+		
+		condition.append("alors_");
+		condition.append(hash);
+		condition.append(" :\n");
+		condition.append(alors.toMIPS());
+		condition.append("j fin_");
+		condition.append(hash);
+		condition.append("\n");
+		
+		condition.append("sinon");
+		condition.append(hash);
+		condition.append(" :\n");
+		condition.append(sinon.toMIPS());
+		
+		condition.append("fin_");
+		condition.append(hash);
+		condition.append(" :\n");
 		
 		return condition.toString();
 	}

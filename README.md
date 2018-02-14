@@ -34,8 +34,8 @@ exit 0
 ## Feuille de route
 - **YAL0** --> Mardi 30 Janvier **[OK]**
 - **YAL1** --> Mardi 13 Février **[OK]**
-- **YAL2** --> Mardi 6 Mars **[En cours]**
-- **YAL3** --> Mardi 20 Mars
+- **YAL2** --> Mardi 6 Mars **[OK]**
+- **YAL3** --> Mardi 20 Mars **[En cours]**
 - **YAL4** --> Mardi 27 Mars
 - **YAL5** --> Vendredi 6 Avril
 

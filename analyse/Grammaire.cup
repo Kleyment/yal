@@ -80,17 +80,20 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    SYM_PROG, DEBUT, FIN, POINTVIRGULE;
-terminal Symbol    SYM_ECRIRE;
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
 terminal Symbol    EGAL;
+terminal Symbol    SI, ALORS, SINON, FINSI;
+terminal Symbol    TANTQUE, REPETER, FINTANTQUE;
+terminal Symbol    SYM_ECRIRE, SYM_LIRE;
 terminal String    TYPE, IDF, CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
 
 /* Non terminals used in the grammar section.  */
 
 non terminal Symbol LDECL, DECL, DECL_VAR;
-non terminal BlocDInstructions PROG, LINST;
-non terminal Instruction INST, AFFECT, ECRIRE;
+non terminal Programme PROG;
+non terminal BlocDInstructions LINST;
+non terminal Instruction INST, AFFECT, BOUCLE, CONDITION, ECRIRE, LIRE;
 non terminal Expression EXPR, CSTE;
 
 
@@ -106,11 +109,11 @@ precedence left NON ;
  
 start with PROG;
 
-PROG    ::=    SYM_PROG IDF DEBUT LDECL LINST:li FIN
-               {: RESULT = li; :}    
+PROG    ::=    SYM_PROG IDF:nom DEBUT LDECL LINST:li FIN
+               {: RESULT = new Programme(li, nom, lileft+1); :}    
         |
-               SYM_PROG IDF DEBUT LINST:li FIN
-               {: RESULT = li; :}
+               SYM_PROG IDF:nom DEBUT LINST:li FIN
+               {: RESULT = new Programme(li, nom, lileft+1); :}
                ;
 
 LINST   ::=    LINST:li INST:i
@@ -137,27 +140,55 @@ DECL    ::=    DECL_VAR
                ;
                       
 DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
-                   {: TDS.getInstance().ajouter(new EntreeVariable(idf), new SymboleVariable(t), tleft+1); :}
+                   {: EntreeVariable entree = new EntreeVariable(idf);
+                      SymboleVariable symbole = new SymboleVariable(t);
+                      
+                      TDS.getInstance().ajouter(entree, symbole, tleft+1); 
+                   :}
                    ;
 		
 INST    ::=    AFFECT:a
                {: RESULT = a; :}
         |
+               BOUCLE:b
+               {: RESULT = b; :}
+        |
+               CONDITION:c
+               {: RESULT = c; :}
+        |       
 	           ECRIRE:e
                {: RESULT = e; :}
+        |
+               LIRE:l
+               {: RESULT = l; :}
                ;
            
 AFFECT    ::=    IDF:idf EGAL EXPR:exp POINTVIRGULE
                  {: RESULT = new Affectation(idf, exp); :}
                  ;
 
+BOUCLE    ::=    TANTQUE EXPR:exp REPETER LINST:li FINTANTQUE
+                 {: RESULT = new Boucle(exp, li); :}
+                 ;
+                 
+CONDITION    ::=    SI EXPR:exp ALORS SINON LINST:sinon FINSI
+                    {: RESULT = new Condition(exp, sinon); :}
+             |
+                    SI EXPR:exp ALORS LINST:alors SINON LINST:sinon FINSI
+                    {: RESULT = new Condition(exp, alors, sinon); :}
+                    ;
+                       
 ECRIRE    ::=    SYM_ECRIRE EXPR:exp POINTVIRGULE
                  {: RESULT = new Ecrire(exp); :}  
           |
                  SYM_ECRIRE CONSTANTECHAINE:c POINTVIRGULE
                  {: RESULT = new EcrireChaine(c, cleft+1); :}
                  ;                                     
-                         
+
+LIRE    ::=    SYM_LIRE IDF:i POINTVIRGULE
+               {: RESULT = new Lire(i, ileft+1); :}
+               ;
+                                     
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
         | 

@@ -23,15 +23,8 @@ public class Yal {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
                     
             arbre.verifier(); 
-            System.out.println("COMPILATION OK");
-            
-            StringBuilder mips = new StringBuilder(200);
-            
-            data(mips);
-            text(mips, arbre);            
-            end(mips);
-            
-            ecriture(mips.toString(), sortie(source));
+            System.out.println("COMPILATION OK");             
+            ecriture(arbre.toString(), sortie(source));
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + source + " inexistant");
@@ -47,36 +40,8 @@ public class Yal {
         }
     }
 
-    public void data(StringBuilder mips) {
-    	mips.append(".data\n");
-        mips.append("err_div :\t");
-        mips.append(".asciiz \"ERREUR EXECUTION :\\n\\t division par zéro\"\n");
-        mips.append("vrai :\t");
-        mips.append(".asciiz \"vrai\"\n");
-        mips.append("faux :\t");
-        mips.append(".asciiz \"faux\"\n");
-        mips.append("\n");
-    }
-    
-    public void text(StringBuilder mips, ArbreAbstrait arbre) {
-    	mips.append(".text\n");
-        mips.append("main :\n");      
-        mips.append(arbre.toMIPS());
-    }
-    
-    public void end(StringBuilder mips) {
-    	mips.append("\n");
-    	mips.append("end :\n");
-        mips.append("# fin du programme\n");
-        mips.append("move $v1, $v0\t");
-        mips.append("# copie de $v0 dans $v1 pour permettre les tests de yal0\n");
-        mips.append("li $v0, 10\t");
-        mips.append("# retour au système\n");
-        mips.append("syscall\n");
-    }
-    
     /**
-     * Crée le nom du fichier de sortie
+     * Crée le nom du fichier de sortie.
      * @param source
      * @return sortie
      */
@@ -97,7 +62,7 @@ public class Yal {
     }
   
     /**
-     * Ecriture du code MIPS
+     * Ecriture du code MIPS.
      * @param code
      * @param sortie
      */

@@ -73,14 +73,21 @@ commentaireSlashSlash = [/][/].*
 "fin" { return symbol(CodesLexicaux.FIN); }
 
 "ecrire" { return symbol(CodesLexicaux.SYM_ECRIRE); }
-/* "lire" { return symbol(CodesLexicaux.SYM_LIRE); } */
+"lire" { return symbol(CodesLexicaux.SYM_LIRE); } 
+
+"si" { return symbol(CodesLexicaux.SI); } 
+"alors" { return symbol(CodesLexicaux.ALORS); } 
+"sinon" { return symbol(CodesLexicaux.SINON); } 
+"fsi" { return symbol(CodesLexicaux.FINSI); } 
+
+"tantque" { return symbol(CodesLexicaux.TANTQUE); } 
+"repeter" { return symbol(CodesLexicaux.REPETER); } 
+"fintantque" { return symbol(CodesLexicaux.FINTANTQUE); } 
 
 {type} { return symbol(CodesLexicaux.TYPE, yytext()); }
-
 {idf} { return symbol(CodesLexicaux.IDF, yytext()); }
 
 {commentaireSlashSlash} {}
-
 {espace}                {}
 
 .                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }

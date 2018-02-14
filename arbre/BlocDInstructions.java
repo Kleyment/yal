@@ -54,9 +54,9 @@ public class BlocDInstructions extends ArbreAbstrait {
         mips.append("# Initialisations\n");
         mips.append("li $t8, 0\n");
         
-        for (int deplacement = 0; deplacement < tailleZoneDesVariables; deplacement += 4) {
+        for (int depl = 0; depl < tailleZoneDesVariables; depl += 4) {
         	mips.append("sw $t8, -");
-        	mips.append(deplacement);
+        	mips.append(depl);
         	mips.append("($s7)\n");
         }
         

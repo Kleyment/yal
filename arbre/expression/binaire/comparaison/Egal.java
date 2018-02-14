@@ -26,7 +26,7 @@ public class Egal extends Comparaison {
 	public void verifier() throws AnalyseSemantiqueException {
 		super.verifier();
 		
-		if (gauche.getType() != droite.getType()) {
+		if (!gauche.getType().equals(droite.getType())) {
             StringBuilder erreur = new StringBuilder(50);
 	    	
             erreur.append("erreur de type :\t");

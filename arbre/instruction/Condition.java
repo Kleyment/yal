@@ -40,6 +40,8 @@ public class Condition extends Instruction {
 
 	public Condition(Expression expr, BlocDInstructions alors, BlocDInstructions sinon) {
 		super(expr.getNoLigne());
+		exp = expr;
+		
 		this.alors = alors;
 		this.sinon = sinon;
 	}
@@ -85,7 +87,7 @@ public class Condition extends Instruction {
 		condition.append(hash);
 		condition.append("\n");
 		
-		condition.append("sinon");
+		condition.append("sinon_");
 		condition.append(hash);
 		condition.append(" :\n");
 		condition.append(sinon.toMIPS());

@@ -12,7 +12,7 @@ public class Boucle extends Instruction {
     
 	public Boucle(Expression expr, BlocDInstructions li) {
 		super(expr.getNoLigne());
-		expr = exp;
+		exp = expr;
 		instructions = li;
 	}
 

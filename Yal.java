@@ -24,7 +24,7 @@ public class Yal {
                     
             arbre.verifier(); 
             System.out.println("COMPILATION OK");             
-            ecriture(arbre.toString(), sortie(source));
+            ecriture(arbre.toMIPS(), sortie(source));
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + source + " inexistant");

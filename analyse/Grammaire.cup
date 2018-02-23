@@ -171,8 +171,14 @@ BOUCLE    ::=    TANTQUE EXPR:exp REPETER LINST:li FINTANTQUE
                  {: RESULT = new Boucle(exp, li); :}
                  ;
                  
-CONDITION    ::=    SI EXPR:exp ALORS SINON LINST:sinon FINSI
-                    {: RESULT = new Condition(exp, sinon); :}
+CONDITION    ::=    SI EXPR:exp ALORS FINSI
+                    {: RESULT = new Condition(exp); :}
+             |
+                    SI EXPR:exp ALORS LINST:alors FINSI
+                    {: RESULT = new Condition(exp, alors, false); :}
+             |
+                    SI EXPR:exp ALORS SINON LINST:sinon FINSI
+                    {: RESULT = new Condition(exp, sinon, true); :}
              |
                     SI EXPR:exp ALORS LINST:alors SINON LINST:sinon FINSI
                     {: RESULT = new Condition(exp, alors, sinon); :}

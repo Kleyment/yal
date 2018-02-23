@@ -11,11 +11,31 @@ public class Condition extends Instruction {
     private BlocDInstructions sinon;
     
     
-	public Condition(Expression expr, BlocDInstructions li) {
+    public Condition(Expression expr) {
+    	super(expr.getNoLigne());
+    	exp = expr;
+    	alors = new BlocDInstructions(noLigne + 1);
+    	sinon = new BlocDInstructions(noLigne + 1);
+    }
+    
+    /**
+     * Instancie une condition avec un seul bloc comprenant des instructions
+     * @param expr
+     * @param li
+     * @param vide
+     */
+	public Condition(Expression expr, BlocDInstructions li, boolean vide) {
 		super(expr.getNoLigne());
 		exp = expr;
-		alors = new BlocDInstructions(noLigne + 1);
-		sinon = li;
+		
+		if (!vide) {
+			alors = li;
+			sinon = new BlocDInstructions(noLigne + 1);
+		}
+		else {
+			alors = new BlocDInstructions(noLigne + 1);
+			sinon = li;
+		}
 	}
 
 	public Condition(Expression expr, BlocDInstructions alors, BlocDInstructions sinon) {

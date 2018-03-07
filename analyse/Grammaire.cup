@@ -239,6 +239,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |       
                 IDF:i
                 {: RESULT = new Variable(i, ileft+1); :}
+        |       
+                IDF:i PAROUV PAR_EFF PARFER
+                {: :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
@@ -246,4 +249,7 @@ CSTE    ::=     CONSTANTEINT:e
         |       CONSTANTEBOOL:e 
                 {: RESULT = new ConstanteBool(e, eleft+1); :}
                 ;
-               
+  
+PAR_EFF    ::=    PAR
+               {: :}
+               ;           

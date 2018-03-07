@@ -18,6 +18,8 @@ public class Boucle extends Instruction {
 
 	@Override
 	public void verifier() {
+		exp.verifier();
+		
 		if (!exp.getType().equals("booleen")) {
 			StringBuilder erreur = new StringBuilder(40);
 			

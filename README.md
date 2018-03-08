@@ -2,7 +2,7 @@
 Le langage ​**YAL** est un langage de programmation typé rudimentaire incluant les structures de contrôle élémentaires, les tableaux et les fonctions.
 
 ## Auteurs
-Clément Bellanger, Pierre Génard, Valentin Thouvenin
+Antonin Calba, Rayhân Chouder, Pierre Génard
 
 ## Des tests
 ```bash

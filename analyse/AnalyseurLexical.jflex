@@ -73,7 +73,7 @@ commentaireSlashSlash = [/][/].*
 "debut" { return symbol(CodesLexicaux.DEBUT); }
 "fin" { return symbol(CodesLexicaux.FIN); }
 "fonction" { return symbol(CodesLexicaux.FONCTION); }
-"retourne" { return symbol(CodesLexicaux.RETOURNE); }
+"retourne" { return symbol(CodesLexicaux.SYM_RETOURNE); }
 
 "ecrire" { return symbol(CodesLexicaux.SYM_ECRIRE); }
 "lire" { return symbol(CodesLexicaux.SYM_LIRE); } 

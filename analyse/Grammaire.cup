@@ -79,14 +79,16 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    SYM_PROG, DEBUT, FIN, POINTVIRGULE;
+terminal Symbol    SYM_PROG, DEBUT, FIN, FONCTION, SYM_RETOURNE;
+terminal Symbol    POINTVIRGULE, VIRGULE;
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
 terminal Symbol    EGAL;
 terminal Symbol    SI, ALORS, SINON, FINSI;
 terminal Symbol    TANTQUE, REPETER, FINTANTQUE;
 terminal Symbol    SYM_ECRIRE, SYM_LIRE;
-terminal String    TYPE, IDF, CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
+terminal String    TYPE, IDF;
+terminal String    CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
 
 /* Non terminals used in the grammar section.  */
 
@@ -242,9 +244,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |
                 IDF:i PAROUV PARFER
                 {: RESULT = new Appel(ileft+1); :}
-        |       
-                IDF:i PAROUV PAR_EFF PARFER
-                {: :}
+        /* |       
+                IDF:i PAROUV PAR_EFF:par PARFER
+                {: RESULT = new Appel(par, ileft+1); :} */
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
@@ -253,14 +255,14 @@ CSTE    ::=     CONSTANTEINT:e
                 {: RESULT = new ConstanteBool(e, eleft+1); :}
                 ;
   
-PAR_EFF    ::=    PAR_EFF VIRGULE EXPR:exp
-                  {: par.ajouter(exp);
-		             RESULT = par;
-		          :}
-           |      
-                  EXPR:exp
-                  {: ArrayList<Expression> par = new ArrayList<>();
-                     par.ajouter(exp);
-		             RESULT = par;
-                  :}
-                  ;           
+/* PAR_EFF    ::=    PAR_EFF:par VIRGULE EXPR:exp
+                     {: par.ajouter(exp);
+		                RESULT = par;
+		             :}
+              |      
+                     EXPR:exp
+                     {: ArrayList<Expression> par = new ArrayList<>();
+                        par.ajouter(exp);
+		                RESULT = par;
+                     :}
+                     ; */        

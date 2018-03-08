@@ -62,6 +62,17 @@ public class Programme extends ArbreAbstrait {
         mips.append("syscall\n");
     }
 	
+	public void instructions(StringBuilder mips) {
+		mips.append(instructions.toMIPS());	
+	}
+	
+	public void main(StringBuilder mips) {
+		mips.append(".text");
+		mips.append("\n");
+		mips.append("main :");
+		mips.append("\n\n");
+	}
+	
 	@Override
 	public void verifier() {
 		tailleZoneDesVariables = TDS.getInstance().tailleZoneDesVariables();
@@ -73,12 +84,9 @@ public class Programme extends ArbreAbstrait {
 		StringBuilder mips = new StringBuilder(200);
 		
 		data(mips);		
-		mips.append(".text");
-		mips.append("\n");
-		mips.append("main :");
-		mips.append("\n\n");		
+		main(mips);
 		base(mips);
-		mips.append(instructions.toMIPS());		
+		instructions(mips);	
 		end(mips);
 		
 		return mips.toString();

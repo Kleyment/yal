@@ -239,6 +239,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |       
                 IDF:i
                 {: RESULT = new Variable(i, ileft+1); :}
+        |
+                IDF:i PAROUV PARFER
+                {: RESULT = new Appel(ileft+1); :}
         |       
                 IDF:i PAROUV PAR_EFF PARFER
                 {: :}
@@ -250,6 +253,14 @@ CSTE    ::=     CONSTANTEINT:e
                 {: RESULT = new ConstanteBool(e, eleft+1); :}
                 ;
   
-PAR_EFF    ::=    PAR
-               {: :}
-               ;           
+PAR_EFF    ::=    PAR_EFF VIRGULE EXPR:exp
+                  {: par.ajouter(exp);
+		             RESULT = par;
+		          :}
+           |      
+                  EXPR:exp
+                  {: ArrayList<Expression> par = new ArrayList<>();
+                     par.ajouter(exp);
+		             RESULT = par;
+                  :}
+                  ;           

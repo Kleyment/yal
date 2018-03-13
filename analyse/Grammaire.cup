@@ -168,20 +168,22 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    ;
 
 DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
-                        {: TDS.getInstance().entreeBloc();
+                        {:                            
                            EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
-                           
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().entreeBloc();
+
                            TDS.getInstance().sortieBloc();
                         :}
                  |
                         FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE FIN
-                        {: TDS.getInstance().entreeBloc(); 
-                       	   EntreeFonction entree = new EntreeFonction(i);
+                        {:                        	   
+                           EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
-                           
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().entreeBloc(); 
+                           
                            TDS.getInstance().sortieBloc();
 
                         :}

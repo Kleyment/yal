@@ -39,10 +39,6 @@ public class Fonction extends Instruction{
 		 *		depilé la base
 		 *		lw $ra <- $sp
 		 *		jr $ra
-		 *
-		 *	retourne:
-		 *		escp.toMIPS()
-		 *		"vo->'s7+16)
 		 */
 		
 		return fonction.toString();

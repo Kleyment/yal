@@ -52,11 +52,38 @@ public class TDS {
 	}
 
 	public void entreeBloc() {
+		switch (analyse) {
+		    case Syntaxique:
+		    	if (numeroRegion < 0) {
+		    		Arbre sommet = new Arbre();
+		    		this.sommet = sommet;
+		    		blocCourant = sommet;
+		    	}
+		    	else {
+		    		Arbre nouveauBloc = new Arbre(blocCourant);
+		    		blocCourant.ajouterFils(nouveauBloc);
+		    		blocCourant = nouveauBloc;
+		    	}
+		    	
+		        break;
+		    case Semantique:
+			    break;
+		}
+		
 		numeroRegion++;
 		numeroImbrication++;
 	}
 	
 	public void sortieBloc() {
+		switch (analyse) {
+	        case Syntaxique:
+	        	Arbre parent = blocCourant.getParent();
+	        	blocCourant = parent;
+	            break;
+	        case Semantique:
+		        break;
+	    }
+		
 		numeroImbrication--;
 	}
 	
@@ -80,4 +107,5 @@ public class TDS {
 	public String toString() {
 		return blocCourant.toString();
 	}
+	
 }

@@ -171,9 +171,9 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                         {:                            
                            EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
+                           
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
                            TDS.getInstance().entreeBloc();
-
                            TDS.getInstance().sortieBloc();
                         :}
                  |
@@ -181,11 +181,10 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                         {:                        	   
                            EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
-                           TDS.getInstance().entreeBloc(); 
                            
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().entreeBloc();                         
                            TDS.getInstance().sortieBloc();
-
                         :}
                  /* |
                         FONCTION IDF:i PARAMETRES DEBUT LDECLV RETOURNE FIN

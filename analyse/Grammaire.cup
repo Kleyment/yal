@@ -182,6 +182,7 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
                            TDS.getInstance().sortieBloc();
+
                         :}
                  /* |
                         FONCTION IDF:i PARAMETRES DEBUT LDECLV RETOURNE FIN

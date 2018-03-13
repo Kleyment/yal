@@ -169,7 +169,7 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
 
 DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                         {:                            
-                           EntreeFonction entree = new EntreeFonction(i);
+                           EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
@@ -179,7 +179,7 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                  |
                         FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
                         {:                        	   
-                           EntreeFonction entree = new EntreeFonction(i);
+                           EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);

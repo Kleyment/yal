@@ -32,8 +32,6 @@ csteE = [0-9]+
 csteB = "vrai" | "faux"
 csteC = \"([^\"]|(\"\"))+\"
 
-prog = "programme"
-
 type = "entier"
 idf = [a-zA-Z][a-zA-Z0-9]*
 
@@ -69,7 +67,7 @@ commentaireSlashSlash = [/][/].*
 {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
 {csteC}      	        { return symbol(CodesLexicaux.CONSTANTECHAINE, yytext()); }
 
-{prog} { return symbol(CodesLexicaux.SYM_PROG); }
+"programme" { return symbol(CodesLexicaux.SYM_PROG); }
 "debut" { return symbol(CodesLexicaux.DEBUT); }
 "fin" { return symbol(CodesLexicaux.FIN); }
 "fonction" { return symbol(CodesLexicaux.FONCTION); }
@@ -93,8 +91,4 @@ commentaireSlashSlash = [/][/].*
 {commentaireSlashSlash} {}
 {espace}                {}
 
-<<<<<<< HEAD
-.                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
-=======
 .                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()); }
->>>>>>> e50f4dbfb75d334ffc5af75f672ec8228da98800

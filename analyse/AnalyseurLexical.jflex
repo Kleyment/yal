@@ -93,4 +93,4 @@ commentaireSlashSlash = [/][/].*
 {commentaireSlashSlash} {}
 {espace}                {}
 
-.                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
+.                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()); }

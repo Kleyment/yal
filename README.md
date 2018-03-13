@@ -10,11 +10,11 @@ Antonin Calba, Rayhân Chouder, Pierre Génard
 
 for i in `seq 30`; do sep="$sep="; done
 
-for yal in $(ls *.yal)
+for yal in *.yal
 do
   echo $sep
   echo $yal
-  java -jar yal.jar $yal
+  java -jar yal.jar $yal | grep -A5 "^COMPILATION OK"
   [ $? -eq 0 ] && java -jar Mars4_5.jar dec v1 ${yal//yal/mips}
 done
 

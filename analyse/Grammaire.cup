@@ -177,7 +177,7 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                            TDS.getInstance().sortieBloc();
                         :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE FIN
+                        FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
                         {:                        	   
                            EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
@@ -190,7 +190,7 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
                         FONCTION IDF:i PARAMETRES DEBUT LDECLV RETOURNE FIN
                         {: :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST RETOURNE FIN
+                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST FIN
                         {: :} */
                         ;
   
@@ -256,7 +256,7 @@ LIRE    ::=    SYM_LIRE IDF:i POINTVIRGULE
                ;
                 
 RETOURNE    ::=    SYM_RETOURNE EXPR:exp POINTVIRGULE
-                   {: :}
+                   {: RESULT = new Retourne(exp); :}
                    ;
                                         
 EXPR    ::=     EXPR:g  PLUS  EXPR:d

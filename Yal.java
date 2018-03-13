@@ -21,9 +21,9 @@ public class Yal {
     public Yal(String source) {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(source)));
-            TDS.getInstance().prepareAnalyseSyntaxique();
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
                     
+            TDS.getInstance().prepareAnalyseSemantique();
             arbre.verifier(); 
             System.out.println("COMPILATION OK");             
             ecriture(arbre.toMIPS(), sortie(source));

@@ -93,4 +93,8 @@ commentaireSlashSlash = [/][/].*
 {commentaireSlashSlash} {}
 {espace}                {}
 
+<<<<<<< HEAD
+.                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
+=======
 .                       { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()); }
+>>>>>>> e50f4dbfb75d334ffc5af75f672ec8228da98800

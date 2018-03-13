@@ -117,10 +117,15 @@ precedence left NON ;
 start with PROG;
 
 PROG    ::=    SYM_PROG IDF:nom DEBUT LDECL LINST:li FIN
-               {: RESULT = new Programme(li, nom, lileft+1); :}    
+               {: TDS.getInstance().entreeBloc();
+                  RESULT = new Programme(li, nom, lileft+1); 
+                  TDS.getInstance().sortieBloc();
+               :}    
         |
                SYM_PROG IDF:nom DEBUT LINST:li FIN
-               {: RESULT = new Programme(li, nom, lileft+1); :}
+               {: TDS.getInstance().entrerBloc();
+                  RESULT = new Programme(li, nom, lileft+1); 
+             	  TDS.getInstance().sortirBloc(); :}
                ;
 
 LINST   ::=    LINST:li INST:i
@@ -162,23 +167,28 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    ;
 
 DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
-                        {: EntreeFonction entree = new EntreeFonction(i);
+                        {: TDS.getInstance().entreeBloc();
+                           EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().sortieBloc();
                         :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LINST FIN
-                        {: EntreeFonction entree = new EntreeFonction(i);
+                        FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE FIN
+                        {: TDS.getInstance().entreeBloc(); 
+                       	   EntreeFonction entree = new EntreeFonction(i);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().sortieBloc();
+
                         :}
                  /* |
                         FONCTION IDF:i PARAMETRES DEBUT LDECLV RETOURNE FIN
                         {: :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST FIN
+                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST RETOURNE FIN
                         {: :} */
                         ;
   

@@ -40,7 +40,15 @@ public class Arbre {
 	}
 	
 	public Symbole identifier(Entree e) {
-		return table.get(e);
+		Symbole s = table.get(e);
+		
+		if (s == null) {
+			if (parent != null) {
+				s = parent.identifier(e);
+			}
+		}
+		
+		return s;
 	}
 	
 	public Arbre getParent() {

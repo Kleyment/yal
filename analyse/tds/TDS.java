@@ -5,7 +5,7 @@ import yal.analyse.tds.symbole.Symbole;
 
 public class TDS {
 
-	public enum Analyse {SYNTAXIQUE, SEMANTIQUE};
+	public enum Analyse {Syntaxique, Semantique};
 	
 	private Analyse analyse;
 	
@@ -30,6 +30,7 @@ public class TDS {
 	}
 	
 	public void prepareAnalyseSyntaxique() {
+		analyse = Analyse.Syntaxique;
 		sommet = null;
 		blocCourant = null;
 		numeroRegion = -1;
@@ -37,6 +38,7 @@ public class TDS {
 	}
 	
 	public void prepareAnalyseSemantique() {
+		analyse = Analyse.Semantique;
 		numeroRegion = -1;
 		numeroImbrication = -1;
 	}

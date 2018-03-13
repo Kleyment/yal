@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import yal.analyse.AnalyseurLexical;
 import yal.analyse.AnalyseurSyntaxique;
+import yal.analyse.tds.TDS;
 import yal.arbre.ArbreAbstrait;
 import yal.exceptions.AnalyseException;
 
@@ -20,6 +21,7 @@ public class Yal {
     public Yal(String source) {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(source)));
+            TDS.getInstance().prepareAnalyseSyntaxique();
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
                     
             arbre.verifier(); 

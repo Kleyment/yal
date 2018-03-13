@@ -123,9 +123,10 @@ PROG    ::=    SYM_PROG IDF:nom DEBUT LDECL LINST:li FIN
                :}    
         |
                SYM_PROG IDF:nom DEBUT LINST:li FIN
-               {: TDS.getInstance().entrerBloc();
+               {: TDS.getInstance().entreeBloc();
                   RESULT = new Programme(li, nom, lileft+1); 
-             	  TDS.getInstance().sortirBloc(); :}
+             	  TDS.getInstance().sortieBloc(); 
+               :}
                ;
 
 LINST   ::=    LINST:li INST:i

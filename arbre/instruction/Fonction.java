@@ -1,13 +1,19 @@
 package yal.arbre.instruction;
 
+import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
 
-public class Fonction extends Instruction{
+public class Fonction extends ArbreAbstrait {
 	
-	BlocDInstructions li;
+	private String idf;
+	private String typeRetour;
+	private String[] parametres;
 	
-	public Fonction(int no, BlocDInstructions li) {
-		super(no);
+	private BlocDInstructions li;
+	
+	
+	public Fonction(int noLigne, BlocDInstructions li) {
+		super(noLigne);
 		this.li = li;
 	}
 
@@ -44,4 +50,33 @@ public class Fonction extends Instruction{
 		return fonction.toString();
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder fonction = new StringBuilder(40);
+		
+		fonction.append(typeRetour);
+		fonction.append(" ");
+		fonction.append(idf);
+		fonction.append("(");
+		
+		int dernier = parametres.length - 1;
+		
+		for (int i = 0; i < dernier; i ++) {
+		    fonction.append(parametres[i]);
+		    fonction.append(", ");
+		}
+		
+		if (parametres.length > 0) {
+			fonction.append(parametres[dernier]);
+		}
+		
+		fonction.append("");
+		fonction.append(") {");
+		fonction.append(li.toString());
+		fonction.append("}");
+		fonction.append("\n");
+		
+		return fonction.toString();
+	}
+	
 }

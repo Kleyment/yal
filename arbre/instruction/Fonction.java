@@ -1,5 +1,6 @@
 package yal.arbre.instruction;
 
+import yal.analyse.tds.TDS;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
 
@@ -30,11 +31,6 @@ public class Fonction extends ArbreAbstrait {
 		fonction.append("# Fonction\n");
 		
 		/*	recopier de mes prises de notes a modifier/verifier
-		 * 	Appel de fonction: 
-		 * 		sp <- sp-4
-		 * 		jal étiquette
-		 * 		dépiler dans $v0
-		 * 
 		 * 	fonc3:
 		 * 		empiler $s7
 		 *		empiler 3
@@ -46,6 +42,26 @@ public class Fonction extends ArbreAbstrait {
 		 *		lw $ra <- $sp
 		 *		jr $ra
 		 */
+		fonction.append(idf+": \n");
+		fonction.append("# On empile s7 \n");
+		fonction.append("sw $s7, 0($sp)\n");
+		fonction.append("add $sp, $sp, -4\n");
+		
+		fonction.append("# On empile le numéro de région \n");
+		fonction.append("li $t8, "+TDS.getInstance().numeroRegion()+" \n");
+		fonction.append("sw $t8, 0($sp)\n");
+		fonction.append("add $sp, $sp, -4\n");
+		
+		fonction.append("move $s7, $sp \n");
+		fonction.append("add $sp, $sp, -"+TDS.getInstance().tailleZoneDesVariables()+" \n");
+		fonction.append(li.toMIPS());
+		
+		fonction.append("# On depile la zone des variables, puis jusqu'à s7 pour enfin faire un jump à l'adresse de retour \n");
+		fonction.append("add $sp, $sp, "+TDS.getInstance().tailleZoneDesVariables()+" \n");
+		fonction.append("add $sp, $sp, 12 \n");
+		fonction.append("lw $sp, 0($sp) \n");
+		fonction.append("lw $ra, $sp \n");
+		fonction.append("jr $ra \n");
 		
 		return fonction.toString();
 	}

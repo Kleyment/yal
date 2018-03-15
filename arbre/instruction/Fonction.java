@@ -26,7 +26,7 @@ public class Fonction extends ArbreAbstrait {
 	@Override
 	public String toMIPS() {
 		StringBuilder fonction = new StringBuilder();
-		//int hash = hashCode();
+		int hash = hashCode();
 		
 		fonction.append("# Fonction\n");
 		

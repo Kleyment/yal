@@ -1,5 +1,6 @@
 package yal.arbre.instruction;
 
+import yal.analyse.tds.TDS;
 import yal.arbre.expression.Expression;
 
 public class Retourne extends Instruction {
@@ -19,15 +20,19 @@ public class Retourne extends Instruction {
 
 	@Override
 	public String toMIPS() {
-		StringBuilder retour = new StringBuilder();
+		StringBuilder retourne = new StringBuilder();
 		
-		retour.append(exp.toMIPS()+"\n");
-		// ??? retour.append("v0->$s7+16");
-		//Le résultat doit être dans v0
-		//Faire un depilement de taille des variables
-		//Stocker la valeur dans s7 + 16
+		retourne.append(exp.toMIPS());
+		retourne.append("# On depile la zone des variables, puis jusqu'à s7 pour enfin faire un jump à l'adresse de retour \n");
+		retourne.append("add $sp, $sp, "+TDS.getInstance().tailleZoneDesVariables()+" \n");
+		retourne.append("add $sp, $sp, 16 \n");
+		retourne.append("sw $v0, 0($sp) \n");
+			
+		retourne.append("add $sp, $sp, -4 \n");
+		retourne.append("lw $ra, 0($sp) \n");
+		retourne.append("jr $ra \n");
 		
-		return retour.toString();
+		return retourne.toString();
 	}	
 	
 }

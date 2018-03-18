@@ -2,6 +2,7 @@ package yal.arbre;
 
 import java.util.ArrayList;
 
+import yal.arbre.instruction.Fonction;
 import yal.arbre.instruction.Instruction;
 
 /**
@@ -35,13 +36,20 @@ public class BlocDInstructions extends ArbreAbstrait {
     	}
     }
     
-    @Override
+      
+    public ArrayList<Instruction> getBloc() {
+		return bloc;
+	}
+
+	@Override
     public String toMIPS() {
         StringBuilder mips = new StringBuilder(100);
         
     	for (Instruction instr : bloc) {
-			mips.append(instr.toMIPS());
-			mips.append("\n");
+    		if (!(instr instanceof Fonction)){
+    			mips.append(instr.toMIPS());
+    			mips.append("\n");
+    		}
 		}
 		
         return mips.toString() ;

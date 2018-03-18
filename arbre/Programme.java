@@ -1,6 +1,8 @@
 package yal.arbre;
 
 import yal.analyse.tds.TDS;
+import yal.arbre.instruction.Fonction;
+import yal.arbre.instruction.Instruction;
 
 public class Programme extends ArbreAbstrait {
 
@@ -66,6 +68,15 @@ public class Programme extends ArbreAbstrait {
 		mips.append(instructions.toMIPS());	
 	}
 	
+	public void fonctions(StringBuilder mips){	        
+	    	for (Instruction instr : instructions.getBloc()) {
+	    		if (instr instanceof Fonction){
+	    			mips.append(instr.toMIPS());
+	    			mips.append("\n");
+	    		}
+			}
+	}
+	
 	public void main(StringBuilder mips) {
 		mips.append(".text");
 		mips.append("\n");
@@ -88,6 +99,8 @@ public class Programme extends ArbreAbstrait {
 		base(mips);
 		instructions(mips);	
 		end(mips);
+		fonctions(mips);
+		
 		
 		return mips.toString();
 	}

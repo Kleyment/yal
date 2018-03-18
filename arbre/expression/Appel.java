@@ -44,11 +44,6 @@ public class Appel extends Expression {
 		appel.append("lw $v0, 0($sp)\n");
 		appel.append("jr $ra\n");
 		
-		 /* 	Appel de fonction: 
-		 * 		sp <- sp-4
-		 * 		jal étiquette
-		 * 		dépiler dans $v0
-		 */
 		return appel.toString();
 	}
 

@@ -1,8 +1,11 @@
 package yal.arbre.instruction;
 
 import yal.analyse.tds.TDS;
+import yal.analyse.tds.entree.EntreeVariable;
+import yal.analyse.tds.symbole.Symbole;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Fonction extends Instruction {
 	
@@ -21,6 +24,12 @@ public class Fonction extends Instruction {
 	@Override
 	public void verifier() {
 		li.verifier();
+		EntreeVariable e = new EntreeVariable(idf);
+		Symbole s = TDS.getInstance().identifier(e);
+		
+		if (s == null) {
+			throw new AnalyseSemantiqueException(getNoLigne(), "aucune déclaration de `" + idf + "`");
+		}
 	}
 
 	@Override

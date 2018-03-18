@@ -1,6 +1,7 @@
 package yal.arbre.instruction;
 
 import yal.arbre.expression.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Retourne extends Instruction {
 
@@ -15,6 +16,17 @@ public class Retourne extends Instruction {
 	@Override
 	public void verifier() {
 		exp.verifier();
+		
+		if (exp.getType().equals("booleen")) {
+			StringBuilder erreur = new StringBuilder(40);
+			
+			erreur.append("erreur sur retourne :\t");
+			erreur.append(exp.toString());
+			erreur.append("\n\t");
+	    	erreur.append("retourne doit retourner un entier");
+	    	
+			throw new AnalyseSemantiqueException(getNoLigne(),erreur.toString());
+		}
 	}
 
 	@Override

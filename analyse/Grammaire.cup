@@ -92,11 +92,11 @@ terminal String    CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
 
 /* Non terminals used in the grammar section.  */
 
-non terminal Symbol LDECL, DECL;
-non terminal Symbol LDECLV, DECL_VAR;
-non terminal Symbol DECL_FONCTION, PARAMETRES;
+non terminal Symbol LDECLV;
+non terminal Symbol PARAMETRES;
 non terminal Programme PROG;
-non terminal BlocDInstructions LINST;
+non terminal BlocDInstructions LINST, LDECL;
+non terminal Instruction DECL, DECL_FONCTION, DECL_VAR;
 non terminal Instruction INST, AFFECT, RETOURNE; 
 non terminal Instruction BOUCLE, CONDITION;
 non terminal Instruction ECRIRE, LIRE;
@@ -116,19 +116,18 @@ precedence left NON ;
  
 start with PROG;
 
-PROG    ::=    SYM_PROG IDF:nom DEBUT LDECL LINST:li FIN
-               {: TDS.getInstance().entreeBloc();
-                  RESULT = new Programme(li, nom, lileft+1); 
+PROG    ::=    SYM_PROG IDF:nom DEBUT LDECL:ld LINST:li FIN
+               {:
+               RESULT = new Programme(ld, li, nom, nomleft+1); 
                   TDS.getInstance().sortieBloc();
                :}    
         |
                SYM_PROG IDF:nom DEBUT LINST:li FIN
-               {: TDS.getInstance().entreeBloc();
-                  RESULT = new Programme(li, nom, lileft+1); 
+               {: RESULT = new Programme(li, nom, nomleft+1); 
              	  TDS.getInstance().sortieBloc(); 
                :}
                ;
-
+               
 LINST   ::=    LINST:li INST:i
                {: li.ajouter(i);
 		          RESULT = li;
@@ -141,16 +140,31 @@ LINST   ::=    LINST:li INST:i
 		       :}
 	           ;
 	           
-LDECL    ::=    LDECL DECL
-                {: :}
+LDECL    ::=    LDECL:li DECL:d
+                {: if (d != null) {
+                       li.ajouter(d);
+                   }
+                   
+                   RESULT = li;
+                :}
          |
-                DECL
-                {: :}
+                DECL:d
+                {: BlocDInstructions li = new BlocDInstructions(dleft+1);
+                
+		    	   if (d != null) {
+		      	       li.ajouter(d);
+		      	   }
+		      	   
+                   RESULT = li; 
+                :}
                 ;
                 	
-DECL    ::=    DECL_VAR | DECL_FONCTION
-               {: :}
-               ;       
+DECL    ::=    DECL_VAR 
+               {: RESULT = null; :}
+        | 
+               DECL_FONCTION:f
+               {: RESULT = f; :}
+               ;      
          
 /* LDECLV    ::=    LDECLV DECL_VAR
                  {: :}
@@ -167,23 +181,24 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    :}
                    ;
 
-DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
-                        {:                            
+DECL_FONCTION    ::=   /* FONCTION IDF:i PARAMETRES DEBUT RETOURNE FIN
+                        {:                          
+                           EntreeFonction entree = new EntreeFonction(i, 0);
+                           SymboleFonction symbole = new SymboleFonction("entier");
+                           
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().entreeBloc();                
+                           TDS.getInstance().sortieBloc();
+                        :}
+                 |*/
+                        FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
+                        {:                       	   
                            EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
                            TDS.getInstance().entreeBloc();
-                           TDS.getInstance().sortieBloc();
-                        :}
-                 |
-                        FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE FIN
-                        {:                        	   
-                           EntreeFonction entree = new EntreeFonction(i, 0);
-                           SymboleFonction symbole = new SymboleFonction("entier");
-                           
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
-                           TDS.getInstance().entreeBloc();                         
+                           RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
                  /* |
@@ -221,6 +236,9 @@ INST    ::=    AFFECT:a
         |
                LIRE:l
                {: RESULT = l; :}
+       |      
+               RETOURNE:r
+               {: RESULT = r; :} 
                ;
            
 AFFECT    ::=    IDF:idf EGAL EXPR:exp POINTVIRGULE
@@ -305,10 +323,10 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Variable(i, ileft+1); :}
         |
                 IDF:i PAROUV PARFER
-                {: RESULT = new Appel(ileft+1); :}
+                {: RESULT = new Appel(i, ileft+1); :}
         /* |       
                 IDF:i PAROUV PAR_EFF:par PARFER
-                {: RESULT = new Appel(par, ileft+1); :} */
+                {: RESULT = new Appel(i, par, ileft+1); :} */
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 

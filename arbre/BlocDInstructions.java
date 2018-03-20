@@ -46,10 +46,8 @@ public class BlocDInstructions extends ArbreAbstrait {
         StringBuilder mips = new StringBuilder(100);
         
     	for (Instruction instr : bloc) {
-    		if (!(instr instanceof Fonction)){
-    			mips.append(instr.toMIPS());
-    			mips.append("\n");
-    		}
+			mips.append(instr.toMIPS());
+			mips.append("\n");
 		}
 		
         return mips.toString() ;

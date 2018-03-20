@@ -58,7 +58,7 @@ public class TDS {
 		
 		switch (analyse) {
 		    case Syntaxique:
-		    	if (numeroRegion < 0) {
+		    	if (numeroRegion <= 0) {
 		    		Arbre premier = new Arbre(numeroRegion);
 		    		blocPrincipal = premier;
 		    		blocCourant = premier;
@@ -71,7 +71,7 @@ public class TDS {
 		    	
 		        break;
 		    case Semantique:
-		    	if (numeroRegion < 0) {
+		    	if (numeroRegion <= 0) {
 		    		blocCourant = blocPrincipal;
 		    	}
 		    	else {
@@ -85,9 +85,10 @@ public class TDS {
 	
 	public void sortieBloc() {
 		Arbre parent = blocCourant.getParent();
-		
-		blocCourant = parent;
-		numeroImbrication--;
+		if (parent != null) {
+			blocCourant = parent;
+			numeroImbrication--;
+		}		
 	}
 	
 	public int numeroRegion() {

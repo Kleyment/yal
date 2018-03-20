@@ -35,8 +35,8 @@ public class Retourne extends Instruction {
 		StringBuilder retourne = new StringBuilder();
 		
 		retourne.append(exp.toMIPS());
-		retourne.append("# On depile la zone des variables, puis jusqu'à s7 pour enfin faire un jump à l'adresse de retour \n");
-		retourne.append("add $sp, $sp, "+TDS.getInstance().tailleZoneDesVariables()+" \n");
+		/*retourne.append("# On depile la zone des variables, puis jusqu'à s7 pour enfin faire un jump à l'adresse de retour \n");
+		retourne.append("add $sp, $sp, "+TDS.getInstance().tailleZoneDesVariables()+" \n");*/
 		retourne.append("add $sp, $sp, 16 \n");
 		retourne.append("sw $v0, 0($sp) \n");
 			

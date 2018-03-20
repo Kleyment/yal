@@ -24,7 +24,6 @@ public class Affectation extends Instruction {
 	public void verifier() {
 		EntreeVariable e = new EntreeVariable(idf);
 		Symbole s = TDS.getInstance().identifier(e);
-		
 		if (s == null) {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune déclaration de `" + idf + "`");
 		}

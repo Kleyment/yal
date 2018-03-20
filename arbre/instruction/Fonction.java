@@ -16,17 +16,26 @@ public class Fonction extends Instruction {
 	private BlocDInstructions li;
 	
 	
-	public Fonction(int noLigne, BlocDInstructions li) {
+	public Fonction(int noLigne, String idf, BlocDInstructions li) {
 		super(noLigne);
 		this.li = li;
+		this.idf=idf;
 	}
 
 	@Override
 	public void verifier() {
 		li.verifier();
+		int compteur=0;
+		for (Instruction i : li.getBloc()) {
+			if (i instanceof Retourne) {
+				compteur++;
+			}
+		}
+		if (compteur == 0) {
+			throw new AnalyseSemantiqueException(getNoLigne(), "aucune instruction retourne");
+		}
 		EntreeVariable e = new EntreeVariable(idf);
 		Symbole s = TDS.getInstance().identifier(e);
-		
 		if (s == null) {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune déclaration de `" + idf + "`");
 		}
@@ -56,8 +65,8 @@ public class Fonction extends Instruction {
 		fonction.append("sw $t8, 0($sp)\n");
 		fonction.append("add $sp, $sp, -4\n");
 		
-		fonction.append("move $s7, $sp \n");
-		fonction.append("add $sp, $sp, -"+TDS.getInstance().tailleZoneDesVariables()+" \n");
+		/*fonction.append("move $s7, $sp \n");
+		fonction.append("add $sp, $sp, -"+TDS.getInstance().tailleZoneDesVariables()+" \n");*/
 		
 		fonction.append(li.toMIPS());
 				

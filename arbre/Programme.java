@@ -7,9 +7,16 @@ import yal.arbre.instruction.Instruction;
 public class Programme extends ArbreAbstrait {
 
 	private String nom;
+	private BlocDInstructions declarations;
 	private BlocDInstructions instructions;
 	private int tailleZoneDesVariables;
 	
+	public Programme(BlocDInstructions ld, BlocDInstructions li, String nom, int no) {
+		super(no);
+		declarations = ld;
+		instructions = li;
+		this.nom = nom;
+	}
 	
 	public Programme(BlocDInstructions li, String nom, int no) {
 		super(no);
@@ -69,12 +76,7 @@ public class Programme extends ArbreAbstrait {
 	}
 	
 	public void fonctions(StringBuilder mips){	        
-	    	for (Instruction instr : instructions.getBloc()) {
-	    		if (instr instanceof Fonction){
-	    			mips.append(instr.toMIPS());
-	    			mips.append("\n");
-	    		}
-			}
+		mips.append(declarations.toMIPS());
 	}
 	
 	public void main(StringBuilder mips) {
@@ -86,7 +88,6 @@ public class Programme extends ArbreAbstrait {
 	
 	@Override
 	public void verifier() {
-		tailleZoneDesVariables = TDS.getInstance().tailleZoneDesVariables();
 		instructions.verifier();
 	}
 
@@ -99,8 +100,10 @@ public class Programme extends ArbreAbstrait {
 		base(mips);
 		instructions(mips);	
 		end(mips);
-		fonctions(mips);
 		
+		if (this.declarations != null) {
+			fonctions(mips);
+		}
 		
 		return mips.toString();
 	}

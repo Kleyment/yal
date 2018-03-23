@@ -46,6 +46,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         StringBuilder mips = new StringBuilder(100);
         
     	for (Instruction instr : bloc) {
+    		//System.out.println(instr);
 			mips.append(instr.toMIPS());
 			mips.append("\n");
 		}

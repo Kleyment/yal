@@ -46,6 +46,7 @@ public class TDS {
 		assert e != null;
 		
 		blocCourant.ajouter(e, s, noLigne);
+		//System.out.println(s.toString());
 	}
 	
 	public Symbole identifier(Entree e) {
@@ -106,6 +107,10 @@ public class TDS {
 	public int tailleZoneDesVariables() {
 		return blocCourant.tailleZoneDesVariables();
     }
+	
+	public int tailleZoneDesVariablesMain() {
+		return blocPrincipal.tailleZoneDesVariables();
+	}
 	
 	@Override
 	public String toString() {

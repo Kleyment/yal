@@ -12,7 +12,7 @@ public abstract class Symbole {
 	
 	public Symbole(String type) {
 		this.type = type;
-		deplacement = - TDS.getInstance().tailleZoneDesVariables();
+		deplacement = - (TDS.getInstance().tailleZoneDesVariables()+4);
 		numeroRegion = TDS.getInstance().numeroRegion();
 		numeroImbrication = TDS.getInstance().numeroImbrication();
 	}
@@ -22,6 +22,7 @@ public abstract class Symbole {
 	}
 	
 	public int getDeplacement() {
+		//System.out.println("getDeplacement() "+deplacement);
 		return deplacement;
 	}	
 	

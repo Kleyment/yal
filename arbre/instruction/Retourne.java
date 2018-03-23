@@ -33,7 +33,7 @@ public class Retourne extends Instruction {
 	@Override
 	public String toMIPS() {
 		StringBuilder retourne = new StringBuilder();
-		
+		//System.out.println(exp);
 		retourne.append(exp.toMIPS());
 		/*retourne.append("# On depile la zone des variables, puis jusqu'à s7 pour enfin faire un jump à l'adresse de retour \n");
 		retourne.append("add $sp, $sp, "+TDS.getInstance().tailleZoneDesVariables()+" \n");*/

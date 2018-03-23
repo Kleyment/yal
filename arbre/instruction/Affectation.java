@@ -22,6 +22,7 @@ public class Affectation extends Instruction {
 	
 	@Override
 	public void verifier() {
+		//System.out.println("Affect verifier()"+idf);
 		EntreeVariable e = new EntreeVariable(idf);
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null) {
@@ -29,7 +30,7 @@ public class Affectation extends Instruction {
 		}
 		
 		type = s.getType();
-		deplacement = s.getDeplacement();		
+		deplacement = s.getDeplacement();	
 		exp.verifier();
 		
 		if (!type.equals(exp.getType())) {
@@ -49,7 +50,7 @@ public class Affectation extends Instruction {
 	@Override
 	public String toMIPS() {
 		StringBuilder aff = new StringBuilder(50);
-		
+		//System.out.println("AFFECT"+deplacement);
 		aff.append("# Affectation\n");
 		aff.append(exp.toMIPS());
 		aff.append("sw $v0, ");
@@ -59,9 +60,9 @@ public class Affectation extends Instruction {
         return aff.toString();
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return idf + " = " + exp.toString();
-	}
+	}*/
 
 }

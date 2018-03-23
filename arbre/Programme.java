@@ -25,6 +25,7 @@ public class Programme extends ArbreAbstrait {
 	}
 
 	public void base(StringBuilder mips) {
+		this.tailleZoneDesVariables=TDS.getInstance().tailleZoneDesVariablesMain();
 		mips.append("# Initialisation de la base des variables\n");
         mips.append("move $s7, $sp\n");
         mips.append("\n");
@@ -41,11 +42,17 @@ public class Programme extends ArbreAbstrait {
         mips.append("# Initialisations\n");
         mips.append("li $t8, 0\n");
         
-        for (int depl = 0; depl > - tailleZoneDesVariables; depl -= 4) {
+        for (int i=1;i*4<=tailleZoneDesVariables;i++) {
+        	mips.append("sw $t8, ");
+        	mips.append(-i*4);
+        	mips.append("($s7)\n");
+        }
+        
+        /*for (int depl = 0; depl > - tailleZoneDesVariables; depl -= 4) {
         	mips.append("sw $t8, ");
         	mips.append(depl);
         	mips.append("($s7)\n");
-        }
+        }*/
         
         mips.append("\n");
 	}
@@ -88,6 +95,7 @@ public class Programme extends ArbreAbstrait {
 	
 	@Override
 	public void verifier() {
+		declarations.verifier();
 		instructions.verifier();
 	}
 

@@ -38,10 +38,12 @@ public class Variable extends Expression {
 		
    	    type = s.getType();
 		deplacement = s.getDeplacement();
+		//System.out.println("dep"+deplacement);
 	}
 
 	@Override
 	public String toMIPS() {
+		//System.out.println("dep2"+deplacement);
 		StringBuilder var = new StringBuilder(20);
 		
 		var.append("lw $v0, ");

@@ -1,6 +1,7 @@
 package yal.arbre.instruction;
 
 import yal.analyse.tds.TDS;
+import yal.analyse.tds.entree.EntreeFonction;
 import yal.analyse.tds.entree.EntreeVariable;
 import yal.analyse.tds.symbole.Symbole;
 import yal.arbre.ArbreAbstrait;
@@ -24,6 +25,7 @@ public class Fonction extends Instruction {
 
 	@Override
 	public void verifier() {
+		//System.out.println("Fonction verifier()"+idf);
 		li.verifier();
 		int compteur=0;
 		for (Instruction i : li.getBloc()) {
@@ -34,7 +36,7 @@ public class Fonction extends Instruction {
 		if (compteur == 0) {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune instruction retourne");
 		}
-		EntreeVariable e = new EntreeVariable(idf);
+		EntreeFonction e = new EntreeFonction(idf,0);
 		Symbole s = TDS.getInstance().identifier(e);
 		if (s == null) {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune déclaration de `" + idf + "`");
@@ -54,7 +56,7 @@ public class Fonction extends Instruction {
 		
 		fonction.append("# On empile l'adresse de retour \n");
 		fonction.append("sw $ra, 0($sp) \n");
-		fonction.append("add $sp, $sp, -4");
+		fonction.append("add $sp, $sp, -4 \n");
 		
 		fonction.append("# On empile s7 \n");
 		fonction.append("sw $s7, 0($sp)\n");
@@ -73,8 +75,8 @@ public class Fonction extends Instruction {
 		return fonction.toString();
 	}
 
-	@Override
-	public String toString() {
+	//Override
+	/*public String toString() {
 		StringBuilder fonction = new StringBuilder(40);
 		
 		fonction.append(typeRetour);
@@ -82,15 +84,17 @@ public class Fonction extends Instruction {
 		fonction.append(idf);
 		fonction.append("(");
 		
-		int dernier = parametres.length - 1;
-		
-		for (int i = 0; i < dernier; i ++) {
-		    fonction.append(parametres[i]);
-		    fonction.append(", ");
-		}
-		
-		if (parametres.length > 0) {
-			fonction.append(parametres[dernier]);
+		if (parametres != null) {
+			int dernier = parametres.length - 1;
+			
+			for (int i = 0; i < dernier; i ++) {
+				fonction.append(parametres[i]);
+				fonction.append(", ");
+			}
+			
+			if (parametres.length > 0) {
+				fonction.append(parametres[dernier]);
+			}			
 		}
 		
 		fonction.append("");
@@ -100,6 +104,6 @@ public class Fonction extends Instruction {
 		fonction.append("\n");
 		
 		return fonction.toString();
-	}
+	}*/
 	
 }

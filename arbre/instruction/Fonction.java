@@ -15,12 +15,21 @@ public class Fonction extends Instruction {
 	private String[] parametres;
 	
 	private BlocDInstructions li;
+	private BlocDInstructions ld;
 	
 	
 	public Fonction(int noLigne, String idf, BlocDInstructions li) {
 		super(noLigne);
 		this.li = li;
 		this.idf=idf;
+		parametres = null;
+	}
+	
+	public Fonction(int noLigne, String idf, BlocDInstructions li, BlocDInstructions ld) {
+		super(noLigne);
+		this.li = li;
+		this.idf=idf;
+		this.ld = ld;
 	}
 
 	@Override

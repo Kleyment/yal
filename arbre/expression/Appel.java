@@ -6,16 +6,19 @@ public class Appel extends Expression {
 
 	private String idf;
 	private String type;
+	private ArrayList<Expression> parametres;
 	
 	
 	public Appel(String idf, int n) {
 		super(n);
 		this.idf=idf;
+		parametres = null;
 	}
 
 	public Appel(String idf, ArrayList<Expression> par, int n) {
 		super(n);
 		this.idf=idf;
+		parametres = par;
 	}
 	
 	@Override
@@ -51,10 +54,15 @@ public class Appel extends Expression {
 	@Override
 	public String toString() {
 		StringBuilder appel = new StringBuilder(20);
-		
+		int i;
 		appel.append(idf);
 		appel.append("(");
-		// paramètres
+		if (parametres != null){
+			for (i = 0; i < parametres.size() - 1; i++){
+				appel.append(""+parametres.get(i).toString()+";");
+			}
+			appel.append(""+parametres.get(i++).toString());
+		}
 		appel.append(")");
 		
 		return appel.toString();

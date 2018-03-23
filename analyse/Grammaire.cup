@@ -92,15 +92,14 @@ terminal String    CONSTANTECHAINE, CONSTANTEINT, CONSTANTEBOOL;
 
 /* Non terminals used in the grammar section.  */
 
-non terminal Symbol LDECLV;
-non terminal Symbol PARAMETRES, LPARAM;
 non terminal Programme PROG;
-non terminal BlocDInstructions LINST, LDECL;
+non terminal BlocDInstructions LINST, LDECL, LDECLV, PARAMETRES, LPARAM;
 non terminal Instruction DECL, DECL_FONCTION, DECL_VAR;
 non terminal Instruction INST, AFFECT, RETOURNE; 
 non terminal Instruction BOUCLE, CONDITION;
 non terminal Instruction ECRIRE, LIRE;
 non terminal Expression EXPR, CSTE;
+non terminal ArrayList<Expression> PAR_EFF;
 
 /* Precedences of operators */
 
@@ -199,38 +198,52 @@ DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
-                           TDS.getInstance().entreeBloc();
+                           //TDS.getInstance().entreeBloc();
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
-                 /* |
-                        FONCTION IDF:i PARAMETRES DEBUT LDECLV RETOURNE FIN
-                        {: :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST RETOURNE FIN
-                        {: :} */
+                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST:li FIN
+                        {:
+                           // Si ça fonctionne pas mettre fonction dans tds avant execution de parametres
+                           EntreeFonction entree = new EntreeFonction(i, 0);
+                           SymboleFonction symbole = new SymboleFonction("entier");
+                           
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           //TDS.getInstance().entreeBloc();
+                           RESULT = new Fonction(ileft+1,i,li);        
+                           TDS.getInstance().sortieBloc();
+                        :} 
                         ;
   
 PARAMETRES    ::=    PAROUV PARFER
-                     {: :}
-              /* |
-                     PAROUV LPARAM PARFER
-                     {: :} */
+                     {: 
+                     	TDS.getInstance().entreeBloc();
+                     :}
+               |
+                     PAROUV LPARAM:lp PARFER
+                     {: 
+                     	TDS.getInstance().entreeBloc();
+                     	RESULT = lp;
+                     :}
                      ;
 
 LPARAM    ::=		LPARAM:lp POINTVIRGULE TYPE:t IDF:i    
                    	{:
-                   		EntreeVariable entree = new EntreeVariable(idf);
+                   		EntreeVariable entree = new EntreeVariable(i);
                      	SymboleVariable symbole = new SymboleVariable(t);
-                      
-                     	TDS.getInstance().ajouter(entree, symbole, tleft+1); 
+                     	TDS.getInstance().ajouter(entree, symbole, tleft+1);
+                     	lp.ajouter(i);
+                     	RESULT = lp; 
                    	:}
                  |	TYPE:t IDF:i
                    	{:
-						EntreeVariable entree = new EntreeVariable(idf);
-                     	SymboleVariable symbole = new SymboleVariable(t);
-                      
-                     	TDS.getInstance().ajouter(entree, symbole, tleft+1);                   	
+						EntreeVariable entree = new EntreeVariable(i);
+                     	SymboleVariable symbole = new SymboleVariable(t);                      
+                     	TDS.getInstance().ajouter(entree, symbole, tleft+1);
+                     	BlocDInstructions lp = new BlocDInstructions(tleft+1);
+                     	lp.ajouter(i); /* C'est ptet faux */
+                     	RESULT = lp;                   	
                  	:}
                    	;
                                                           		
@@ -336,9 +349,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |
                 IDF:i PAROUV PARFER
                 {: RESULT = new Appel(i, ileft+1); :}
-        /* |       
+        |       
                 IDF:i PAROUV PAR_EFF:par PARFER
-                {: RESULT = new Appel(i, par, ileft+1); :} */
+                {: RESULT = new Appel(i, par, ileft+1); :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
@@ -347,7 +360,7 @@ CSTE    ::=     CONSTANTEINT:e
                 {: RESULT = new ConstanteBool(e, eleft+1); :}
                 ;
   
-/* PAR_EFF    ::=    PAR_EFF:par VIRGULE EXPR:exp
+PAR_EFF    ::=    PAR_EFF:par VIRGULE EXPR:exp
                      {: par.ajouter(exp);
 		                RESULT = par;
 		             :}
@@ -357,4 +370,4 @@ CSTE    ::=     CONSTANTEINT:e
                         par.ajouter(exp);
 		                RESULT = par;
                      :}
-                     ; */        
+                     ;     

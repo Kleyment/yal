@@ -40,7 +40,7 @@ public class Appel extends Expression {
 	public String toMIPS() {
 		StringBuilder appel = new StringBuilder(50);
 		appel.append("# Appel de fonction "+idf+" \n");
-		appel.append("add $sp, $sp, -4 \n");
+		//appel.append("add $sp, $sp, -4 \n");
 		appel.append("# On sauvegarde l'adresse de la prochaine instruction dans ra et on saute à l'adresse de la fonction \n");
 		appel.append("jal "+idf+" \n");
 		 

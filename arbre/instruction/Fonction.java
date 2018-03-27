@@ -25,11 +25,11 @@ public class Fonction extends Instruction {
 		parametres = null;
 	}
 	
-	public Fonction(int noLigne, String idf, BlocDInstructions li, BlocDInstructions ld) {
+	public Fonction(int noLigne, String idf, BlocDInstructions ld, BlocDInstructions li) {
 		super(noLigne);
-		this.li = li;
-		this.idf=idf;
 		this.ld = ld;
+		this.li = li;
+		this.idf=idf;		
 	}
 	
 	public boolean verifierRetourne() {

@@ -199,9 +199,9 @@ DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
                            TDS.getInstance().sortieBloc();
                         :}
                  |
-                        FONCTION FCT:i PARAMETRES DEBUT LDECLV LINST:li FIN
+                        FONCTION FCT:i PARAMETRES DEBUT LDECLV:ld LINST:li FIN
                         {:
-                           RESULT = new Fonction(ileft+1,i,li);        
+                           RESULT = new Fonction(ileft+1,i,ld,li);        
                            TDS.getInstance().sortieBloc();
                         :} 
                         ;

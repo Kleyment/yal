@@ -65,5 +65,14 @@ public class BlocDInstructions extends ArbreAbstrait {
 		
         return yal.toString() ;
     }
+
+	public boolean verifierRetourne() {
+		for (int i=0;i<bloc.size();i++) {
+			if (bloc.get(i).verifierRetourne()) {
+				return true;
+			}
+		}
+		return false;
+	}
     
 }

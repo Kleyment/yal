@@ -47,6 +47,14 @@ public class Condition extends Instruction {
 	}
 	
 	@Override
+	public boolean verifierRetourne() {
+		if (alors.verifierRetourne() || sinon.verifierRetourne()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public void verifier() {
 		exp.verifier();
 		

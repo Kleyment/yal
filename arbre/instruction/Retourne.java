@@ -13,6 +13,11 @@ public class Retourne extends Instruction {
 		super(expr.getNoLigne());
 		exp = expr;
 	}
+	
+	@Override
+	public boolean verifierRetourne() {
+		return true;
+	}
 
 	@Override
 	public void verifier() {

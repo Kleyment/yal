@@ -31,18 +31,28 @@ public class Fonction extends Instruction {
 		this.idf=idf;
 		this.ld = ld;
 	}
+	
+	public boolean verifierRetourne() {
+		if (li.verifierRetourne()) {
+			if (ld != null) {
+				if (ld.verifierRetourne()) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public void verifier() {
 		//System.out.println("Fonction verifier()"+idf);
 		li.verifier();
-		int compteur=0;
-		for (Instruction i : li.getBloc()) {
-			if (i instanceof Retourne) {
-				compteur++;
-			}
-		}
-		if (compteur == 0) {
+		boolean retournePresent=this.verifierRetourne();
+		if (retournePresent == false) {
 			throw new AnalyseSemantiqueException(getNoLigne(), "aucune instruction retourne");
 		}
 		EntreeFonction e = new EntreeFonction(idf,0);

@@ -11,6 +11,10 @@ public abstract class Instruction extends ArbreAbstrait {
 		super(no);
 	}
 	
+	public boolean verifierRetourne() {
+		return false;
+	}
+	
 	public abstract void verifier();
     public abstract String toMIPS();
 

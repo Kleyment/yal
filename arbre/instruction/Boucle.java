@@ -15,6 +15,10 @@ public class Boucle extends Instruction {
 		exp = expr;
 		instructions = li;
 	}
+	
+	public boolean verifierRetourne() {
+		return instructions.verifierRetourne();
+	}
 
 	@Override
 	public void verifier() {

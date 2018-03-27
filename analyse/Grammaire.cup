@@ -233,17 +233,17 @@ LPARAM    ::=		LPARAM:lp POINTVIRGULE TYPE:t IDF:i
                    		EntreeVariable entree = new EntreeVariable(i);
                      	SymboleVariable symbole = new SymboleVariable(t);
                      	TDS.getInstance().ajouter(entree, symbole, tleft+1);
-                     	lp.ajouter(i);
-                     	RESULT = lp; 
+                     	/*lp.ajouter(new Variable(i, ileft+1));
+                     	RESULT = lp;*/ 
                    	:}
                  |	TYPE:t IDF:i
                    	{:
 						EntreeVariable entree = new EntreeVariable(i);
                      	SymboleVariable symbole = new SymboleVariable(t);                      
                      	TDS.getInstance().ajouter(entree, symbole, tleft+1);
-                     	BlocDInstructions lp = new BlocDInstructions(tleft+1);
-                     	lp.ajouter(i); /* C'est ptet faux */
-                     	RESULT = lp;                   	
+                     	/*BlocDInstructions lp = new BlocDInstructions(tleft+1);
+                     	lp.ajouter(new Variable(i, ileft+1)); /* C'est ptet faux 
+                     	RESULT = lp;*/                   	
                  	:}
                    	;
                                                           		
@@ -361,13 +361,13 @@ CSTE    ::=     CONSTANTEINT:e
                 ;
   
 PAR_EFF    ::=    PAR_EFF:par VIRGULE EXPR:exp
-                     {: par.ajouter(exp);
+                     {: par.add(exp);
 		                RESULT = par;
 		             :}
               |      
                      EXPR:exp
-                     {: ArrayList<Expression> par = new ArrayList<>();
-                        par.ajouter(exp);
+                     {: ArrayList<Expression> par = new ArrayList<Expression>();
+                        par.add(exp);
 		                RESULT = par;
                      :}
                      ;     

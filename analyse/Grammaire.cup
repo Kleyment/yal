@@ -194,7 +194,8 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    ;
 
 DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
-                        {:                       	   
+                        {: 
+                           System.out.println("DECL_FONCTION");                      	   
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
@@ -208,6 +209,7 @@ DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
     
 FCT			  ::=	IDF:i
 					{:
+						   System.out.println("FCT "+i);
 						   EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
@@ -221,14 +223,14 @@ PARAMETRES    ::=    PAROUV PARFER
                      	TDS.getInstance().entreeBloc();
                      :}
                |
-                     PAROUV LPARAM:lp PARFER
+                     PAROUV LPARAM PARFER
                      {: 
                      	TDS.getInstance().entreeBloc();
-                     	RESULT = lp;
+                     	//RESULT = lp;
                      :}
                      ;
 
-LPARAM    ::=		LPARAM:lp POINTVIRGULE TYPE:t IDF:i    
+LPARAM    ::=		LPARAM POINTVIRGULE TYPE:t IDF:i    
                    	{:
                    		EntreeVariable entree = new EntreeVariable(i);
                      	SymboleVariable symbole = new SymboleVariable(t);
@@ -345,7 +347,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = e; :}
         |       
                 IDF:i
-                {: RESULT = new Variable(i, ileft+1); :}
+                {: 
+                System.out.println("IDF");
+                RESULT = new Variable(i, ileft+1); :}
         |
                 IDF:i PAROUV PARFER
                 {: RESULT = new Appel(i, ileft+1); :}

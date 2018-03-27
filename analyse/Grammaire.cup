@@ -100,6 +100,7 @@ non terminal Instruction BOUCLE, CONDITION;
 non terminal Instruction ECRIRE, LIRE;
 non terminal Expression EXPR, CSTE;
 non terminal ArrayList<Expression> PAR_EFF;
+non terminal String FCT;
 
 /* Precedences of operators */
 
@@ -192,30 +193,39 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    :}
                    ;
 
-DECL_FONCTION    ::=    FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
+DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
                         {:                       	   
-                           EntreeFonction entree = new EntreeFonction(i, 0);
+                           /*EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);*/
                            //TDS.getInstance().entreeBloc();
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
                  |
-                        FONCTION IDF:i PARAMETRES DEBUT LDECLV LINST:li FIN
+                        FONCTION FCT:i PARAMETRES DEBUT LDECLV LINST:li FIN
                         {:
                            // Si ça fonctionne pas mettre fonction dans tds avant execution de parametres
-                           EntreeFonction entree = new EntreeFonction(i, 0);
+                           /*EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);*/
                            //TDS.getInstance().entreeBloc();
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :} 
                         ;
-  
+    
+FCT			  ::=	IDF:i
+					{:
+						   EntreeFonction entree = new EntreeFonction(i, 0);
+                           SymboleFonction symbole = new SymboleFonction("entier");
+                           
+                           TDS.getInstance().ajouter(entree, symbole, ileft+1);
+    
+    				:};
+    				
 PARAMETRES    ::=    PAROUV PARFER
                      {: 
                      	TDS.getInstance().entreeBloc();

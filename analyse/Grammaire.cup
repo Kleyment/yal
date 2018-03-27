@@ -195,23 +195,12 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
 
 DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
                         {:                       	   
-                           /*EntreeFonction entree = new EntreeFonction(i, 0);
-                           SymboleFonction symbole = new SymboleFonction("entier");
-                           
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);*/
-                           //TDS.getInstance().entreeBloc();
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
                  |
                         FONCTION FCT:i PARAMETRES DEBUT LDECLV LINST:li FIN
                         {:
-                           // Si ça fonctionne pas mettre fonction dans tds avant execution de parametres
-                           /*EntreeFonction entree = new EntreeFonction(i, 0);
-                           SymboleFonction symbole = new SymboleFonction("entier");
-                           
-                           TDS.getInstance().ajouter(entree, symbole, ileft+1);*/
-                           //TDS.getInstance().entreeBloc();
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :} 
@@ -223,6 +212,7 @@ FCT			  ::=	IDF:i
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
                            TDS.getInstance().ajouter(entree, symbole, ileft+1);
+                           RESULT = i;
     
     				:};
     				

@@ -35,6 +35,9 @@ parser code {:
         lesTerminaux.put(new Integer(CodesLexicaux.DIV), "/") ;
         lesTerminaux.put(new Integer(CodesLexicaux.PAROUV), "(") ;
         lesTerminaux.put(new Integer(CodesLexicaux.PARFER), ")") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.CROCHOUV), "[") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.CROCHFER), "]") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.POINT), ".") ;
         lesTerminaux.put(new Integer(CodesLexicaux.SUP), ">") ;
         lesTerminaux.put(new Integer(CodesLexicaux.INF), "<") ;
         lesTerminaux.put(new Integer(CodesLexicaux.EGALEGAL), "==") ;
@@ -42,6 +45,7 @@ parser code {:
         lesTerminaux.put(new Integer(CodesLexicaux.ET), "et") ;
         lesTerminaux.put(new Integer(CodesLexicaux.OU), "ou") ;
         lesTerminaux.put(new Integer(CodesLexicaux.NON), "non") ;
+		lesTerminaux.put(new Integer(CodesLexicaux.LONGUEUR), "longueur") ;
 
         StringBuffer m = new StringBuffer() ;
 
@@ -80,9 +84,9 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    SYM_PROG, DEBUT, FIN, FONCTION, SYM_RETOURNE;
-terminal Symbol    POINTVIRGULE, VIRGULE;
-terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER;
-terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON;
+terminal Symbol    POINTVIRGULE, VIRGULE, POINT;
+terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER, CROCHOUV, CROCHFER;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, LONGUEUR;
 terminal Symbol    EGAL;
 terminal Symbol    SI, ALORS, SINON, FINSI;
 terminal Symbol    TANTQUE, REPETER, FINTANTQUE;
@@ -191,6 +195,13 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                       
                       TDS.getInstance().ajouter(entree, symbole, tleft+1); 
                    :}
+            |
+            	   TYPE:t CROCHOUV EXPR:e CROCHFER IDF:i POINTVIRGULE
+            	   {: EntreeVariable entree = new EntreeVariable(idf);
+                      SymboleVariable symbole = new SymboleVariable(t);
+                      
+                      TDS.getInstance().ajouter(entree, symbole, tleft+1); 
+                   :}
                    ;
 
 DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
@@ -270,6 +281,11 @@ INST    ::=    AFFECT:a
            
 AFFECT    ::=    IDF:idf EGAL EXPR:exp POINTVIRGULE
                  {: RESULT = new Affectation(idf, exp); :}
+          |
+          		 IDF:i CROCHOUV EXPR:ind CROCHFER EGAL EXPR:e POINTVIRGULE
+          		 {: 
+          		   RESULT = new AffectationTableau(idf, ind, e);
+          		 :}
                  ;
 
 BOUCLE    ::=    TANTQUE EXPR:exp REPETER LINST:li FINTANTQUE
@@ -356,6 +372,16 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |       
                 IDF:i PAROUV PAR_EFF:par PARFER
                 {: RESULT = new Appel(i, par, ileft+1); :}
+        |
+        		IDF:i CROCHOUV EXPR:e CROCHFER
+        		{:
+        		  RESULT = new Tableau(idf, e, ileft);
+        		:}
+        |
+        		IDF:i POINT LONGUEUR
+        		{:
+        		  RESULT = idf.longueur();
+        		:}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 

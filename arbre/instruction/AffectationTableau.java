@@ -60,7 +60,22 @@ public class AffectationTableau extends Instruction {
 		StringBuilder aff = new StringBuilder(50);
 		//System.out.println("AFFECT"+deplacement);
 		aff.append("# Affectation\n");
+		aff.append("# On calcule la valeur de l'indice");
+		aff.append(expIndice.toMIPS());
+		aff.append("# On multiplie la valeur de l'indice par 4");
+		aff.append("li $t8, 4 \n");
+		aff.append("mult $v0, $t8\n");
+		aff.append("mflo $v0\n");
+		aff.append("# Empilement de la partie gauche\n");
+		aff.append("sw $v0, 0($sp)\n");
+		aff.append("add $sp, $sp, -4\n");   
+		aff.append("# Calcul de la partie droite\n");
 		aff.append(exp.toMIPS());
+		aff.append("# Dépilement de la partie gauche\n");
+		aff.append("add $sp, $sp, 4\n");
+		aff.append("lw $t8, 0($sp)\n");
+		//TODO
+		//aff.append("add")
 		aff.append("sw $v0, ");
 		aff.append(deplacement);
 		aff.append("($s7)\n");

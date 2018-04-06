@@ -197,7 +197,7 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    :}
             |
             	   TYPE:t CROCHOUV EXPR:e CROCHFER IDF:i POINTVIRGULE
-            	   {: EntreeVariable entree = new EntreeVariable(idf);
+            	   {: EntreeVariable entree = new EntreeVariable(i);
                       SymboleVariable symbole = new SymboleVariable(t);
                       
                       TDS.getInstance().ajouter(entree, symbole, tleft+1); 
@@ -284,7 +284,7 @@ AFFECT    ::=    IDF:idf EGAL EXPR:exp POINTVIRGULE
           |
           		 IDF:i CROCHOUV EXPR:ind CROCHFER EGAL EXPR:e POINTVIRGULE
           		 {: 
-          		   RESULT = new AffectationTableau(idf, ind, e);
+          		   RESULT = new AffectationTableau(i, ind, e);
           		 :}
                  ;
 
@@ -375,12 +375,12 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |
         		IDF:i CROCHOUV EXPR:e CROCHFER
         		{:
-        		  RESULT = new Tableau(idf, e, ileft);
+        		  RESULT = new Tableau(i, e, ileft);
         		:}
         |
         		IDF:i POINT LONGUEUR
         		{:
-        		  RESULT = idf.longueur();
+        		  RESULT = i.longueur();
         		:}
                 ;
 

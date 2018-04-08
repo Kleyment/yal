@@ -73,12 +73,12 @@ public class AffectationTableau extends Instruction {
 		aff.append(exp.toMIPS());
 		aff.append("# Dépilement de la partie gauche\n");
 		aff.append("add $sp, $sp, 4\n");
-		aff.append("lw $t8, 0($sp)\n");
-		//TODO
-		//aff.append("add")
-		aff.append("sw $v0, ");
-		aff.append(deplacement);
-		aff.append("($s7)\n");
+		aff.append("lw $t8, 0($sp)\n");		
+		aff.append("add $s7,$s7, -"+deplacement+" \n");
+		aff.append("add $s7,$s7,$t8");
+		aff.append("sw $v0 ($s7)");
+		aff.append("add $s7,$s7, "+deplacement+" \n");
+		aff.append("sub $s7,$s7,$t8");
 		
         return aff.toString();
 	}

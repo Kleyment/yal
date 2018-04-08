@@ -62,8 +62,8 @@ public class AffectationTableau extends Instruction {
 		aff.append("# Affectation\n");
 		aff.append("# On calcule la valeur de l'indice");
 		aff.append(expIndice.toMIPS());
-		aff.append("# On multiplie la valeur de l'indice par 4");
-		aff.append("li $t8, 4 \n");
+		aff.append("# On multiplie la valeur de l'indice par -4");
+		aff.append("li $t8, -4 \n");
 		aff.append("mult $v0, $t8\n");
 		aff.append("mflo $v0\n");
 		aff.append("# Empilement de la partie gauche\n");
@@ -73,10 +73,10 @@ public class AffectationTableau extends Instruction {
 		aff.append(exp.toMIPS());
 		aff.append("# Dépilement de la partie gauche\n");
 		aff.append("add $sp, $sp, 4\n");
-		aff.append("lw $t8, 0($sp)\n");		
+		aff.append("lw $t8, 0($sp)\n");
 		aff.append("add $s7,$s7, -"+deplacement+" \n");
 		aff.append("add $s7,$s7,$t8");
-		aff.append("sw $v0 ($s7)");
+		aff.append("sw $v0, ($s7)");
 		aff.append("add $s7,$s7, "+deplacement+" \n");
 		aff.append("sub $s7,$s7,$t8");
 		

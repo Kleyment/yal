@@ -26,7 +26,7 @@ public class Yal {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
             
             TDS.getInstance().prepareAnalyseSemantique();
-            arbre.verifier(); 
+            arbre.verifier();
             System.out.println("COMPILATION OK");             
             ecriture(arbre.toMIPS(), sortie(source));
         } 

@@ -205,8 +205,7 @@ DECL_VAR    ::=    TYPE:t IDF:idf POINTVIRGULE
                    ;
 
 DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
-                        {: 
-                           System.out.println("DECL_FONCTION");                      	   
+                        {:                	   
                            RESULT = new Fonction(ileft+1,i,li);        
                            TDS.getInstance().sortieBloc();
                         :}
@@ -220,7 +219,6 @@ DECL_FONCTION    ::=    FONCTION FCT:i PARAMETRES DEBUT LINST:li FIN
     
 FCT			  ::=	IDF:i
 					{:
-						   System.out.println("FCT "+i);
 						   EntreeFonction entree = new EntreeFonction(i, 0);
                            SymboleFonction symbole = new SymboleFonction("entier");
                            
@@ -364,7 +362,6 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |       
                 IDF:i
                 {: 
-                System.out.println("IDF");
                 RESULT = new Variable(i, ileft+1); :}
         |
                 IDF:i PAROUV PARFER
@@ -376,13 +373,13 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         		IDF:i CROCHOUV EXPR:e CROCHFER
         		{:
         		  RESULT = new Tableau(i, e, ileft);
-        		:}
+        		:}; /*
         |
         		IDF:i POINT LONGUEUR
         		{:
         		  RESULT = i.longueur();
         		:}
-                ;
+                ; */
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1); :}
